@@ -7,20 +7,31 @@
         mc:Ignorable="d"
         Title="Главное окно" Height="450" Width="800">
     <Grid>
-        <GroupBox x:Name="ChemicalEquationsGroupBox" Margin="10,0,150,0" Header="Уравнения реакции" BorderBrush="Black" VerticalAlignment="Top" MaxHeight="200">
+        <Button x:Name="AddChemicalEquation" Content="+" Margin="0,10,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="125" Height="80" Click="AddChemicalEquation_Click"/>
+        <Button x:Name="RemoveChemicalEquation" Content="-" Margin="0,119,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="125" Height="80" Click="RemoveChemicalEquation_Click"/>
+
+        <Button x:Name="AddComponent" Content="+" Click="AddComponent_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="75" Margin="45,100,0,0"/>
+        <Button x:Name="RemoveComponent" Content="-" Margin="45,0,0,10" Click="RemoveComponent_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="150" Height="75"/>
+
+        <Button x:Name="GetKineticButton" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" Height="50" Margin="0,0,75,25" Click="GetKineticButton_Click" />
+
+        <GroupBox x:Name="ChemicalEquationsGroupBox" Margin="10,0,150,0" Header="Уравнения реакции" BorderBrush="Black" VerticalAlignment="Top" MaxHeight="200" Height="200">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel x:Name="ChemicalEquationsStackPanel" MaxHeight="350"/>
             </ScrollViewer>
         </GroupBox>
-        <Button x:Name="AddChemicalEquation" Margin="0,10,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="125" Height="100" Click="AddChemicalEquation_Click"/>
-        <Button x:Name="RemoveChemicalEquation" Margin="0,119,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="125" Height="100" Click="RemoveChemicalEquation_Click"/>
-        
         <GroupBox x:Name="ComponentGroupBox" Margin="10,0,0,10" Header="Компоненты" BorderBrush="Black" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="200" Width="315">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel x:Name="ComponentsStackPanel"/>
             </ScrollViewer>
         </GroupBox>
-        <Button x:Name="AddComponent" Content="+" Click="AddComponent_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="75" Margin="45,100,0,0"/>
-        <Button x:Name="RemoveComponent" Content="-" Margin="45,0,0,10" Click="RemoveComponent_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="150" Height="75"/>
+
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="350,50,0,0">Температура процесса</Label>
+        <Label HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,115,125,0">Время протекания процесса</Label>
+        <Label HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,180,190,0">Шаг по времени</Label>
+
+        <TextBox x:Name="TemperatureTextBox" HorizontalAlignment="Right" VerticalAlignment="Center" Width="75" Height="25" Margin="0,55,40,0"></TextBox>
+        <TextBox x:Name="TimeTextBox" HorizontalAlignment="Right" VerticalAlignment="Center" Width="75" Height="25" Margin="0,120,40,0"></TextBox>
+        <TextBox x:Name="TempTimeTextBox" HorizontalAlignment="Right" VerticalAlignment="Center" Width="75" Height="25" Margin="0,185,40,0"></TextBox>
     </Grid>
 </Window>
