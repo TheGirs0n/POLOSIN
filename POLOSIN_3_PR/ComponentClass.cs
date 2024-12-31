@@ -2,13 +2,13 @@
 {
     public class ComponentClass
     {
-        private string? componentName { get; set; }
+        private string? _ComponentName { get; set; }
         public string? ComponentName 
         {
-            get => componentName;
-            set => componentName = value;
+            get => _ComponentName;
+            set => _ComponentName = value;
         }
-        private float? componentValue { get; set; }
+        private float? _ComponentValue { get; set; }
         public float? ComponentValue
         {
             get => ComponentValue;
@@ -17,8 +17,8 @@
 
         ComponentClass(string componentName)
         {
-            this.componentName = componentName;
-            this.componentValue = 0;
+            ComponentName = componentName;
+            ComponentValue = 0;
         }
     }
 }

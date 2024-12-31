@@ -4,19 +4,15 @@ using System.Windows.Media;
 
 namespace POLOSIN_3_PR.UI_Methods
 {
-    public class ModifyComponentGroupBox
+    public class ModifyChemicalEquationGroupBox
     {
-        public static void RemoveComponent(StackPanel stackPanel)
+        public static void AddChemicalEquation(StackPanel stackPanel)
         {
-            stackPanel.Children.RemoveAt(stackPanel.Children.Count - 1);
-        }
-        public static void AddComponent(StackPanel stackPanel)
-        {
-            var newStackPanel = CreateComponentStackPanel();
+            var newStackPanel = CreateChemicalEquationStackPanel();
             stackPanel.Children.Add(newStackPanel);
         }
 
-        private static Border CreateComponentStackPanel()
+        private static Border CreateChemicalEquationStackPanel()
         {
             Border border = new Border()
             {
@@ -32,7 +28,7 @@ namespace POLOSIN_3_PR.UI_Methods
                 Width = 50,
                 VerticalContentAlignment = VerticalAlignment.Center,
             };
-            componentComponent.PreviewTextInput += TextBox_PreviewTextInputComponent;
+            componentComponent.PreviewTextInput += TextBox_PreviewTextInputConcentration;
             componentComponent.PreviewKeyDown += TextBox_PreviewKeyDown;
 
             var componentConcentration = new TextBox
@@ -49,20 +45,20 @@ namespace POLOSIN_3_PR.UI_Methods
                 {
                     Content = "Компонент"
                 },
-                componentComponent, 
+                componentComponent,
                 new Label
                 {
-                    Content = "Концентрация"
+                    Content = "Количество"
                 },
                 componentConcentration
             };
-            
+
             var stackPanel = new StackPanel()
             {
                 Orientation = Orientation.Horizontal,
-                Margin = new Thickness(5),               
+                Margin = new Thickness(5),
             };
-            
+
             AddToStackPanel(stackPanel, list);
             border.Child = stackPanel;
 
@@ -75,13 +71,6 @@ namespace POLOSIN_3_PR.UI_Methods
                 stackPanel.Children.Add(value);
         }
 
-        private static void TextBox_PreviewTextInputComponent(object sender, System.Windows.Input.TextCompositionEventArgs e)
-        {
-            char Symb = e.Text[0];
-
-            if (!Char.IsLetter(Symb))
-                e.Handled = true;
-        }
         private static void TextBox_PreviewTextInputConcentration(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             char Symb = e.Text[0];
