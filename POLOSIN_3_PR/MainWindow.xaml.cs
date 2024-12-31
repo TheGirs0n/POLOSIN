@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using POLOSIN_3_PR.UI_Methods;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -28,12 +29,12 @@ namespace POLOSIN_3_PR
 
         private void RemoveChemicalEquation_Click(object sender, RoutedEventArgs e)
         {
-            
+     
         }
 
         private void AddComponent_Click(object sender, RoutedEventArgs e)
         {
-            //ComponentsStackPanel.Children.Add();
+            ModifyComponentGroupBox.AddComponent(ComponentsStackPanel);
         }
 
         private void RemoveComponent_Click(object sender, RoutedEventArgs e)
