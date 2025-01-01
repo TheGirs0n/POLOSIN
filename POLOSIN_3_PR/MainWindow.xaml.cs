@@ -1,6 +1,8 @@
 ﻿using POLOSIN_3_PR.Async_Methods;
+using POLOSIN_3_PR.UI_AdditionalWindows;
 using POLOSIN_3_PR.UI_Methods;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace POLOSIN_3_PR
 {
@@ -26,10 +28,47 @@ namespace POLOSIN_3_PR
         {
             InitializeComponent();
         }
+        private void GetComponentsAndConcentration()
+        {
+            string component = "";
+            float concentration = 0;
+            
+            Components!.Clear();
 
+            foreach (var item in ComponentsStackPanel.Children)
+            {
+                var stackPanel = (Border)item;
+                StackPanel child = (StackPanel)stackPanel.Child;
+                var collection = child.Children;
+
+                for (int i = 1; i < collection.Count; i+=2)
+                {
+                    if (i == 1)
+                    {
+                        var textBoxComponent = (TextBox)collection[i];
+                        component = textBoxComponent.Text;
+                    }
+                    else
+                    {
+                        var textBoxConcentration = (TextBox)collection[i];
+                        concentration = float.Parse(textBoxConcentration.Text);
+                    }
+                }
+                var componentClass = new ComponentClass(component, concentration);
+                Components!.Add(componentClass);
+            } 
+        }
         private void AddChemicalEquation_Click(object sender, RoutedEventArgs e)
         {
-
+            if (ComponentsStackPanel.Children!.Count > 0)
+            {
+                GetComponentsAndConcentration();
+                AddChemicalEquation addChemicalEquation = new AddChemicalEquation();
+                addChemicalEquation.Show();
+                addChemicalEquation.Owner = this;
+            }
+            else
+                Logger.PrintMessageAsync("Сначала введите компоненты", MessageBoxImage.Information);
         }
 
         private void RemoveChemicalEquation_Click(object sender, RoutedEventArgs e)

@@ -11,14 +11,14 @@
         private float? _ComponentValue { get; set; }
         public float? ComponentValue
         {
-            get => ComponentValue;
-            set => ComponentValue = value;
+            get => _ComponentValue;
+            set => _ComponentValue = value;
         }
 
-        ComponentClass(string componentName)
+        public ComponentClass(string componentName, float componentValue)
         {
             ComponentName = componentName;
-            ComponentValue = 0;
+            ComponentValue = componentValue;
         }
     }
 }

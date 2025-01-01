@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -6,13 +7,13 @@ namespace POLOSIN_3_PR.UI_Methods
 {
     public class ModifyChemicalEquationGroupBox
     {
-        public static void AddChemicalEquation(StackPanel stackPanel)
+        public static void AddChemicalEquationComponents(StackPanel stackPanel, Dictionary<string, int> components)
         {
-            var newStackPanel = CreateChemicalEquationStackPanel();
+            var newStackPanel = CreateChemicalEquationStackPanel(components);
             stackPanel.Children.Add(newStackPanel);
         }
 
-        private static Border CreateChemicalEquationStackPanel()
+        private static Border CreateChemicalEquationStackPanel(Dictionary<string, int> components)
         {
             Border border = new Border()
             {
@@ -23,13 +24,12 @@ namespace POLOSIN_3_PR.UI_Methods
                 IsHitTestVisible = true
             };
 
-            var componentComponent = new TextBox
+            var componentComponent = new ComboBox()
             {
                 Width = 50,
                 VerticalContentAlignment = VerticalAlignment.Center,
             };
-            componentComponent.PreviewTextInput += TextBox_PreviewTextInputConcentration;
-            componentComponent.PreviewKeyDown += TextBox_PreviewKeyDown;
+            componentComponent.ItemsSource = components.Keys;
 
             var componentConcentration = new TextBox
             {
