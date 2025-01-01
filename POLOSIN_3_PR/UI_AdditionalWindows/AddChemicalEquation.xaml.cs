@@ -11,8 +11,8 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
     public partial class AddChemicalEquation : Window
     {
         private ChemicalEquation? _chemicalEquation;
-        Dictionary<string, int> leftEquationSide = new Dictionary<string, int>();
-        Dictionary<string, int> rightEquationSide = new Dictionary<string, int>();
+        private Dictionary<string, int> leftEquationSide = new Dictionary<string, int>();
+        private Dictionary<string, int> rightEquationSide = new Dictionary<string, int>();
 
         public AddChemicalEquation()
         {
@@ -28,18 +28,22 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
                 rightEquationSide.Add(component.ComponentName!, 0);
             }
         }
-        private void GetChemicalEquation()
-        {         
+
+        private void GetChemicalEquation(bool isOverral)
+        {
+            leftEquationSide.Clear();
+            rightEquationSide.Clear();
+
             foreach (var item in LeftComponentsStackPanel.Children)
             {
                 var stackPanel = (Border)item;
                 StackPanel child = (StackPanel)stackPanel.Child;
                 var collection = child.Children;
 
-                var key = (TextBox)collection[1];
+                var key = (ComboBox)collection[1];
                 var value = (TextBox)collection[3];
 
-                leftEquationSide.Add(key.Text, int.Parse(value.Text));
+                leftEquationSide.Add(key.SelectedItem.ToString()!, int.Parse(value.Text));
             }
 
             foreach (var item in RightComponentsStackPanel.Children)
@@ -48,14 +52,18 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
                 StackPanel child = (StackPanel)stackPanel.Child;
                 var collection = child.Children;
 
-                var key = (TextBox)collection[1];
+                var key = (ComboBox)collection[1];
                 var value = (TextBox)collection[3];
 
-                rightEquationSide.Add(key.Text, int.Parse(value.Text));
+                rightEquationSide.Add(key.SelectedItem.ToString()!, int.Parse(value.Text));
             }
 
-            ChemicalEquation chemicalEquation = new ChemicalEquation(leftEquationSide, rightEquationSide,
-                float.Parse(EnergyActivation.Text), float.Parse(VelocityConst.Text));
+            if (isOverral == false)
+            {
+                _chemicalEquation = new ChemicalEquation(leftEquationSide, rightEquationSide,
+                    float.Parse(EnergyActivation.Text), float.Parse(VelocityConst.Text));
+                MainWindow.ChemicalEquations!.Add(_chemicalEquation);
+            }
         }
         private void AddComponentsToReaction_Click(object sender, RoutedEventArgs e)
         {
@@ -82,7 +90,7 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
         {
             if (LeftComponentsStackPanel.Children.Count > 0 && RightComponentsStackPanel.Children.Count > 0)
             {
-                GetChemicalEquation();
+                GetChemicalEquation(false);
             }
             else
                 Logger.PrintMessageAsync("Введите компоненты с обоих сторон", MessageBoxImage.Error);
@@ -103,16 +111,33 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
 
         private void GetOverralReaction_Click(object sender, RoutedEventArgs e)
         {
+            GetChemicalEquation(true);
+
             if (LeftComponentsStackPanel.Children.Count > 0 && RightComponentsStackPanel.Children.Count > 0)
             {
                 ReactionView.Visibility = Visibility.Visible;
                 OverralReactionView.Visibility = Visibility.Visible;
             }
 
-            //for (int i = 0; i < leftComponents.Count; i++)
-            //{ 
-            //    OverralReactionView.Content += $"{left}" 
-            //}
+            for (int i = 0; i < leftEquationSide.Count; i++)
+            {
+                var item = leftEquationSide.ElementAt(i);
+                if(i != leftEquationSide.Count - 1)
+                    OverralReactionView.Content += $"{item.Value}{item.Key}+";
+                else
+                    OverralReactionView.Content += $"{item.Value}{item.Key}";
+            }
+
+            OverralReactionView.Content += " = ";
+
+            for (int i = 0; i < rightEquationSide.Count; i++)
+            {
+                var item = rightEquationSide.ElementAt(i);
+                if (i != rightEquationSide.Count - 1)
+                    OverralReactionView.Content += $"{item.Value}{item.Key}+";
+                else
+                    OverralReactionView.Content += $"{item.Value}{item.Key}";
+            }
         }
     }
 }

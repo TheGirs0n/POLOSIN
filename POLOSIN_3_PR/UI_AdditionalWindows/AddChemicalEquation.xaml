@@ -30,7 +30,7 @@
         <GroupBox Header="Константа скорости" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,80,0,0" BorderBrush="Black" Width="160">
             <StackPanel Orientation="Horizontal">
                 <Label>K</Label>
-                <TextBox x:Name="VelocityConst" PreviewTextInput="TextBox_PreviewTextInputConcentration" PreviewKeyDown="TextBox_PreviewKeyDown" VerticalContentAlignment="Center" HorizontalScrollBarVisibility="Auto"></TextBox>
+                <TextBox x:Name="VelocityConst" PreviewTextInput="TextBox_PreviewTextInputConcentration" PreviewKeyDown="TextBox_PreviewKeyDown" VerticalContentAlignment="Center" HorizontalScrollBarVisibility="Auto"/>
             </StackPanel>
         </GroupBox>
         <GroupBox Header="Энергия активации" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Black" Width="160" Margin="0,0,0,80">
@@ -41,6 +41,6 @@
         </GroupBox>
         
         <Label x:Name="ReactionView" Content="Вид реакции" VerticalAlignment="Bottom" Margin="0,0,0,50" HorizontalContentAlignment="Center" Visibility="Hidden"/>
-        <Label x:Name="OverralReactionView" Content="" VerticalAlignment="Bottom" Margin="15,0,15,25" Visibility="Hidden"></Label>
+        <Label x:Name="OverralReactionView" Content="" VerticalAlignment="Bottom" Margin="15,0,15,25" Visibility="Hidden" HorizontalContentAlignment="Center" FontSize="20"/>
     </Grid>
 </Window>
