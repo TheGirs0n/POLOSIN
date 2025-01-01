@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -74,7 +75,44 @@ namespace POLOSIN_3_PR.UI_Methods
             foreach (var value in list)
                 stackPanel.Children.Add(value);
         }
+        public static void GetComponentsAndConcentration(ObservableCollection<ComponentClass> components, StackPanel componentsStackPanel)
+        {
+            string component = "";
+            float concentration = 0;
 
+            components!.Clear();
+
+            foreach (var item in componentsStackPanel.Children)
+            {
+                var stackPanel = (Border)item;
+                StackPanel child = (StackPanel)stackPanel.Child;
+                var collection = child.Children;
+
+                for (int i = 1; i < collection.Count; i += 2)
+                {
+                    if (i == 1)
+                    {
+                        var textBoxComponent = (TextBox)collection[i];
+                        component = textBoxComponent.Text;
+                    }
+                    else
+                    {
+                        var textBoxConcentration = (TextBox)collection[i];
+                        if (float.TryParse(textBoxConcentration.Text, out concentration))
+                        {
+
+                        }
+                        else
+                        {
+                            components.Clear();
+                            return;
+                        }
+                    }
+                }
+                var componentClass = new ComponentClass(component, concentration);
+                components!.Add(componentClass);
+            }
+        }
         private static void TextBox_PreviewTextInputComponent(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             char Symb = e.Text[0];

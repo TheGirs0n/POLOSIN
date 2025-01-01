@@ -11,7 +11,49 @@ namespace POLOSIN_3_PR.UI_Methods
             var newStackPanel = CreateChemicalEquationStackPanel(components);
             stackPanel.Children.Add(newStackPanel);
         }
+        public static Border AddChemicalEquationToStackPanel(StackPanel stackPanel, float? energyActivaion,
+            float? velocityConst, string overralReactionText)
+        {
+            Border border = new Border()
+            {
+                BorderBrush = Brushes.Black,
+                BorderThickness = new Thickness(1),
+                CornerRadius = new CornerRadius(5),
+                Margin = new Thickness(3),
+                IsHitTestVisible = true
+            };
+          
+            List<UIElement> list = new List<UIElement>()
+            {
+                new Label
+                {
+                    Content = $"{stackPanel.Children.Count}"
+                },
+                new Label
+                {
+                    Content = overralReactionText
+                },
+                new Label
+                {
+                    Content = energyActivaion
+                },
+                new Label
+                {
+                    Content = velocityConst
+                }
+            };
 
+            var stackPanelToAdd = new StackPanel()
+            {
+                Orientation = Orientation.Horizontal,
+                Margin = new Thickness(5),
+            };
+
+            AddToStackPanel(stackPanelToAdd, list);
+            border.Child = stackPanelToAdd;
+
+            return border;
+        }
         private static Border CreateChemicalEquationStackPanel(Dictionary<string, int> components)
         {
             Border border = new Border()

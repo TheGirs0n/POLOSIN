@@ -1,8 +1,8 @@
 ﻿using POLOSIN_3_PR.Async_Methods;
 using POLOSIN_3_PR.UI_AdditionalWindows;
 using POLOSIN_3_PR.UI_Methods;
+using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace POLOSIN_3_PR
 {
@@ -11,14 +11,14 @@ namespace POLOSIN_3_PR
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static List<ChemicalEquation>? _chemicalEquations = new();
-        private static List<ComponentClass>? _components = new();
-        public static List<ChemicalEquation>? ChemicalEquations
+        private static ObservableCollection<ChemicalEquation>? _chemicalEquations;
+        private static ObservableCollection<ComponentClass>? _components;
+        public static ObservableCollection<ChemicalEquation>? ChemicalEquations
         {
             get => _chemicalEquations;
             set => _chemicalEquations = value;
         }
-        public static List<ComponentClass>? Components
+        public static ObservableCollection<ComponentClass>? Components
         {
             get => _components;
             set => _components = value;
@@ -27,45 +27,29 @@ namespace POLOSIN_3_PR
         public MainWindow()
         {
             InitializeComponent();
+            InitializeCollections();
         }
-        private void GetComponentsAndConcentration()
+        private void InitializeCollections()
         {
-            string component = "";
-            float concentration = 0;
-            
-            Components!.Clear();
-
-            foreach (var item in ComponentsStackPanel.Children)
-            {
-                var stackPanel = (Border)item;
-                StackPanel child = (StackPanel)stackPanel.Child;
-                var collection = child.Children;
-
-                for (int i = 1; i < collection.Count; i+=2)
-                {
-                    if (i == 1)
-                    {
-                        var textBoxComponent = (TextBox)collection[i];
-                        component = textBoxComponent.Text;
-                    }
-                    else
-                    {
-                        var textBoxConcentration = (TextBox)collection[i];
-                        concentration = float.Parse(textBoxConcentration.Text);
-                    }
-                }
-                var componentClass = new ComponentClass(component, concentration);
-                Components!.Add(componentClass);
-            } 
+            _chemicalEquations = new();
+            _chemicalEquations.CollectionChanged += _chemicalEquations_CollectionChanged;
+            _components = new();
         }
+            
+        
         private void AddChemicalEquation_Click(object sender, RoutedEventArgs e)
         {
             if (ComponentsStackPanel.Children!.Count > 0)
             {
-                GetComponentsAndConcentration();
-                AddChemicalEquation addChemicalEquation = new AddChemicalEquation();
-                addChemicalEquation.Show();
-                addChemicalEquation.Owner = this;
+                ModifyComponentGroupBox.GetComponentsAndConcentration(components: Components!, ComponentsStackPanel);
+                if (Components!.Count > 0)
+                {
+                    AddChemicalEquation addChemicalEquation = new AddChemicalEquation();
+                    addChemicalEquation.Show();
+                    addChemicalEquation.Owner = this;
+                }
+                else
+                    Logger.PrintMessageAsync("Ошибка чтения данных. Проверьте корректность", MessageBoxImage.Error);
             }
             else
                 Logger.PrintMessageAsync("Сначала введите компоненты", MessageBoxImage.Information);
@@ -89,12 +73,24 @@ namespace POLOSIN_3_PR
         private void GetKineticButton_Click(object sender, RoutedEventArgs e)
         {
             if (TemperatureTextBox.Text != string.Empty && TempTimeTextBox.Text != string.Empty
-                && TimeTextBox.Text != string.Empty)
+                && TimeTextBox.Text != string.Empty && Components!.Count > 0 && ChemicalEquations!.Count > 0)
             {
 
             }
             else
                 Logger.PrintMessageAsync("Заполните все варьируемые параметры", MessageBoxImage.Error);
         }
+        private void _chemicalEquations_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            { 
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+                    var item = (ChemicalEquation)e.NewItems![0]!;
+                    ModifyChemicalEquationGroupBox.AddChemicalEquationToStackPanel(ComponentsStackPanel, energyActivaion: item.ActivateEnergy,
+                        velocityConst: item.VelocityConst ,overralReactionText: AddChemicalEquation.overralChemicalEquation!);
+                    break;
+            }
+        }
+
     }
 }
