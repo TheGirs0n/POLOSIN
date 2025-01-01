@@ -107,16 +107,16 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
                     _chemicalEquation = new ChemicalEquation(leftEquationSide, rightEquationSide,
                         energy, velocity);
 
-                    MainWindow.ChemicalEquations!.Add(_chemicalEquation);
                     GetOverralReactionText();
+                    MainWindow.ChemicalEquations!.Add(_chemicalEquation);
                 }
                 else
                 {
                     _chemicalEquation = new ChemicalEquation(leftEquationSide, rightEquationSide,
                         0, 0);
 
-                    MainWindow.ChemicalEquations!.Add(_chemicalEquation);
                     GetOverralReactionText();
+                    MainWindow.ChemicalEquations!.Add(_chemicalEquation);
                 }
             }
         }

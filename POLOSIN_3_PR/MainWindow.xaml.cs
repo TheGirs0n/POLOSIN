@@ -57,17 +57,24 @@ namespace POLOSIN_3_PR
 
         private void RemoveChemicalEquation_Click(object sender, RoutedEventArgs e)
         {
-
+            if (ChemicalEquationsStackPanel.Children!.Count > 1)
+                ModifyChemicalEquationGroupBox.RemoveChemicalEquation(ChemicalEquationsStackPanel, ChemicalEquations);
+            else
+                Logger.PrintMessageAsync("Нет химических реакций для удаления", MessageBoxImage.Error);
         }
 
         private void AddComponent_Click(object sender, RoutedEventArgs e)
         {
+            Components!.Add(new ComponentClass("", 0));
             ModifyComponentGroupBox.AddComponent(ComponentsStackPanel);
         }
 
         private void RemoveComponent_Click(object sender, RoutedEventArgs e)
         {
-
+            if (ComponentsStackPanel!.Children.Count > 0)
+                ModifyComponentGroupBox.RemoveComponent(ComponentsStackPanel, Components!);
+            else
+                Logger.PrintMessageAsync("Нет компонентов для удаления", MessageBoxImage.Error);
         }
 
         private void GetKineticButton_Click(object sender, RoutedEventArgs e)
@@ -86,7 +93,7 @@ namespace POLOSIN_3_PR
             { 
                 case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
                     var item = (ChemicalEquation)e.NewItems![0]!;
-                    ModifyChemicalEquationGroupBox.AddChemicalEquationToStackPanel(ComponentsStackPanel, energyActivaion: item.ActivateEnergy,
+                    ModifyChemicalEquationGroupBox.AddChemicalEquationToStackPanel(ChemicalEquationsStackPanel, energyActivaion: item.ActivateEnergy,
                         velocityConst: item.VelocityConst ,overralReactionText: AddChemicalEquation.overralChemicalEquation!);
                     break;
             }

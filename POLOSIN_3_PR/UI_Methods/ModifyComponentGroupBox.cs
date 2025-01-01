@@ -7,9 +7,10 @@ namespace POLOSIN_3_PR.UI_Methods
 {
     public class ModifyComponentGroupBox
     {
-        public static void RemoveComponent(StackPanel stackPanel)
+        public static void RemoveComponent(StackPanel stackPanel, ObservableCollection<ComponentClass> componentClasses)
         {
             stackPanel.Children.RemoveAt(stackPanel.Children.Count - 1);
+            componentClasses.RemoveAt(componentClasses.Count - 1);
         }
         public static void AddComponent(StackPanel stackPanel)
         {
@@ -25,7 +26,8 @@ namespace POLOSIN_3_PR.UI_Methods
                 BorderThickness = new Thickness(1),
                 CornerRadius = new CornerRadius(5),
                 Margin = new Thickness(3),
-                IsHitTestVisible = true
+                IsHitTestVisible = true,
+                Background = new SolidColorBrush(Colors.Transparent),
             };
 
             var componentComponent = new TextBox
@@ -98,11 +100,7 @@ namespace POLOSIN_3_PR.UI_Methods
                     else
                     {
                         var textBoxConcentration = (TextBox)collection[i];
-                        if (float.TryParse(textBoxConcentration.Text, out concentration))
-                        {
-
-                        }
-                        else
+                        if (float.TryParse(textBoxConcentration.Text, out concentration) == false)
                         {
                             components.Clear();
                             return;

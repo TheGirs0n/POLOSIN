@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -6,12 +8,23 @@ namespace POLOSIN_3_PR.UI_Methods
 {
     public class ModifyChemicalEquationGroupBox
     {
+        public static void RemoveChemicalEquation(StackPanel stackPanel, ObservableCollection<ChemicalEquation>? chemicalEquations)
+        {
+            stackPanel.Children.RemoveAt(stackPanel.Children.Count - 1);
+            chemicalEquations!.RemoveAt(chemicalEquations.Count - 1);
+        }
         public static void AddChemicalEquationComponents(StackPanel stackPanel, Dictionary<string, int> components)
         {
             var newStackPanel = CreateChemicalEquationStackPanel(components);
             stackPanel.Children.Add(newStackPanel);
         }
-        public static Border AddChemicalEquationToStackPanel(StackPanel stackPanel, float? energyActivaion,
+        public static void AddChemicalEquationToStackPanel(StackPanel stackPanel, float? energyActivaion,
+            float? velocityConst, string overralReactionText)
+        {
+            var newStackPanel = CreateChemicalEquation(stackPanel, energyActivaion, velocityConst, overralReactionText);
+            stackPanel.Children.Add(newStackPanel);       
+        }
+        private static Border CreateChemicalEquation(StackPanel stackPanel, float? energyActivaion,
             float? velocityConst, string overralReactionText)
         {
             Border border = new Border()
@@ -20,34 +33,42 @@ namespace POLOSIN_3_PR.UI_Methods
                 BorderThickness = new Thickness(1),
                 CornerRadius = new CornerRadius(5),
                 Margin = new Thickness(3),
-                IsHitTestVisible = true
+                IsHitTestVisible = true,
+                Background = new SolidColorBrush(Colors.Transparent)
             };
-          
+
             List<UIElement> list = new List<UIElement>()
             {
                 new Label
                 {
-                    Content = $"{stackPanel.Children.Count}"
+                    Content = $"{stackPanel.Children.Count}",
+                    Width = 25,
                 },
                 new Label
                 {
-                    Content = overralReactionText
+                    Content = overralReactionText,
+                    Width = 150
                 },
                 new Label
                 {
-                    Content = energyActivaion
+                    Content = energyActivaion,
+                    Width = 150
                 },
                 new Label
                 {
-                    Content = velocityConst
+                    Content = velocityConst,
+                    Width = 150
                 }
             };
 
-            var stackPanelToAdd = new StackPanel()
+            var stackPanelToAdd = new Grid()
             {
-                Orientation = Orientation.Horizontal,
-                Margin = new Thickness(5),
+                
             };
+            stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star)});
+            stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(2, GridUnitType.Star) });
+            stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+            stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
 
             AddToStackPanel(stackPanelToAdd, list);
             border.Child = stackPanelToAdd;
@@ -62,7 +83,8 @@ namespace POLOSIN_3_PR.UI_Methods
                 BorderThickness = new Thickness(1),
                 CornerRadius = new CornerRadius(5),
                 Margin = new Thickness(3),
-                IsHitTestVisible = true
+                IsHitTestVisible = true,
+                Background = new SolidColorBrush(Colors.Transparent)
             };
 
             var componentComponent = new ComboBox()
@@ -106,10 +128,18 @@ namespace POLOSIN_3_PR.UI_Methods
             return border;
         }
 
-        public static void AddToStackPanel(StackPanel stackPanel, List<UIElement> list)
+        private static void AddToStackPanel(StackPanel stackPanel, List<UIElement> list)
         {
             foreach (var value in list)
                 stackPanel.Children.Add(value);
+        }
+        private static void AddToStackPanel(Grid grid, List<UIElement> list)
+        {
+            foreach (var value in list)
+            {
+                Grid.SetColumn(value, list.IndexOf(value));
+                grid.Children.Add(value);
+            }
         }
 
         private static void TextBox_PreviewTextInputConcentration(object sender, System.Windows.Input.TextCompositionEventArgs e)
