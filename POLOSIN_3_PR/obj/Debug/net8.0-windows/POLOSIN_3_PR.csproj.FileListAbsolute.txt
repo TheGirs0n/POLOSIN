@@ -21,3 +21,5 @@ C:\Users\Timur\Desktop\POLOSIN_3\POLOSIN_3_PR\obj\Debug\net8.0-windows\POLOSIN_3
 C:\Users\Timur\Desktop\POLOSIN_3\POLOSIN_3_PR\obj\Debug\net8.0-windows\ref\POLOSIN_3_PR.dll
 C:\Users\Timur\Desktop\POLOSIN_3\POLOSIN_3_PR\obj\Debug\net8.0-windows\UI_AdditionalWindows\AddChemicalEquation.g.cs
 C:\Users\Timur\Desktop\POLOSIN_3\POLOSIN_3_PR\obj\Debug\net8.0-windows\UI_AdditionalWindows\AddChemicalEquation.baml
+C:\Users\Timur\Desktop\POLOSIN_3\POLOSIN_3_PR\obj\Debug\net8.0-windows\UI_AdditionalWindows\Graphs.g.cs
+C:\Users\Timur\Desktop\POLOSIN_3\POLOSIN_3_PR\obj\Debug\net8.0-windows\UI_AdditionalWindows\Graphs.baml

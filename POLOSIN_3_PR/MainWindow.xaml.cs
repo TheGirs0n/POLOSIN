@@ -15,17 +15,6 @@ namespace POLOSIN_3_PR
     {
         private static ObservableCollection<ChemicalEquation>? _chemicalEquations;
         private static ObservableCollection<ComponentClass>? _components;
-        public static ObservableCollection<ChemicalEquation>? ChemicalEquations
-        {
-            get => _chemicalEquations;
-            set => _chemicalEquations = value;
-        }
-
-        public static ObservableCollection<ComponentClass>? Components
-        {
-            get => _components;
-            set => _components = value;
-        }
 
         public MainWindow()
         {
@@ -44,8 +33,8 @@ namespace POLOSIN_3_PR
         {
             if (ComponentsStackPanel.Children!.Count > 0)
             {
-                ModifyComponentGroupBox.GetComponentsAndConcentration(components: Components!, ComponentsStackPanel);
-                if (Components!.Count > 0)
+                ModifyComponentGroupBox.GetComponentsAndConcentration(components: _components!, ComponentsStackPanel);
+                if (_components!.Count > 0)
                 {
                     AddChemicalEquation addChemicalEquation = new AddChemicalEquation();
                     addChemicalEquation.Show();
@@ -61,21 +50,21 @@ namespace POLOSIN_3_PR
         private void RemoveChemicalEquation_Click(object sender, RoutedEventArgs e)
         {
             if (ChemicalEquationsStackPanel.Children!.Count > 1)
-                ModifyChemicalEquationGroupBox.RemoveChemicalEquation(ChemicalEquationsStackPanel, ChemicalEquations);
+                ModifyChemicalEquationGroupBox.RemoveChemicalEquation(ChemicalEquationsStackPanel, _chemicalEquations);
             else
                 Logger.PrintMessageAsync("Нет химических реакций для удаления", MessageBoxImage.Error);
         }
 
         private void AddComponent_Click(object sender, RoutedEventArgs e)
         {
-            Components!.Add(new ComponentClass("", 0));
+            _components!.Add(new ComponentClass("", 0));
             ModifyComponentGroupBox.AddComponent(ComponentsStackPanel);
         }
 
         private void RemoveComponent_Click(object sender, RoutedEventArgs e)
         {
             if (ComponentsStackPanel!.Children.Count > 0)
-                ModifyComponentGroupBox.RemoveComponent(ComponentsStackPanel, Components!);
+                ModifyComponentGroupBox.RemoveComponent(ComponentsStackPanel, _components!);
             else
                 Logger.PrintMessageAsync("Нет компонентов для удаления", MessageBoxImage.Error);
         }
@@ -83,10 +72,10 @@ namespace POLOSIN_3_PR
         private void GetKineticButton_Click(object sender, RoutedEventArgs e)
         {
             if (TemperatureTextBox.Text != string.Empty && TempTimeTextBox.Text != string.Empty
-                && TimeTextBox.Text != string.Empty && Components!.Count > 0 && ChemicalEquations!.Count > 0)
+                && TimeTextBox.Text != string.Empty && _components!.Count > 0 && _chemicalEquations!.Count > 0)
             {
                 KineticCalculate kineticCalculate = new KineticCalculate();
-                kineticCalculate.CalculateKinetic(chemicalEquations: ChemicalEquations, components: Components);
+                kineticCalculate.CalculateKinetic(chemicalEquations: _chemicalEquations, components: _components);
             }
             else
                 Logger.PrintMessageAsync("Заполните все варьируемые параметры", MessageBoxImage.Error);
@@ -99,10 +88,12 @@ namespace POLOSIN_3_PR
                 case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
                     var item = (ChemicalEquation)e.NewItems![0]!;
                     ModifyChemicalEquationGroupBox.AddChemicalEquationToStackPanel(ChemicalEquationsStackPanel, energyActivaion: item.ActivateEnergy,
-                        velocityConst: item.VelocityConst ,overralReactionText: AddChemicalEquation.overralChemicalEquation!);
+                        velocityConst: item.VelocityConst, overralReactionText: AddChemicalEquation.overralChemicalEquation!);
                     break;
             }
         }
 
+        public static ObservableCollection<ChemicalEquation>? GetChemicalEquations() => _chemicalEquations;
+        public static ObservableCollection<ComponentClass>? GetComponent() => _components;
     }
 }

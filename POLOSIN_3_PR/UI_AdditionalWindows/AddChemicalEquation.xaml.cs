@@ -24,7 +24,7 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
 
         private void InitializeCollections()
         {
-            foreach (var component in MainWindow.Components!)
+            foreach (var component in MainWindow.GetComponent()!)
             {
                 leftEquationSide.Add(component.ComponentName!, 0);
                 rightEquationSide.Add(component.ComponentName!, 0);
@@ -109,7 +109,7 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
                         energy, velocity);
 
                     GetOverralReactionText();
-                    MainWindow.ChemicalEquations!.Add(_chemicalEquation);
+                    MainWindow.GetChemicalEquations()!.Add(_chemicalEquation);
                 }
                 else
                 {
@@ -117,7 +117,7 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
                         0, 0);
 
                     GetOverralReactionText();
-                    MainWindow.ChemicalEquations!.Add(_chemicalEquation);
+                    MainWindow.GetChemicalEquations()!.Add(_chemicalEquation);
                 }
             }
         }
@@ -128,8 +128,8 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
             RightComponentsStackPanel.Children.Clear();
 
             if (LeftChemicalComponentsCountTextBox.Text != string.Empty && RightChemicalComponentsCountTextBox.Text != string.Empty
-                && (int.Parse(LeftChemicalComponentsCountTextBox.Text) <= MainWindow.Components!.Count
-                || int.Parse(RightChemicalComponentsCountTextBox.Text) <= MainWindow.Components!.Count))
+                && (int.Parse(LeftChemicalComponentsCountTextBox.Text) <= MainWindow.GetComponent()!.Count
+                || int.Parse(RightChemicalComponentsCountTextBox.Text) <= MainWindow.GetComponent()!.Count))
             {
                 for (int i = 0; i < int.Parse(LeftChemicalComponentsCountTextBox.Text); i++)
                     ModifyChemicalEquationGroupBox.AddChemicalEquationComponents(LeftComponentsStackPanel, leftEquationSide);
@@ -139,8 +139,8 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
             }
             else if (LeftChemicalComponentsCountTextBox.Text == string.Empty || RightChemicalComponentsCountTextBox.Text == string.Empty)
                 Logger.PrintMessageAsync("Заполните оба поля", MessageBoxImage.Error);
-            else if (int.Parse(LeftChemicalComponentsCountTextBox.Text) > MainWindow.Components!.Count
-                || int.Parse(RightChemicalComponentsCountTextBox.Text) > MainWindow.Components!.Count)
+            else if (int.Parse(LeftChemicalComponentsCountTextBox.Text) > MainWindow.GetComponent()!.Count
+                || int.Parse(RightChemicalComponentsCountTextBox.Text) > MainWindow.GetComponent()!.Count)
                 Logger.PrintMessageAsync("Количество компонентов в реакции не может превышать общее количество", MessageBoxImage.Error);
         }
         private void AddReaction_Click(object sender, RoutedEventArgs e)
