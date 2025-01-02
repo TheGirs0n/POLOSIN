@@ -13,7 +13,7 @@
         <Button x:Name="AddComponentButton" Content="+" Click="AddComponent_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="75" Margin="45,100,0,0"/>
         <Button x:Name="RemoveComponentButton" Content="-" Margin="45,0,0,10" Click="RemoveComponent_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="150" Height="75"/>
 
-        <Button x:Name="GetKineticButton" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" Height="50" Margin="0,0,75,25" Click="GetKineticButton_Click" />
+        <Button x:Name="GetKineticButton" Content="Кинетика" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" Height="50" Margin="0,0,75,25" Click="GetKineticButton_Click" />
 
         <GroupBox x:Name="ChemicalEquationsGroupBox" Margin="10,0,150,0" Header="Уравнения реакции" BorderBrush="Black" VerticalAlignment="Top" MaxHeight="200" Height="200">
             <ScrollViewer VerticalScrollBarVisibility="Auto">

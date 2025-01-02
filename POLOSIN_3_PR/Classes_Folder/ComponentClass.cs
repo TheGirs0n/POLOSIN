@@ -1,9 +1,9 @@
-﻿namespace POLOSIN_3_PR
+﻿namespace POLOSIN_3_PR.Classes_Folder
 {
     public class ComponentClass
     {
         private string? _ComponentName { get; set; }
-        public string? ComponentName 
+        public string? ComponentName
         {
             get => _ComponentName;
             set => _ComponentName = value;

@@ -1,4 +1,4 @@
-﻿namespace POLOSIN_3_PR
+﻿namespace POLOSIN_3_PR.Classes_Folder
 {
     public class ChemicalEquation
     {

@@ -1,4 +1,6 @@
 ﻿using POLOSIN_3_PR.Async_Methods;
+using POLOSIN_3_PR.Classes_Folder;
+using POLOSIN_3_PR.Math_Folder;
 using POLOSIN_3_PR.UI_AdditionalWindows;
 using POLOSIN_3_PR.UI_Methods;
 using System.Collections.ObjectModel;
@@ -18,6 +20,7 @@ namespace POLOSIN_3_PR
             get => _chemicalEquations;
             set => _chemicalEquations = value;
         }
+
         public static ObservableCollection<ComponentClass>? Components
         {
             get => _components;
@@ -29,6 +32,7 @@ namespace POLOSIN_3_PR
             InitializeComponent();
             InitializeCollections();
         }
+
         private void InitializeCollections()
         {
             _chemicalEquations = new();
@@ -36,7 +40,6 @@ namespace POLOSIN_3_PR
             _components = new();
         }
             
-        
         private void AddChemicalEquation_Click(object sender, RoutedEventArgs e)
         {
             if (ComponentsStackPanel.Children!.Count > 0)
@@ -82,11 +85,13 @@ namespace POLOSIN_3_PR
             if (TemperatureTextBox.Text != string.Empty && TempTimeTextBox.Text != string.Empty
                 && TimeTextBox.Text != string.Empty && Components!.Count > 0 && ChemicalEquations!.Count > 0)
             {
-
+                KineticCalculate kineticCalculate = new KineticCalculate();
+                kineticCalculate.CalculateKinetic(chemicalEquations: ChemicalEquations, components: Components);
             }
             else
                 Logger.PrintMessageAsync("Заполните все варьируемые параметры", MessageBoxImage.Error);
         }
+
         private void _chemicalEquations_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)

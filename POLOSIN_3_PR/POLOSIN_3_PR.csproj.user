@@ -10,12 +10,18 @@
     <Compile Update="UI_AdditionalWindows\AddChemicalEquation.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UI_AdditionalWindows\Graphs.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI_AdditionalWindows\AddChemicalEquation.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI_AdditionalWindows\Graphs.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

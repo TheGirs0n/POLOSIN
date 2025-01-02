@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using POLOSIN_3_PR.Classes_Folder;
 
 namespace POLOSIN_3_PR.UI_Methods
 {
@@ -13,17 +13,20 @@ namespace POLOSIN_3_PR.UI_Methods
             stackPanel.Children.RemoveAt(stackPanel.Children.Count - 1);
             chemicalEquations!.RemoveAt(chemicalEquations.Count - 1);
         }
+
         public static void AddChemicalEquationComponents(StackPanel stackPanel, Dictionary<string, int> components)
         {
             var newStackPanel = CreateChemicalEquationStackPanel(components);
             stackPanel.Children.Add(newStackPanel);
         }
+
         public static void AddChemicalEquationToStackPanel(StackPanel stackPanel, float? energyActivaion,
             float? velocityConst, string overralReactionText)
         {
             var newStackPanel = CreateChemicalEquation(stackPanel, energyActivaion, velocityConst, overralReactionText);
             stackPanel.Children.Add(newStackPanel);       
         }
+
         private static Border CreateChemicalEquation(StackPanel stackPanel, float? energyActivaion,
             float? velocityConst, string overralReactionText)
         {
@@ -75,6 +78,7 @@ namespace POLOSIN_3_PR.UI_Methods
 
             return border;
         }
+
         private static Border CreateChemicalEquationStackPanel(Dictionary<string, int> components)
         {
             Border border = new Border()
@@ -133,6 +137,7 @@ namespace POLOSIN_3_PR.UI_Methods
             foreach (var value in list)
                 stackPanel.Children.Add(value);
         }
+
         private static void AddToStackPanel(Grid grid, List<UIElement> list)
         {
             foreach (var value in list)
@@ -149,6 +154,7 @@ namespace POLOSIN_3_PR.UI_Methods
             if (!Char.IsDigit(Symb) && Symb != ',')
                 e.Handled = true;
         }
+
         private static void TextBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Space)
