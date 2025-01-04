@@ -18,29 +18,16 @@
             _VelocityConst = velocityConst;
             _ActivateEnergyUnit = activateEnergyUnit;
 
-            //switch (activateEnergyType)
-            //{
-            //    case "Дж/моль":
-            //        _ActivateEnergyUnit = ActivateEnergyType.DG;
-            //        break;
-            //    case "Кдж/моль":
-            //        _ActivateEnergyUnit = ActivateEnergyType.KiloDG;
-            //        break;
-            //    default:
-            //        break;
-                
-            //}
-
             switch (_LeftEquationSide.Values.Max())
             {
                 case 1:
-                    _VelocityConstUnit = "1/мин"; //VelocityConstType.OnePM;
+                    _VelocityConstUnit = "1/мин"; 
                     break;
                 case 2:
-                    _VelocityConstUnit = "л/(моль·мин)"; //VelocityConstType.KmPM;
+                    _VelocityConstUnit = "л/(моль·мин)";
                     break;
                 case 3:
-                    _VelocityConstUnit = "Кмоль/мин"; //VelocityConstType.L_MPM;
+                    _VelocityConstUnit = "Кмоль/мин"; 
                     break;
                 default:
                     break;
