@@ -1,6 +1,9 @@
-﻿using System.Data;
+﻿using LiveCharts.Wpf;
+using POLOSIN_3_PR.Math_Folder;
+using System.Data;
 using System.Diagnostics;
 using System.Windows;
+using System.Windows.Media;
 
 namespace POLOSIN_3_PR.UI_AdditionalWindows
 {
@@ -21,7 +24,11 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
 
         private void DrawAllGraphs()
         {
+            ConcentrationGraphs.AxisX.Add(new Axis { Title = "Время, С", Foreground = Brushes.Black });
+            ConcentrationGraphs.AxisY.Add(new Axis { Title = "Концентрация, моль/л", Foreground = Brushes.Black });
+
             timer!.Stop();
+            totalMemoryUsed = GC.GetTotalMemory(false) / (1024 * 1024);
         }
 
         private void Init()
@@ -32,7 +39,17 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
             concentrationDataTable = new DataTable();
 
             timer.Stop();
-            //totalMemoryUsed = GC.GetTotalMemory(false) / (1024 * 1024); # Строка, для подсчета памяти
+        }
+
+        private void GetDocument_Click(object sender, RoutedEventArgs e)
+        {
+            var time = float.Parse(ElapsedTimeTextBox.Text);
+            var memory = float.Parse(MemoryUsedTextBox.Text);
+            var count = int.Parse(OperationCountTextBox.Text);
+
+            SaveToDocument saveToDocument = new SaveToDocument();
+            saveToDocument.SaveToDocumentExcel(concentrationDataTable!, time, memory, count);
+
         }
     }
 }

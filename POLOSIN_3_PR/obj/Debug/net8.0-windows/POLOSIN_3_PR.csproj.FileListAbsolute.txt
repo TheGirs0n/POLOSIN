@@ -23,3 +23,7 @@ C:\Users\Timur\Desktop\POLOSIN_3\POLOSIN_3_PR\obj\Debug\net8.0-windows\UI_Additi
 C:\Users\Timur\Desktop\POLOSIN_3\POLOSIN_3_PR\obj\Debug\net8.0-windows\UI_AdditionalWindows\AddChemicalEquation.baml
 C:\Users\Timur\Desktop\POLOSIN_3\POLOSIN_3_PR\obj\Debug\net8.0-windows\UI_AdditionalWindows\Graphs.g.cs
 C:\Users\Timur\Desktop\POLOSIN_3\POLOSIN_3_PR\obj\Debug\net8.0-windows\UI_AdditionalWindows\Graphs.baml
+C:\Users\Timur\Desktop\POLOSIN_3\POLOSIN_3_PR\obj\Debug\net8.0-windows\POLOSIN_3_PR.csproj.AssemblyReference.cache
+C:\Users\Timur\Desktop\POLOSIN_3\POLOSIN_3_PR\bin\Debug\net8.0-windows\LiveCharts.dll
+C:\Users\Timur\Desktop\POLOSIN_3\POLOSIN_3_PR\bin\Debug\net8.0-windows\LiveCharts.Wpf.dll
+C:\Users\Timur\Desktop\POLOSIN_3\POLOSIN_3_PR\obj\Debug\net8.0-windows\POLOSIN_.5ED4B924.Up2Date

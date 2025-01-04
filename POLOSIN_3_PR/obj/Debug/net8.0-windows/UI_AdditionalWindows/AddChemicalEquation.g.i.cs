@@ -9,6 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using POLOSIN_3_PR;
 using POLOSIN_3_PR.UI_AdditionalWindows;
 using System;
 using System.Diagnostics;

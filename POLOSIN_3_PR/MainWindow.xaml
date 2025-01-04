@@ -7,15 +7,15 @@
         mc:Ignorable="d"
         Title="Главное окно" Height="450" Width="800">
     <Grid>
-        <Button x:Name="AddChemicalEquationButton" Content="+" Margin="0,10,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="125" Height="80" Click="AddChemicalEquation_Click"/>
-        <Button x:Name="RemoveChemicalEquationButton" Content="-" Margin="0,119,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="125" Height="80" Click="RemoveChemicalEquation_Click"/>
+        <Button x:Name="AddChemicalEquationButton" Content="+" Margin="0,10,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="125" Height="55" Click="AddChemicalEquation_Click"/>
+        <Button x:Name="RemoveChemicalEquationButton" Content="-" Margin="0,90,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="125" Height="55" Click="RemoveChemicalEquation_Click"/>
 
-        <Button x:Name="AddComponentButton" Content="+" Click="AddComponent_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="75" Margin="45,100,0,0"/>
-        <Button x:Name="RemoveComponentButton" Content="-" Margin="45,0,0,10" Click="RemoveComponent_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="150" Height="75"/>
+        <Button x:Name="AddComponentButton" Content="+" Click="AddComponent_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Margin="45,0,0,45"/>
+        <Button x:Name="RemoveComponentButton" Content="-" Margin="45,50,0,0" Click="RemoveComponent_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40"/>
 
-        <Button x:Name="GetKineticButton" Content="Кинетика" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" Height="50" Margin="0,0,75,25" Click="GetKineticButton_Click" />
+        <Button x:Name="GetKineticButton" Content="Кинетика" VerticalAlignment="Center" HorizontalAlignment="Right" Width="150" Height="50" Margin="0,0,50,0" Click="GetKineticButton_Click" />
 
-        <GroupBox x:Name="ChemicalEquationsGroupBox" Margin="10,0,150,0" Header="Уравнения реакции" BorderBrush="Black" VerticalAlignment="Top" MaxHeight="200" Height="200">
+        <GroupBox x:Name="ChemicalEquationsGroupBox" Margin="10,0,150,0" Header="Уравнения реакции" BorderBrush="Black" VerticalAlignment="Top" MaxHeight="200" Height="150">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel x:Name="ChemicalEquationsStackPanel" MaxHeight="350">
                     <Border BorderBrush = "Black" BorderThickness = "1" CornerRadius="3" Margin="3" IsHitTestVisible="True" Background="#00000000">
@@ -35,19 +35,41 @@
                 </StackPanel>
             </ScrollViewer>
         </GroupBox>
-        <GroupBox x:Name="ComponentGroupBox" Margin="10,0,0,10" Header="Компоненты" BorderBrush="Black" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="200" Width="315">
+        <GroupBox x:Name="ComponentGroupBox" Margin="10,0,0,0" Header="Компоненты" BorderBrush="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Height="100" Width="315">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel x:Name="ComponentsStackPanel">
                 </StackPanel>
             </ScrollViewer>
         </GroupBox>
 
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="350,50,0,0">Температура процесса</Label>
-        <Label HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,115,125,0">Время протекания процесса</Label>
-        <Label HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,180,190,0">Шаг по времени</Label>
+        <GroupBox Header="Матрица частных порядков" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15,0,0,10" Height="150" BorderBrush="Black" Width="200">
+            <DataGrid x:Name="ParticularOrdersDataGrid" Background="White" BorderBrush="Black"></DataGrid>
+        </GroupBox>
 
-        <TextBox x:Name="TemperatureTextBox" HorizontalAlignment="Right" VerticalAlignment="Center" Width="75" Height="25" Margin="0,55,40,0"></TextBox>
-        <TextBox x:Name="TimeTextBox" HorizontalAlignment="Right" VerticalAlignment="Center" Width="75" Height="25" Margin="0,120,40,0"></TextBox>
-        <TextBox x:Name="TempTimeTextBox" HorizontalAlignment="Right" VerticalAlignment="Center" Width="75" Height="25" Margin="0,185,40,0"></TextBox>
+        <GroupBox Header="Стехиометрические коэффициенты" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="250,0,0,10" Height="150" BorderBrush="Black" Width="225">
+            <DataGrid x:Name="StechiometricDataGrid" Background="White" BorderBrush="Black"></DataGrid>
+        </GroupBox>
+
+        <GroupBox Header="Параметры процесса" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="140" Margin="0,0,15,15" Width="280" BorderBrush="Black" BorderThickness="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow">Температура процесса</TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="WrapWithOverflow">Время протекания процесса</TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow">Шаг по времени</TextBlock>
+
+                <TextBox Grid.Column="1" x:Name="TemperatureTextBox"  Margin="10,10,10,10"/>
+                <TextBox Grid.Column="1" x:Name="TimeTextBox" Grid.Row="1"  Margin="10,10,10,10"/>
+                <TextBox Grid.Column="1" x:Name="TempTimeTextBox" Grid.Row="2" Margin="10,10,10,10"/>
+            </Grid>
+        </GroupBox>
     </Grid>
 </Window>
