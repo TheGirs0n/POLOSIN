@@ -4,12 +4,12 @@
     {
         public string? _ComponentName { get; set; }
 
-        public float? _ComponentValue { get; set; }
+        public float? _ComponentConcentration { get; set; }
 
-        public ComponentClass(string componentName, float componentValue)
+        public ComponentClass(string componentName, float componentConcentration)
         {
             _ComponentName = componentName;
-            _ComponentValue = componentValue;
+            _ComponentConcentration = componentConcentration;
         }
     }
 }

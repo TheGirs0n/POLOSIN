@@ -42,19 +42,23 @@ namespace POLOSIN_3_PR.UI_Methods
             {
                 new Label
                 {
-                    Content = $"{stackPanel.Children.Count}"
+                    Content = $"{stackPanel.Children.Count}",
+                    HorizontalAlignment = HorizontalAlignment.Center
                 },
                 new Label
                 {
-                    Content = overralReactionText
+                    Content = overralReactionText,
+                    HorizontalAlignment = HorizontalAlignment.Center
                 },
                 new Label
                 {
-                    Content = $"{chemicalEquation._ActivateEnergy}, {chemicalEquation._ActivateEnergyType}"
+                    Content = $"{chemicalEquation._ActivateEnergy}, {chemicalEquation._ActivateEnergyUnit}",
+                    HorizontalAlignment = HorizontalAlignment.Center
                 },
                 new Label
                 {
-                    Content = $"{chemicalEquation._VelocityConst}, {chemicalEquation._VelocityConstType}"
+                    Content = $"{chemicalEquation._VelocityConst}, {chemicalEquation._VelocityConstUnit}",
+                    HorizontalAlignment = HorizontalAlignment.Center
                 }
             };
 

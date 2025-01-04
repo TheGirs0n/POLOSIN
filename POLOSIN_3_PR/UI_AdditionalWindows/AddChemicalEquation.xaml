@@ -21,7 +21,7 @@
         <TextBox x:Name="LeftChemicalComponentsCountTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="205,15,0,0" PreviewTextInput="TextBox_PreviewTextInputConcentration" PreviewKeyDown="TextBox_PreviewKeyDown"/>
         <TextBox x:Name="RightChemicalComponentsCountTextBox" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Margin="0,15,210,0" PreviewTextInput="TextBox_PreviewTextInputConcentration" PreviewKeyDown="TextBox_PreviewKeyDown"/>
 
-        <Button x:Name="AddComponentsToReaction" Content="+" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,15,0,0" Height="25" Width="125" Click="AddComponentsToReaction_Click"></Button>
+        <Button x:Name="AddComponentsToReaction" Content="=" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,15,0,0" Height="25" Width="125" Click="AddComponentsToReaction_Click"></Button>
         <Button x:Name="AddReaction" Content="Добавить реакцию" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" Height="35" Margin="0,50,0,0" Click="AddReaction_Click" />
         <Button x:Name="GetOverralReaction" Content="Вид реакции" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,150,0,0" Width="150" Height="35" Click="GetOverralReaction_Click"/>
 

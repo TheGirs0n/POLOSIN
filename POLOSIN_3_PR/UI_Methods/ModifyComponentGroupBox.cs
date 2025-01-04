@@ -16,11 +16,11 @@ namespace POLOSIN_3_PR.UI_Methods
         }
         public static void AddComponent(StackPanel stackPanel)
         {
-            var newStackPanel = CreateComponentStackPanel();
+            var newStackPanel = CreateComponentGrid();
             stackPanel.Children.Add(newStackPanel);
         }
 
-        private static Border CreateComponentStackPanel()
+        private static Border CreateComponentGrid()
         {
             Border border = new Border()
             {
@@ -28,7 +28,6 @@ namespace POLOSIN_3_PR.UI_Methods
                 BorderThickness = new Thickness(1),
                 CornerRadius = new CornerRadius(5),
                 Margin = new Thickness(3),
-                IsHitTestVisible = true,
                 Background = new SolidColorBrush(Colors.Transparent),
             };
 
@@ -62,22 +61,22 @@ namespace POLOSIN_3_PR.UI_Methods
                 componentConcentration
             };
 
-            var stackPanelToAdd = new Grid()
+            var GridToAdd = new Grid()
             {
 
             };
-            stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
-            stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
-            stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
-            stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+            GridToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+            GridToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+            GridToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+            GridToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
 
-            AddToStackPanel(stackPanelToAdd, list);
-            border.Child = stackPanelToAdd;
+            AddToGrid(GridToAdd, list);
+            border.Child = GridToAdd;
 
             return border;
         }
 
-        public static void AddToStackPanel(Grid grid, List<UIElement> list)
+        public static void AddToGrid(Grid grid, List<UIElement> list)
         {
             foreach (var value in list)
             {

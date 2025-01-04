@@ -29,7 +29,7 @@
                             <Label HorizontalContentAlignment="Center">№</Label>
                             <Label Grid.Column="1" HorizontalContentAlignment="Center">Уравнение реакции</Label>
                             <Label Grid.Column="2" HorizontalContentAlignment="Center">Энергия активации</Label>
-                            <Label Grid.Column="3" HorizontalContentAlignment="Center">Константа скорости</Label>
+                            <Label Grid.Column="3" HorizontalContentAlignment="Center">Пред. множители</Label>
                         </Grid>
                     </Border>
                 </StackPanel>
