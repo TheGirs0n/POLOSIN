@@ -82,26 +82,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Timur\\.nuget\\packages\\": {},
-    "C:\\Users\\Timur\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder": {},
+    "C:\\Users\\egor_\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\POLOSIN_3_PR.csproj",
+      "projectUniqueName": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\POLOSIN_3_PR.csproj",
       "projectName": "POLOSIN_3_PR",
-      "projectPath": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\POLOSIN_3_PR.csproj",
-      "packagesPath": "C:\\Users\\Timur\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\obj\\",
+      "projectPath": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\POLOSIN_3_PR.csproj",
+      "packagesPath": "C:\\Users\\egor_\\.nuget\\packages\\",
+      "outputPath": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Users\\Timur\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder",
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Timur\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Users\\Timur\\AppData\\Roaming\\NuGet\\config\\Godot.Offline.Config",
+        "C:\\Users\\egor_\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -110,6 +107,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -127,7 +125,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0-windows7.0": {
@@ -161,7 +160,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   },

@@ -1,69 +1,69 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\",
+  "WorkspaceRootPath": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|c:\\users\\timur\\desktop\\polosin_3\\polosin_3_pr\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|c:\\users\\timur\\desktop\\polosin_3\\polosin_3_pr\\ui_additionalwindows\\graphs.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:ui_additionalwindows\\graphs.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|c:\\users\\timur\\desktop\\polosin_3\\polosin_3_pr\\math_folder\\drawgraphs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:math_folder\\drawgraphs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|c:\\users\\timur\\desktop\\polosin_3\\polosin_3_pr\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|c:\\users\\timur\\desktop\\polosin_3\\polosin_3_pr\\ui_additionalwindows\\graphs.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:ui_additionalwindows\\graphs.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|c:\\users\\timur\\desktop\\polosin_3\\polosin_3_pr\\math_folder\\savetodocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:math_folder\\savetodocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|c:\\users\\timur\\desktop\\polosin_3\\polosin_3_pr\\ui_additionalwindows\\addchemicalequation.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:ui_additionalwindows\\addchemicalequation.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|c:\\users\\timur\\desktop\\polosin_3\\polosin_3_pr\\math_folder\\kineticcalculate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:math_folder\\kineticcalculate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|c:\\users\\timur\\desktop\\polosin_3\\polosin_3_pr\\ui_methods\\modifychemicalequationgroupbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:ui_methods\\modifychemicalequationgroupbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|c:\\users\\timur\\desktop\\polosin_3\\polosin_3_pr\\ui_additionalwindows\\addchemicalequation.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|d:\\prog\\polosin\\polosin\\polosin_3_pr\\ui_additionalwindows\\addchemicalequation.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:ui_additionalwindows\\addchemicalequation.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|c:\\users\\timur\\desktop\\polosin_3\\polosin_3_pr\\ui_methods\\modifycomponentgroupbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|d:\\prog\\polosin\\polosin\\polosin_3_pr\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|d:\\prog\\polosin\\polosin\\polosin_3_pr\\math_folder\\kineticcalculate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:math_folder\\kineticcalculate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|d:\\prog\\polosin\\polosin\\polosin_3_pr\\math_folder\\drawgraphs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:math_folder\\drawgraphs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|d:\\prog\\polosin\\polosin\\polosin_3_pr\\ui_methods\\modifychemicalequationgroupbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:ui_methods\\modifychemicalequationgroupbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|d:\\prog\\polosin\\polosin\\polosin_3_pr\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|d:\\prog\\polosin\\polosin\\polosin_3_pr\\ui_additionalwindows\\graphs.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:ui_additionalwindows\\graphs.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|d:\\prog\\polosin\\polosin\\polosin_3_pr\\ui_additionalwindows\\graphs.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:ui_additionalwindows\\graphs.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|d:\\prog\\polosin\\polosin\\polosin_3_pr\\math_folder\\savetodocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:math_folder\\savetodocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|d:\\prog\\polosin\\polosin\\polosin_3_pr\\ui_additionalwindows\\addchemicalequation.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:ui_additionalwindows\\addchemicalequation.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|d:\\prog\\polosin\\polosin\\polosin_3_pr\\ui_methods\\modifycomponentgroupbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:ui_methods\\modifycomponentgroupbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|c:\\users\\timur\\desktop\\polosin_3\\polosin_3_pr\\classes_folder\\componentclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|d:\\prog\\polosin\\polosin\\polosin_3_pr\\classes_folder\\componentclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:classes_folder\\componentclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|c:\\users\\timur\\desktop\\polosin_3\\polosin_3_pr\\classes_folder\\chemicalequation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|d:\\prog\\polosin\\polosin\\polosin_3_pr\\classes_folder\\chemicalequation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:classes_folder\\chemicalequation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|c:\\users\\timur\\desktop\\polosin_3\\polosin_3_pr\\polosin_3_pr.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|d:\\prog\\polosin\\polosin\\polosin_3_pr\\polosin_3_pr.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:polosin_3_pr.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|c:\\users\\timur\\desktop\\polosin_3\\polosin_3_pr\\async_methods\\logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|d:\\prog\\polosin\\polosin\\polosin_3_pr\\async_methods\\logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:async_methods\\logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|c:\\users\\timur\\desktop\\polosin_3\\polosin_3_pr\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|d:\\prog\\polosin\\polosin\\polosin_3_pr\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{37B7309C-2BC4-45D1-8343-D66A6219CB61}|POLOSIN_3_PR.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
@@ -74,28 +74,23 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Graphs.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\UI_AdditionalWindows\\Graphs.xaml.cs",
-              "RelativeDocumentMoniker": "UI_AdditionalWindows\\Graphs.xaml.cs",
-              "ToolTip": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\UI_AdditionalWindows\\Graphs.xaml.cs",
-              "RelativeToolTip": "UI_AdditionalWindows\\Graphs.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAABSAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-04T15:57:46.741Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\MainWindow.xaml",
+              "DocumentMoniker": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\MainWindow.xaml",
+              "ToolTip": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-01-01T16:33:05.056Z",
@@ -103,11 +98,37 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
+              "Title": "KineticCalculate.cs",
+              "DocumentMoniker": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\Math_Folder\\KineticCalculate.cs",
+              "RelativeDocumentMoniker": "Math_Folder\\KineticCalculate.cs",
+              "ToolTip": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\Math_Folder\\KineticCalculate.cs",
+              "RelativeToolTip": "Math_Folder\\KineticCalculate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-02T14:11:44.315Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Graphs.xaml.cs",
+              "DocumentMoniker": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\UI_AdditionalWindows\\Graphs.xaml.cs",
+              "RelativeDocumentMoniker": "UI_AdditionalWindows\\Graphs.xaml.cs",
+              "ToolTip": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\UI_AdditionalWindows\\Graphs.xaml.cs",
+              "RelativeToolTip": "UI_AdditionalWindows\\Graphs.xaml.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABsAAABSAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T15:57:46.741Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Graphs.xaml",
-              "DocumentMoniker": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\UI_AdditionalWindows\\Graphs.xaml",
+              "DocumentMoniker": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\UI_AdditionalWindows\\Graphs.xaml",
               "RelativeDocumentMoniker": "UI_AdditionalWindows\\Graphs.xaml",
-              "ToolTip": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\UI_AdditionalWindows\\Graphs.xaml",
+              "ToolTip": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\UI_AdditionalWindows\\Graphs.xaml",
               "RelativeToolTip": "UI_AdditionalWindows\\Graphs.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-01-02T14:09:30.843Z",
@@ -115,99 +136,86 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 0,
               "Title": "AddChemicalEquation.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\UI_AdditionalWindows\\AddChemicalEquation.xaml.cs",
+              "DocumentMoniker": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\UI_AdditionalWindows\\AddChemicalEquation.xaml.cs",
               "RelativeDocumentMoniker": "UI_AdditionalWindows\\AddChemicalEquation.xaml.cs",
-              "ToolTip": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\UI_AdditionalWindows\\AddChemicalEquation.xaml.cs",
+              "ToolTip": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\UI_AdditionalWindows\\AddChemicalEquation.xaml.cs",
               "RelativeToolTip": "UI_AdditionalWindows\\AddChemicalEquation.xaml.cs",
-              "ViewState": "AgIAAGQAAAAAAAAAAAAAAHMAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAALgAAAAAAAAAAAAYwEoAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-31T17:04:58.649Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\MainWindow.xaml.cs",
+              "DocumentMoniker": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\MainWindow.xaml.cs",
+              "ToolTip": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAABIAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAmwDgAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-31T13:05:53.306Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 4,
               "Title": "ModifyChemicalEquationGroupBox.cs",
-              "DocumentMoniker": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\UI_Methods\\ModifyChemicalEquationGroupBox.cs",
+              "DocumentMoniker": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\UI_Methods\\ModifyChemicalEquationGroupBox.cs",
               "RelativeDocumentMoniker": "UI_Methods\\ModifyChemicalEquationGroupBox.cs",
-              "ToolTip": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\UI_Methods\\ModifyChemicalEquationGroupBox.cs",
+              "ToolTip": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\UI_Methods\\ModifyChemicalEquationGroupBox.cs",
               "RelativeToolTip": "UI_Methods\\ModifyChemicalEquationGroupBox.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAAADEAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAHwAAAAAAAAAAAAAADEAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-31T15:22:12.106Z"
+              "WhenOpened": "2024-12-31T15:22:12.106Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "DrawGraphs.cs",
-              "DocumentMoniker": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\Math_Folder\\DrawGraphs.cs",
+              "DocumentMoniker": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\Math_Folder\\DrawGraphs.cs",
               "RelativeDocumentMoniker": "Math_Folder\\DrawGraphs.cs",
-              "ToolTip": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\Math_Folder\\DrawGraphs.cs",
+              "ToolTip": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\Math_Folder\\DrawGraphs.cs",
               "RelativeToolTip": "Math_Folder\\DrawGraphs.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAAB8AAABoAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB8AAABoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-02T14:11:22.084Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "KineticCalculate.cs",
-              "DocumentMoniker": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\Math_Folder\\KineticCalculate.cs",
-              "RelativeDocumentMoniker": "Math_Folder\\KineticCalculate.cs",
-              "ToolTip": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\Math_Folder\\KineticCalculate.cs",
-              "RelativeToolTip": "Math_Folder\\KineticCalculate.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-02T14:11:44.315Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "SaveToDocument.cs",
-              "DocumentMoniker": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\Math_Folder\\SaveToDocument.cs",
+              "DocumentMoniker": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\Math_Folder\\SaveToDocument.cs",
               "RelativeDocumentMoniker": "Math_Folder\\SaveToDocument.cs",
-              "ToolTip": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\Math_Folder\\SaveToDocument.cs",
+              "ToolTip": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\Math_Folder\\SaveToDocument.cs",
               "RelativeToolTip": "Math_Folder\\SaveToDocument.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAB0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-02T14:30:33.233Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-02T14:30:33.233Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "AddChemicalEquation.xaml",
-              "DocumentMoniker": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\UI_AdditionalWindows\\AddChemicalEquation.xaml",
+              "DocumentMoniker": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\UI_AdditionalWindows\\AddChemicalEquation.xaml",
               "RelativeDocumentMoniker": "UI_AdditionalWindows\\AddChemicalEquation.xaml",
-              "ToolTip": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\UI_AdditionalWindows\\AddChemicalEquation.xaml",
+              "ToolTip": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\UI_AdditionalWindows\\AddChemicalEquation.xaml",
               "RelativeToolTip": "UI_AdditionalWindows\\AddChemicalEquation.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-31T16:58:04.12Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-31T16:58:04.12Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
               "Title": "ModifyComponentGroupBox.cs",
-              "DocumentMoniker": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\UI_Methods\\ModifyComponentGroupBox.cs",
+              "DocumentMoniker": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\UI_Methods\\ModifyComponentGroupBox.cs",
               "RelativeDocumentMoniker": "UI_Methods\\ModifyComponentGroupBox.cs",
-              "ToolTip": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\UI_Methods\\ModifyComponentGroupBox.cs",
+              "ToolTip": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\UI_Methods\\ModifyComponentGroupBox.cs",
               "RelativeToolTip": "UI_Methods\\ModifyComponentGroupBox.cs",
               "ViewState": "AgIAAHYAAAAAAAAAAAAAAHYAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -217,9 +225,9 @@
               "$type": "Document",
               "DocumentIndex": 11,
               "Title": "ComponentClass.cs",
-              "DocumentMoniker": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\Classes_Folder\\ComponentClass.cs",
+              "DocumentMoniker": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\Classes_Folder\\ComponentClass.cs",
               "RelativeDocumentMoniker": "Classes_Folder\\ComponentClass.cs",
-              "ToolTip": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\Classes_Folder\\ComponentClass.cs",
+              "ToolTip": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\Classes_Folder\\ComponentClass.cs",
               "RelativeToolTip": "Classes_Folder\\ComponentClass.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -229,9 +237,9 @@
               "$type": "Document",
               "DocumentIndex": 12,
               "Title": "ChemicalEquation.cs",
-              "DocumentMoniker": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\Classes_Folder\\ChemicalEquation.cs",
+              "DocumentMoniker": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\Classes_Folder\\ChemicalEquation.cs",
               "RelativeDocumentMoniker": "Classes_Folder\\ChemicalEquation.cs",
-              "ToolTip": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\Classes_Folder\\ChemicalEquation.cs",
+              "ToolTip": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\Classes_Folder\\ChemicalEquation.cs",
               "RelativeToolTip": "Classes_Folder\\ChemicalEquation.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAQAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -241,9 +249,9 @@
               "$type": "Document",
               "DocumentIndex": 13,
               "Title": "POLOSIN_3_PR.csproj",
-              "DocumentMoniker": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\POLOSIN_3_PR.csproj",
+              "DocumentMoniker": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\POLOSIN_3_PR.csproj",
               "RelativeDocumentMoniker": "POLOSIN_3_PR.csproj",
-              "ToolTip": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\POLOSIN_3_PR.csproj",
+              "ToolTip": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\POLOSIN_3_PR.csproj",
               "RelativeToolTip": "POLOSIN_3_PR.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
@@ -253,9 +261,9 @@
               "$type": "Document",
               "DocumentIndex": 14,
               "Title": "Logger.cs",
-              "DocumentMoniker": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\Async_Methods\\Logger.cs",
+              "DocumentMoniker": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\Async_Methods\\Logger.cs",
               "RelativeDocumentMoniker": "Async_Methods\\Logger.cs",
-              "ToolTip": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\Async_Methods\\Logger.cs",
+              "ToolTip": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\Async_Methods\\Logger.cs",
               "RelativeToolTip": "Async_Methods\\Logger.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -265,9 +273,9 @@
               "$type": "Document",
               "DocumentIndex": 15,
               "Title": "App.xaml",
-              "DocumentMoniker": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\App.xaml",
+              "DocumentMoniker": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\App.xaml",
               "RelativeDocumentMoniker": "App.xaml",
-              "ToolTip": "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\App.xaml",
+              "ToolTip": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\App.xaml",
               "RelativeToolTip": "App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-01-01T16:41:31.927Z",

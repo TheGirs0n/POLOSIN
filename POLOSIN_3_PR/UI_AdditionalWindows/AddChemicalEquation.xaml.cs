@@ -39,7 +39,7 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
             foreach (var item in LeftComponentsStackPanel.Children)
             {
                 var stackPanel = (Border)item;
-                StackPanel child = (StackPanel)stackPanel.Child;
+                Grid child = (Grid)stackPanel.Child;
                 var collection = child.Children;
 
                 var key = (ComboBox)collection[1];
@@ -73,7 +73,7 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
             foreach (var item in RightComponentsStackPanel.Children)
             {
                 var stackPanel = (Border)item;
-                StackPanel child = (StackPanel)stackPanel.Child;
+                Grid child = (Grid)stackPanel.Child;
                 var collection = child.Children;
 
                 var key = (ComboBox)collection[1];
