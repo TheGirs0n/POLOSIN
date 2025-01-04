@@ -71,7 +71,7 @@ namespace POLOSIN_3_PR.UI_Methods
             stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
             stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
 
-            AddToStackPanel(stackPanelToAdd, list);
+            AddToGrid(stackPanelToAdd, list);
             border.Child = stackPanelToAdd;
 
             return border;
@@ -127,13 +127,13 @@ namespace POLOSIN_3_PR.UI_Methods
             stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
             stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
 
-            AddToStackPanel(stackPanelToAdd, list);
+            AddToGrid(stackPanelToAdd, list);
             border.Child = stackPanelToAdd;
 
             return border;
         }
 
-        private static void AddToStackPanel(Grid grid, List<UIElement> list)
+        private static void AddToGrid(Grid grid, List<UIElement> list)
         {
             foreach (var value in list)
             {
@@ -146,7 +146,7 @@ namespace POLOSIN_3_PR.UI_Methods
         {
             char Symb = e.Text[0];
 
-            if (!Char.IsDigit(Symb) && Symb != ',')
+            if (!char.IsDigit(Symb) && Symb != ',')
                 e.Handled = true;
         }
 
