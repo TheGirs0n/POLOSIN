@@ -24,10 +24,10 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
 
         private void InitializeCollections()
         {
-            foreach (var component in MainWindow.GetComponent()!)
+            foreach (var component in MainWindow._components!)
             {
-                leftEquationSide.Add(component.ComponentName!, 0);
-                rightEquationSide.Add(component.ComponentName!, 0);
+                leftEquationSide.Add(component._ComponentName!, 0);
+                rightEquationSide.Add(component._ComponentName!, 0);
             }
         }
 
@@ -47,7 +47,9 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
 
                 if (int.TryParse(value.Text, out int concentration) == true && key.SelectedItem.ToString() != null
                     && !leftEquationSide.ContainsKey(key.SelectedItem.ToString()!))
+                {
                     leftEquationSide.Add(key.SelectedItem.ToString()!, concentration);
+                }
                 else if (leftEquationSide.ContainsKey(key.SelectedItem.ToString()!))
                 {
                     Logger.PrintMessageAsync("Дубликат выбранных веществ. Проверьте корректность", MessageBoxImage.Error);
@@ -79,7 +81,9 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
 
                 if (int.TryParse(value.Text, out int concentration) == true && key.SelectedItem.ToString() != null
                     && !rightEquationSide.ContainsKey(key.SelectedItem.ToString()!))
+                {
                     rightEquationSide.Add(key.SelectedItem.ToString()!, concentration);
+                }
                 else if (rightEquationSide.ContainsKey(key.SelectedItem.ToString()!))
                 {
                     Logger.PrintMessageAsync("Дубликат выбранных веществ. Проверьте корректность", MessageBoxImage.Error);
@@ -106,18 +110,18 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
                     && float.TryParse(VelocityConst.Text, out float velocity) == true)
                 {
                     _chemicalEquation = new ChemicalEquation(leftEquationSide, rightEquationSide,
-                        energy, velocity);
+                        energy, velocity, VelocityConstTypeComboBox.SelectedItem.ToString()!);
 
                     GetOverralReactionText();
-                    MainWindow.GetChemicalEquations()!.Add(_chemicalEquation);
+                    MainWindow._chemicalEquations!.Add(_chemicalEquation);
                 }
                 else
                 {
                     _chemicalEquation = new ChemicalEquation(leftEquationSide, rightEquationSide,
-                        0, 0);
+                        0, 0, VelocityConstTypeComboBox.Items[0].ToString()!);
 
                     GetOverralReactionText();
-                    MainWindow.GetChemicalEquations()!.Add(_chemicalEquation);
+                    MainWindow._chemicalEquations!.Add(_chemicalEquation);
                 }
             }
         }
@@ -128,8 +132,8 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
             RightComponentsStackPanel.Children.Clear();
 
             if (LeftChemicalComponentsCountTextBox.Text != string.Empty && RightChemicalComponentsCountTextBox.Text != string.Empty
-                && (int.Parse(LeftChemicalComponentsCountTextBox.Text) <= MainWindow.GetComponent()!.Count
-                || int.Parse(RightChemicalComponentsCountTextBox.Text) <= MainWindow.GetComponent()!.Count))
+                && (int.Parse(LeftChemicalComponentsCountTextBox.Text) <= MainWindow._components!.Count
+                || int.Parse(RightChemicalComponentsCountTextBox.Text) <= MainWindow._components!.Count))
             {
                 for (int i = 0; i < int.Parse(LeftChemicalComponentsCountTextBox.Text); i++)
                     ModifyChemicalEquationGroupBox.AddChemicalEquationComponents(LeftComponentsStackPanel, leftEquationSide);
@@ -139,8 +143,8 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
             }
             else if (LeftChemicalComponentsCountTextBox.Text == string.Empty || RightChemicalComponentsCountTextBox.Text == string.Empty)
                 Logger.PrintMessageAsync("Заполните оба поля", MessageBoxImage.Error);
-            else if (int.Parse(LeftChemicalComponentsCountTextBox.Text) > MainWindow.GetComponent()!.Count
-                || int.Parse(RightChemicalComponentsCountTextBox.Text) > MainWindow.GetComponent()!.Count)
+            else if (int.Parse(LeftChemicalComponentsCountTextBox.Text) > MainWindow._components!.Count
+                || int.Parse(RightChemicalComponentsCountTextBox.Text) > MainWindow._components!.Count)
                 Logger.PrintMessageAsync("Количество компонентов в реакции не может превышать общее количество", MessageBoxImage.Error);
         }
         private void AddReaction_Click(object sender, RoutedEventArgs e)

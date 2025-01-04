@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using POLOSIN_3_PR.Async_Methods;
 using POLOSIN_3_PR.Classes_Folder;
 
 namespace POLOSIN_3_PR.UI_Methods
@@ -33,7 +34,7 @@ namespace POLOSIN_3_PR.UI_Methods
 
             var componentComponent = new TextBox
             {
-                Width = 50,
+                Margin = new Thickness(3),
                 VerticalContentAlignment = VerticalAlignment.Center,
             };
             componentComponent.PreviewTextInput += TextBox_PreviewTextInputComponent;
@@ -41,7 +42,7 @@ namespace POLOSIN_3_PR.UI_Methods
 
             var componentConcentration = new TextBox
             {
-                Width = 50,
+                Margin = new Thickness(3),
                 VerticalContentAlignment = VerticalAlignment.Center,
             };
             componentConcentration.PreviewTextInput += TextBox_PreviewTextInputConcentration;
@@ -51,32 +52,38 @@ namespace POLOSIN_3_PR.UI_Methods
             {
                 new Label
                 {
-                    Content = "Компонент"
+                    Content = "Ком-нт"
                 },
                 componentComponent, 
                 new Label
                 {
-                    Content = "Концентрация"
+                    Content = "Кон-ция"
                 },
                 componentConcentration
             };
-            
-            var stackPanel = new StackPanel()
+
+            var stackPanelToAdd = new Grid()
             {
-                Orientation = Orientation.Horizontal,
-                Margin = new Thickness(5),               
+
             };
-            
-            AddToStackPanel(stackPanel, list);
-            border.Child = stackPanel;
+            stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+            stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+            stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+            stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+
+            AddToStackPanel(stackPanelToAdd, list);
+            border.Child = stackPanelToAdd;
 
             return border;
         }
 
-        public static void AddToStackPanel(StackPanel stackPanel, List<UIElement> list)
+        public static void AddToStackPanel(Grid grid, List<UIElement> list)
         {
             foreach (var value in list)
-                stackPanel.Children.Add(value);
+            {
+                Grid.SetColumn(value, list.IndexOf(value));
+                grid.Children.Add(value);
+            }
         }
         public static void GetComponentsAndConcentration(ObservableCollection<ComponentClass> components, StackPanel componentsStackPanel)
         {
@@ -88,7 +95,7 @@ namespace POLOSIN_3_PR.UI_Methods
             foreach (var item in componentsStackPanel.Children)
             {
                 var stackPanel = (Border)item;
-                StackPanel child = (StackPanel)stackPanel.Child;
+                Grid child = (Grid)stackPanel.Child;
                 var collection = child.Children;
 
                 for (int i = 1; i < collection.Count; i += 2)
@@ -103,27 +110,37 @@ namespace POLOSIN_3_PR.UI_Methods
                         var textBoxConcentration = (TextBox)collection[i];
                         if (float.TryParse(textBoxConcentration.Text, out concentration) == false)
                         {
+                            Logger.PrintMessageAsync("Ошибка чтения данных концентрации", MessageBoxImage.Error);
                             components.Clear();
                             return;
                         }
                     }
                 }
-                var componentClass = new ComponentClass(component, concentration);
-                components!.Add(componentClass);
+                if (!components.Any(x => x._ComponentName == component))
+                {
+                    var componentClass = new ComponentClass(component, concentration);
+                    components!.Add(componentClass);
+                }
+                else
+                {
+                    components.Clear();
+                    Logger.PrintMessageAsync("Обнаружены компоненты-дубликаты", MessageBoxImage.Error);
+                    return;
+                }
             }
         }
         private static void TextBox_PreviewTextInputComponent(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             char Symb = e.Text[0];
 
-            if (!Char.IsLetter(Symb))
+            if (!char.IsLetter(Symb))
                 e.Handled = true;
         }
         private static void TextBox_PreviewTextInputConcentration(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             char Symb = e.Text[0];
 
-            if (!Char.IsDigit(Symb) && Symb != ',')
+            if (!char.IsDigit(Symb) && Symb != ',')
                 e.Handled = true;
         }
         private static void TextBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)

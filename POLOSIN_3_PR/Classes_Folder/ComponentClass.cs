@@ -2,23 +2,14 @@
 {
     public class ComponentClass
     {
-        private string? _ComponentName { get; set; }
-        public string? ComponentName
-        {
-            get => _ComponentName;
-            set => _ComponentName = value;
-        }
-        private float? _ComponentValue { get; set; }
-        public float? ComponentValue
-        {
-            get => _ComponentValue;
-            set => _ComponentValue = value;
-        }
+        public string? _ComponentName { get; set; }
+
+        public float? _ComponentValue { get; set; }
 
         public ComponentClass(string componentName, float componentValue)
         {
-            ComponentName = componentName;
-            ComponentValue = componentValue;
+            _ComponentName = componentName;
+            _ComponentValue = componentValue;
         }
     }
 }

@@ -13,8 +13,8 @@ namespace POLOSIN_3_PR
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static ObservableCollection<ChemicalEquation>? _chemicalEquations;
-        private static ObservableCollection<ComponentClass>? _components;
+        public static ObservableCollection<ChemicalEquation>? _chemicalEquations;
+        public static ObservableCollection<ComponentClass>? _components;
 
         public MainWindow()
         {
@@ -39,9 +39,7 @@ namespace POLOSIN_3_PR
                     AddChemicalEquation addChemicalEquation = new AddChemicalEquation();
                     addChemicalEquation.Show();
                     addChemicalEquation.Owner = this;
-                }
-                else
-                    Logger.PrintMessageAsync("Ошибка чтения данных. Проверьте корректность", MessageBoxImage.Error);
+                }               
             }
             else
                 Logger.PrintMessageAsync("Сначала введите компоненты", MessageBoxImage.Information);
@@ -87,13 +85,9 @@ namespace POLOSIN_3_PR
             { 
                 case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
                     var item = (ChemicalEquation)e.NewItems![0]!;
-                    ModifyChemicalEquationGroupBox.AddChemicalEquationToStackPanel(ChemicalEquationsStackPanel, energyActivaion: item.ActivateEnergy,
-                        velocityConst: item.VelocityConst, overralReactionText: AddChemicalEquation.overralChemicalEquation!);
+                    ModifyChemicalEquationGroupBox.AddChemicalEquationToStackPanel(ChemicalEquationsStackPanel, item, overralReactionText: AddChemicalEquation.overralChemicalEquation!);
                     break;
             }
         }
-
-        public static ObservableCollection<ChemicalEquation>? GetChemicalEquations() => _chemicalEquations;
-        public static ObservableCollection<ComponentClass>? GetComponent() => _components;
     }
 }

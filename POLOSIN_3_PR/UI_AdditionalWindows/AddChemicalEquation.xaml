@@ -9,20 +9,28 @@
     <Grid>
         <Label Content="Количество компонентов слева" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,10,0,0"/>
         <Label Content="Количество компонентов справа" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,15,0"/>
+        <ComboBox x:Name="VelocityConstTypeComboBox" SelectedIndex="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="175,0,0,75">
+            <ComboBoxItem>
+                <TextBlock>Дж/моль</TextBlock>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <TextBlock>Кдж/моль</TextBlock>
+            </ComboBoxItem>
+        </ComboBox>
 
         <TextBox x:Name="LeftChemicalComponentsCountTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="205,15,0,0" PreviewTextInput="TextBox_PreviewTextInputConcentration" PreviewKeyDown="TextBox_PreviewKeyDown"/>
         <TextBox x:Name="RightChemicalComponentsCountTextBox" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Margin="0,15,210,0" PreviewTextInput="TextBox_PreviewTextInputConcentration" PreviewKeyDown="TextBox_PreviewKeyDown"/>
 
         <Button x:Name="AddComponentsToReaction" Content="+" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,15,0,0" Height="25" Width="125" Click="AddComponentsToReaction_Click"></Button>
-        <Button x:Name="AddReaction" Content="Добавить реакцию" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" Height="35" Margin="0,25,0,0" Click="AddReaction_Click" />
-        <Button x:Name="GetOverralReaction" Content="Вид реакции" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,125,0,0" Width="150" Height="35" Click="GetOverralReaction_Click"/>
+        <Button x:Name="AddReaction" Content="Добавить реакцию" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" Height="35" Margin="0,50,0,0" Click="AddReaction_Click" />
+        <Button x:Name="GetOverralReaction" Content="Вид реакции" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,150,0,0" Width="150" Height="35" Click="GetOverralReaction_Click"/>
 
-        <GroupBox x:Name="LeftComponentGroupBox" Header="Компоненты в левой части реакции" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,50,0,0" Width="290" MaxHeight="250" Height="250" BorderBrush="Black">
+        <GroupBox x:Name="LeftComponentGroupBox" Header="Компоненты в левой части реакции" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,50,0,0" Width="250" MaxHeight="250" Height="250" BorderBrush="Black">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel x:Name="LeftComponentsStackPanel"/>
             </ScrollViewer>
         </GroupBox>
-        <GroupBox x:Name="RightComponentGroupBox" Header="Компоненты в правой части реакции" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,50,15,0" Width="290" MaxHeight="250" Height="250" BorderBrush="Black">
+        <GroupBox x:Name="RightComponentGroupBox" Header="Компоненты в правой части реакции" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,50,15,0" Width="250" MaxHeight="250" Height="250" BorderBrush="Black">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel x:Name="RightComponentsStackPanel"/>
             </ScrollViewer>
@@ -33,7 +41,7 @@
                 <TextBox x:Name="VelocityConst" PreviewTextInput="TextBox_PreviewTextInputConcentration" PreviewKeyDown="TextBox_PreviewKeyDown" VerticalContentAlignment="Center" HorizontalScrollBarVisibility="Auto"/>
             </StackPanel>
         </GroupBox>
-        <GroupBox Header="Энергия активации" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Black" Width="160" Margin="0,0,0,80">
+        <GroupBox Header="Энергия активации" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Black" Width="160" Margin="0,0,75,80">
             <StackPanel Orientation="Horizontal">
                 <Label>E</Label>
                 <TextBox x:Name="EnergyActivation" PreviewTextInput="TextBox_PreviewTextInputConcentration" PreviewKeyDown="TextBox_PreviewKeyDown" VerticalContentAlignment="Center" HorizontalScrollBarVisibility="Auto"></TextBox>

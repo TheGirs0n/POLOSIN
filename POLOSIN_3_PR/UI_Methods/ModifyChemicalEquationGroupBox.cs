@@ -20,15 +20,13 @@ namespace POLOSIN_3_PR.UI_Methods
             stackPanel.Children.Add(newStackPanel);
         }
 
-        public static void AddChemicalEquationToStackPanel(StackPanel stackPanel, float? energyActivaion,
-            float? velocityConst, string overralReactionText)
+        public static void AddChemicalEquationToStackPanel(StackPanel stackPanel, ChemicalEquation chemicalEquation, string overralReactionText)
         {
-            var newStackPanel = CreateChemicalEquation(stackPanel, energyActivaion, velocityConst, overralReactionText);
+            var newStackPanel = CreateChemicalEquation(stackPanel, chemicalEquation, overralReactionText);
             stackPanel.Children.Add(newStackPanel);       
         }
 
-        private static Border CreateChemicalEquation(StackPanel stackPanel, float? energyActivaion,
-            float? velocityConst, string overralReactionText)
+        private static Border CreateChemicalEquation(StackPanel stackPanel, ChemicalEquation chemicalEquation, string overralReactionText)
         {
             Border border = new Border()
             {
@@ -44,23 +42,19 @@ namespace POLOSIN_3_PR.UI_Methods
             {
                 new Label
                 {
-                    Content = $"{stackPanel.Children.Count}",
-                    Width = 25,
+                    Content = $"{stackPanel.Children.Count}"
                 },
                 new Label
                 {
-                    Content = overralReactionText,
-                    Width = 150
+                    Content = overralReactionText
                 },
                 new Label
                 {
-                    Content = energyActivaion,
-                    Width = 150
+                    Content = $"{chemicalEquation._ActivateEnergy}, {chemicalEquation._ActivateEnergyType}"
                 },
                 new Label
                 {
-                    Content = velocityConst,
-                    Width = 150
+                    Content = $"{chemicalEquation._VelocityConst}, {chemicalEquation._VelocityConstType}"
                 }
             };
 
@@ -68,7 +62,7 @@ namespace POLOSIN_3_PR.UI_Methods
             {
                 
             };
-            stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star)});
+            stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
             stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(2, GridUnitType.Star) });
             stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
             stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
@@ -93,15 +87,15 @@ namespace POLOSIN_3_PR.UI_Methods
 
             var componentComponent = new ComboBox()
             {
-                Width = 50,
                 VerticalContentAlignment = VerticalAlignment.Center,
+                Margin = new Thickness(3)
             };
             componentComponent.ItemsSource = components.Keys;
 
             var componentConcentration = new TextBox
             {
-                Width = 50,
                 VerticalContentAlignment = VerticalAlignment.Center,
+                Margin = new Thickness(3)
             };
             componentConcentration.PreviewTextInput += TextBox_PreviewTextInputConcentration;
             componentConcentration.PreviewKeyDown += TextBox_PreviewKeyDown;
@@ -110,32 +104,29 @@ namespace POLOSIN_3_PR.UI_Methods
             {
                 new Label
                 {
-                    Content = "Компонент"
+                    Content = "Ком-нт"
                 },
                 componentComponent,
                 new Label
                 {
-                    Content = "Количество"
+                    Content = "Кол-во"
                 },
                 componentConcentration
             };
 
-            var stackPanel = new StackPanel()
+            var stackPanelToAdd = new Grid()
             {
-                Orientation = Orientation.Horizontal,
-                Margin = new Thickness(5),
-            };
 
-            AddToStackPanel(stackPanel, list);
-            border.Child = stackPanel;
+            };
+            stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+            stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+            stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+            stackPanelToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+
+            AddToStackPanel(stackPanelToAdd, list);
+            border.Child = stackPanelToAdd;
 
             return border;
-        }
-
-        private static void AddToStackPanel(StackPanel stackPanel, List<UIElement> list)
-        {
-            foreach (var value in list)
-                stackPanel.Children.Add(value);
         }
 
         private static void AddToStackPanel(Grid grid, List<UIElement> list)

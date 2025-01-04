@@ -1,38 +1,60 @@
 ﻿namespace POLOSIN_3_PR.Classes_Folder
 {
+    public enum ActivateEnergyType
+    {
+        DG = 0,
+        KiloDG = 1
+    };
+    public enum VelocityConstType
+    {
+        OnePM = 0,
+        KmPM = 1,
+        L_MPM = 2
+    };
     public class ChemicalEquation
     {
-        private Dictionary<string, int>? _LeftEquationSide { get; set; }
-        private Dictionary<string, int>? _RightEquationSide { get; set; }
-        private float? _ActivateEnergy { get; set; }
-        private float? _VelocityConst { get; set; }
-        public Dictionary<string, int>? LeftEquationSide
-        {
-            get => _LeftEquationSide;
-            set => _LeftEquationSide = value;
-        }
-        public Dictionary<string, int>? RightEquationSide
-        {
-            get => _RightEquationSide;
-            set => _RightEquationSide = value;
-        }
-        public float? ActivateEnergy
-        {
-            get => _ActivateEnergy;
-            set => _ActivateEnergy = value;
-        }
-        public float? VelocityConst
-        {
-            get => _VelocityConst;
-            set => _VelocityConst = value;
-        }
+        public Dictionary<string, int>? _LeftEquationSide { get; set; }
+        public Dictionary<string, int>? _RightEquationSide { get; set; }
+        public float? _ActivateEnergy { get; set; }
+        public float? _VelocityConst { get; set; }
+        public ActivateEnergyType? _ActivateEnergyType { get; set; }
+        public VelocityConstType? _VelocityConstType { get; set; }
+
         public ChemicalEquation(Dictionary<string, int> leftEquationSide, Dictionary<string, int> rightEquationSide,
-            float activateEnergy, float velocityConst)
+            float activateEnergy, float velocityConst, string activateEnergyType)
         {
-            LeftEquationSide = leftEquationSide;
-            RightEquationSide = rightEquationSide;
-            ActivateEnergy = activateEnergy;
-            VelocityConst = velocityConst;
+            _LeftEquationSide = leftEquationSide;
+            _RightEquationSide = rightEquationSide;
+            _ActivateEnergy = activateEnergy;
+            _VelocityConst = velocityConst;
+
+            switch (activateEnergyType)
+            {
+                case "Дж/моль":
+                    _ActivateEnergyType = ActivateEnergyType.DG;
+                    break;
+                case "Кдж/моль":
+                    _ActivateEnergyType = ActivateEnergyType.KiloDG;
+                    break;
+                default:
+                    break;
+                
+            }
+
+            switch (_LeftEquationSide.Values.Max())
+            {
+                case 1:
+                    _VelocityConstType = VelocityConstType.OnePM;
+                    break;
+                case 2:
+                    _VelocityConstType = VelocityConstType.KmPM;
+                    break;
+                case 3:
+                    _VelocityConstType = VelocityConstType.L_MPM;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

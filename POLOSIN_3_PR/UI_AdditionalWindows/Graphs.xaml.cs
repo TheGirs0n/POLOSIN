@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
+using System.Diagnostics;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace POLOSIN_3_PR.UI_AdditionalWindows
 {
@@ -19,9 +9,30 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
     /// </summary>
     public partial class Graphs : Window
     {
+        private DataTable? concentrationDataTable;
+        private Stopwatch? timer;
+        private long totalMemoryUsed;
         public Graphs()
         {
             InitializeComponent();
+            Init();
+            DrawAllGraphs();
+        }
+
+        private void DrawAllGraphs()
+        {
+            timer!.Stop();
+        }
+
+        private void Init()
+        {
+            timer = new Stopwatch();
+            timer.Start();
+
+            concentrationDataTable = new DataTable();
+
+            timer.Stop();
+            //totalMemoryUsed = GC.GetTotalMemory(false) / (1024 * 1024); # Строка, для подсчета памяти
         }
     }
 }
