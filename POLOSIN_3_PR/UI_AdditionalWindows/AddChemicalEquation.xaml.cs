@@ -31,12 +31,38 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
             }
         }
 
-        private void GetChemicalEquation(bool isOverral)
+        private void GetChemicalEquation()
         {
             leftEquationSide.Clear();
             rightEquationSide.Clear();
 
-            foreach (var item in LeftComponentsStackPanel.Children)
+            CheckEquationSides(equationStackPanel: LeftComponentsStackPanel, equationDictionary: leftEquationSide);
+            CheckEquationSides(equationStackPanel:  RightComponentsStackPanel, equationDictionary: rightEquationSide);
+
+            if (float.TryParse(EnergyActivation.Text, out float energy) == true
+                && float.TryParse(VelocityConst.Text, out float velocity) == true)
+            {
+                var velocityConstUnit = (TextBlock)VelocityConstTypeComboBox.SelectedItem;
+
+                _chemicalEquation = new ChemicalEquation(leftEquationSide, rightEquationSide,
+                    energy, velocity, velocityConstUnit.Text.ToString()!);
+
+                GetOverralReactionText();
+               
+            }
+            else
+            {
+                leftEquationSide.Clear();
+                rightEquationSide.Clear();
+
+                Logger.PrintMessageAsync("Не заданы параметры реакции. Проверьте корректность", MessageBoxImage.Error);
+            }    
+            
+        }
+        
+        private void CheckEquationSides(StackPanel equationStackPanel, Dictionary<string, int> equationDictionary)
+        {
+            foreach (var item in equationStackPanel.Children)
             {
                 var stackPanel = (Border)item;
                 Grid child = (Grid)stackPanel.Child;
@@ -46,13 +72,22 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
                 var value = (TextBox)collection[3];
 
                 if (int.TryParse(value.Text, out int concentration) == true && key.SelectedItem.ToString() != null
-                    && !leftEquationSide.ContainsKey(key.SelectedItem.ToString()!))
+                    && !equationDictionary.ContainsKey(key.SelectedItem.ToString()!))
                 {
-                    leftEquationSide.Add(key.SelectedItem.ToString()!, concentration);
+                    equationDictionary.Add(key.SelectedItem.ToString()!, concentration);
                 }
-                else if (leftEquationSide.ContainsKey(key.SelectedItem.ToString()!))
+                else if (key.SelectedItem == null)
                 {
-                    Logger.PrintMessageAsync("Дубликат выбранных веществ. Проверьте корректность", MessageBoxImage.Error);
+                    Logger.PrintMessageAsync("Выберите компоненты. Проверьте корректность", MessageBoxImage.Error);
+
+                    leftEquationSide.Clear();
+                    rightEquationSide.Clear();
+
+                    return;
+                }
+                else if (equationDictionary.ContainsKey(key.SelectedItem.ToString()!))
+                {
+                    Logger.PrintMessageAsync("Обнаружены дубликаты. Проверьте корректность", MessageBoxImage.Error);
 
                     leftEquationSide.Clear();
                     rightEquationSide.Clear();
@@ -67,65 +102,10 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
                     rightEquationSide.Clear();
 
                     return;
-                }
-            }
-
-            foreach (var item in RightComponentsStackPanel.Children)
-            {
-                var stackPanel = (Border)item;
-                Grid child = (Grid)stackPanel.Child;
-                var collection = child.Children;
-
-                var key = (ComboBox)collection[1];
-                var value = (TextBox)collection[3];
-
-                if (int.TryParse(value.Text, out int concentration) == true && key.SelectedItem.ToString() != null
-                    && !rightEquationSide.ContainsKey(key.SelectedItem.ToString()!))
-                {
-                    rightEquationSide.Add(key.SelectedItem.ToString()!, concentration);
-                }
-                else if (rightEquationSide.ContainsKey(key.SelectedItem.ToString()!))
-                {
-                    Logger.PrintMessageAsync("Дубликат выбранных веществ. Проверьте корректность", MessageBoxImage.Error);
-
-                    leftEquationSide.Clear();
-                    rightEquationSide.Clear();
-
-                    return;
-                }
-                else
-                {
-                    Logger.PrintMessageAsync("Ошибка чтения данных. Проверьте корректность", MessageBoxImage.Error);
-
-                    leftEquationSide.Clear();
-                    rightEquationSide.Clear();
-
-                    return;
-                }
-            }
-
-            if (isOverral == false)
-            {
-                if (float.TryParse(EnergyActivation.Text, out float energy) == true
-                    && float.TryParse(VelocityConst.Text, out float velocity) == true)
-                {
-                    _chemicalEquation = new ChemicalEquation(leftEquationSide, rightEquationSide,
-                        energy, velocity, VelocityConstTypeComboBox.SelectedItem.ToString()!);
-
-                    GetOverralReactionText();
-                    MainWindow.chemicalEquations!.Add(_chemicalEquation);
-                }
-                else
-                {
-                    _chemicalEquation = new ChemicalEquation(leftEquationSide, rightEquationSide,
-                        0, 0, VelocityConstTypeComboBox.Items[0].ToString()!);
-
-                    GetOverralReactionText();
-                    MainWindow.chemicalEquations!.Add(_chemicalEquation);
                 }
             }
         }
-        
+
         private void AddComponentsToReaction_Click(object sender, RoutedEventArgs e)
         {
             LeftComponentsStackPanel.Children.Clear();
@@ -140,6 +120,8 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
 
                 for (int i = 0; i < int.Parse(RightChemicalComponentsCountTextBox.Text); i++)
                     ModifyChemicalEquationGroupBox.AddChemicalEquationComponents(RightComponentsStackPanel, rightEquationSide);
+
+                GetOverralReaction.Visibility = Visibility.Visible;
             }
             else if (LeftChemicalComponentsCountTextBox.Text == string.Empty || RightChemicalComponentsCountTextBox.Text == string.Empty)
                 Logger.PrintMessageAsync("Заполните оба поля", MessageBoxImage.Error);
@@ -151,7 +133,9 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
         {
             if (LeftComponentsStackPanel.Children.Count > 0 && RightComponentsStackPanel.Children.Count > 0)
             {
-                GetChemicalEquation(false);
+                GetChemicalEquation();
+                if(!(_chemicalEquation == null))
+                    MainWindow.chemicalEquations!.Add(_chemicalEquation!);
             }
             else
                 Logger.PrintMessageAsync("Введите компоненты с обоих сторон", MessageBoxImage.Error);
@@ -172,14 +156,13 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
 
         private void GetOverralReaction_Click(object sender, RoutedEventArgs e)
         {
-            GetChemicalEquation(true);
-
+            GetChemicalEquation();
             if (LeftComponentsStackPanel.Children.Count > 0 && RightComponentsStackPanel.Children.Count > 0)
             {
                 ReactionView.Visibility = Visibility.Visible;
                 OverralReactionView.Visibility = Visibility.Visible;
+                GetOverralReactionText();
             }
-            GetOverralReactionText();
         }
         private void GetOverralReactionText()
         {
