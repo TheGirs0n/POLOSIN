@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("POLOSIN_3_PR")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5c60e2013da377693c20d83f722621cefb2e4d98")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3a5d82791620acaa49e9a0e18b31c55ea082c023")]
 [assembly: System.Reflection.AssemblyProductAttribute("POLOSIN_3_PR")]
 [assembly: System.Reflection.AssemblyTitleAttribute("POLOSIN_3_PR")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -143,6 +143,18 @@ namespace POLOSIN_3_PR
             }
             return chemicalEquations;
         }
+        private List<float> GetComponents()
+        {
+            ModifyComponentGroupBox.GetComponentsAndConcentration(components: components!, ComponentsStackPanel);
+            List<float> componentsConcentraion = new List<float>();
+            for (int i = 0; i < MainWindow.components!.Count; i++)
+            {
+                var concentration = components[i]._ComponentConcentration;
+
+                componentsConcentraion.Add((float)concentration!);
+            }
+            return componentsConcentraion;
+        }
         private void RemoveChemicalEquation_Click(object sender, RoutedEventArgs e)
         {
             if (ChemicalEquationsStackPanel.Children!.Count > 1)
@@ -181,7 +193,8 @@ namespace POLOSIN_3_PR
                 KineticCalculate kineticCalculate = new KineticCalculate();
                 var velocityConsts = GetVelocityConst();
                 var chemicalEquantions = GetChemicalEquationsText();
-                kineticCalculate.CalculateDifferentialEquations(chemicalEquantions, velocityConsts, _processTime, _processTimeStep);
+                var components = GetComponents();
+                kineticCalculate.CalculateDifferentialEquations(chemicalEquantions, velocityConsts, components, _processTime, _processTimeStep);
             }
             else if(TemperatureTextBox.Text == string.Empty || TempTimeTextBox.Text == string.Empty
                 || TimeTextBox.Text == string.Empty)
@@ -192,7 +205,7 @@ namespace POLOSIN_3_PR
                 Logger.PrintMessageAsync("Введите химические реакции", MessageBoxImage.Error);
         }
 
-    
+
         private void _chemicalEquations_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)

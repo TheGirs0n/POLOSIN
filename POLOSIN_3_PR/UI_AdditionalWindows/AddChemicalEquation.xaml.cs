@@ -152,7 +152,7 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
                 for (int i = 0; i < int.Parse(RightChemicalComponentsCountTextBox.Text); i++)
                     ModifyChemicalEquationGroupBox.AddChemicalEquationComponents(RightComponentsStackPanel, rightEquationSide);
 
-                GetOverralReaction.Visibility = Visibility.Visible;
+                //GetOverralReaction.Visibility = Visibility.Visible;
             }
             else if (LeftChemicalComponentsCountTextBox.Text == string.Empty || RightChemicalComponentsCountTextBox.Text == string.Empty)
                 Logger.PrintMessageAsync("Заполните оба поля", MessageBoxImage.Error);
@@ -165,8 +165,11 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
             if (LeftComponentsStackPanel.Children.Count > 0 && RightComponentsStackPanel.Children.Count > 0)
             {
                 GetChemicalEquation();
-                if(!(_chemicalEquation == null))
+                if (!(_chemicalEquation == null))
+                {
                     MainWindow.chemicalEquations!.Add(_chemicalEquation!);
+                    this.Close();
+                }
             }
             else
                 Logger.PrintMessageAsync("Введите компоненты с обоих сторон", MessageBoxImage.Error);

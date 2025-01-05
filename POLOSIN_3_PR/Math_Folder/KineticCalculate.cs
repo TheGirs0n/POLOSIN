@@ -10,13 +10,15 @@ using POLOSIN_3_PR.Async_Methods;
 namespace POLOSIN_3_PR.Math_Folder
 {
     public class KineticCalculate
-    { 
-        public Dictionary<string, List<double>> CalculateDifferentialEquations(List<string> chemicalEquation, List<float> velocityConst, float processTime, float processStep)
+    {
+        public Dictionary<string, List<double>> CalculateDifferentialEquations(List<string> chemicalEquation, 
+            List<float> velocityConst, List<float> initialConcentration, float processTime, float processStep)
         {
             Dictionary<string, List<double>> results = new Dictionary<string, List<double>>();
             // Данные для передачи
             string[] equations = chemicalEquation.ToArray();  // Массив уравнений
             float[] rateConstants = velocityConst.ToArray();  // Массив констант скорости
+            float[] inticonc = initialConcentration.ToArray();  // Массив констант скорости
             float time = processTime;  // Общее время
             float timeStep = processStep;  // Шаг по времени
 
@@ -26,7 +28,8 @@ namespace POLOSIN_3_PR.Math_Folder
                 Equations = equations,
                 RateConstants = rateConstants,
                 Time = time,
-                TimeStep = timeStep
+                TimeStep = timeStep,
+                InitialConcentrations = inticonc
             });
 
             File.WriteAllText("input.json", json);
@@ -34,10 +37,11 @@ namespace POLOSIN_3_PR.Math_Folder
             // Запуск Python-скрипта
             ProcessStartInfo start = new ProcessStartInfo();
             start.FileName = "C:\\Users\\Timur\\AppData\\Local\\Programs\\Python\\Python313\\python.exe";  // Или полный путь к python.exe
-            start.Arguments = "D:\\PythonProj\\pythonProject\\main.py";  // Имя Python-скрипта
+            start.Arguments = "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\bin\\Debug\\net8.0-windows\\solve_reaction.py";  // Имя Python-скрипта
             start.UseShellExecute = false;
             start.RedirectStandardOutput = true;
             start.RedirectStandardError = true;
+            start.CreateNoWindow = true;
 
             using (Process process = Process.Start(start)!)
             {

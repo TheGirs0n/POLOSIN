@@ -1,1 +1,1 @@
-{"Equations":["1A+1B = 1C"],"RateConstants":[3.6427774E-32],"Time":75.0,"TimeStep":1.0}
+{"Equations":["1Z+1O = 1V","2O = 1Z+1V"],"RateConstants":[9.902095E-34,5.333611E-37],"Time":10000.0,"TimeStep":2.0,"InitialConcentrations":[0.228,0.1488,0.1941]}
