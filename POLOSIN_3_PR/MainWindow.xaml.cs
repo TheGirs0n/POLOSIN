@@ -42,14 +42,11 @@ namespace POLOSIN_3_PR
             _particularOrdersDataTable = new DataTable();
         }
 
-        private async void GetActualProccesParameters()
+        private void GetActualProccesParameters()
         {
-            await Task.Run(() =>
-            {
-                _temperature = float.Parse(TemperatureTextBox.Text);
-                _processTime = float.Parse(TimeTextBox.Text);
-                _processTimeStep = float.Parse(TempTimeTextBox.Text);
-            });
+            _temperature = float.Parse(TemperatureTextBox.Text);
+            _processTime = float.Parse(TimeTextBox.Text);
+            _processTimeStep = float.Parse(TempTimeTextBox.Text);
         }
         public static float GetTemperature() => _temperature;
         public static float GetProcessTime() => _processTime;
@@ -123,6 +120,29 @@ namespace POLOSIN_3_PR
             UpdateDataGridSource(StechiometricDataGrid, stechiometricDataTable);
             UpdateDataGridSource(ParticularOrdersDataGrid, particularDataTable);
         }
+        private List<float> GetVelocityConst()
+        {
+            List<float> velocityConst = new List<float>();
+            for (int i = 0; i < chemicalEquations!.Count; i++)
+            {
+                var exp = chemicalEquations[i]._VelocityConst;
+                var ea = chemicalEquations[i]._ActivateEnergy;
+                var item = exp * Math.Pow(Math.E, (double)(-ea / (8.31 * _temperature))!);
+                velocityConst.Add((float)item!);
+            }
+            return velocityConst;
+        }
+        private List<string> GetChemicalEquationsText()
+        {
+            List<string> chemicalEquations = new List<string>();
+            for (int i = 0; i < MainWindow.chemicalEquations!.Count; i++)
+            {
+                var exp = MainWindow.chemicalEquations[i]._OverralReactionText;
+                
+                chemicalEquations.Add(exp!);
+            }
+            return chemicalEquations;
+        }
         private void RemoveChemicalEquation_Click(object sender, RoutedEventArgs e)
         {
             if (ChemicalEquationsStackPanel.Children!.Count > 1)
@@ -159,7 +179,9 @@ namespace POLOSIN_3_PR
                 GetActualProccesParameters();
 
                 KineticCalculate kineticCalculate = new KineticCalculate();
-                kineticCalculate.CalculateKinetic(chemicalEquations: chemicalEquations, components: components);
+                var velocityConsts = GetVelocityConst();
+                var chemicalEquantions = GetChemicalEquationsText();
+                kineticCalculate.CalculateDifferentialEquations(chemicalEquantions, velocityConsts, _processTime, _processTimeStep);
             }
             else if(TemperatureTextBox.Text == string.Empty || TempTimeTextBox.Text == string.Empty
                 || TimeTextBox.Text == string.Empty)
@@ -170,6 +192,7 @@ namespace POLOSIN_3_PR
                 Logger.PrintMessageAsync("Введите химические реакции", MessageBoxImage.Error);
         }
 
+    
         private void _chemicalEquations_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)
@@ -204,6 +227,18 @@ namespace POLOSIN_3_PR
                     UpdateDataGridSource(ParticularOrdersDataGrid, _particularOrdersDataTable);
                     break;
             }
+        }
+        private void TextBox_PreviewTextInputConcentration(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            char Symb = e.Text[0];
+
+            if (!char.IsDigit(Symb) && Symb != ',')
+                e.Handled = true;
+        }
+        private void TextBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Space)
+                e.Handled = true;
         }
     }
 }

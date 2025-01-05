@@ -8,15 +8,17 @@
         public float? _VelocityConst { get; set; }
         public string? _ActivateEnergyUnit { get; set; }
         public string? _VelocityConstUnit { get; set; }
+        public string? _OverralReactionText { get; set; }
 
         public ChemicalEquation(Dictionary<string, int> leftEquationSide, Dictionary<string, int> rightEquationSide,
-            float activateEnergy, float velocityConst, string activateEnergyUnit)
+            float activateEnergy, float velocityConst, string activateEnergyUnit, string overralReactionText)
         {
             _LeftEquationSide = leftEquationSide;
             _RightEquationSide = rightEquationSide;
             _ActivateEnergy = activateEnergy;
             _VelocityConst = velocityConst;
             _ActivateEnergyUnit = activateEnergyUnit;
+            _OverralReactionText = overralReactionText;
 
             switch (_LeftEquationSide.Values.Max())
             {

@@ -2,50 +2,58 @@
 using System.Collections.ObjectModel;
 using System.Data;
 using OdeLibrary;
+using System.Diagnostics;
+using System.IO;
+using Newtonsoft.Json;
+using POLOSIN_3_PR.Async_Methods;
 
 namespace POLOSIN_3_PR.Math_Folder
 {
     public class KineticCalculate
-    {
-        private readonly List<double> _columns = new List<double>();
-        private readonly List<double> _rows = new List<double>();
-        /// <summary>
-        /// Расчет уравнений кинетики для уравнений chemicalEquations по компонентам components
-        /// </summary>
-        /// <param name="chemicalEquations">Уравнения кинетики</param>
-        /// <param name="components">Компоненты</param>
-        public void CalculateKinetic(ObservableCollection<ChemicalEquation>? chemicalEquations, ObservableCollection<ComponentClass>? components)
+    { 
+        public Dictionary<string, List<double>> CalculateDifferentialEquations(List<string> chemicalEquation, List<float> velocityConst, float processTime, float processStep)
         {
-            
-        }
-        /// <summary>
-        /// Составление дифференциальных уравнений
-        /// </summary>
-        /// <param name="stechiometricalDataTable"></param>
-        /// <param name="particularDataTable"></param>
-        public void CalculateDifferentialEquations(DataTable stechiometricalDataTable, DataTable particularDataTable, List<float> velocityConst)
-        {
-            _columns.Clear();
-            _rows.Clear();
+            Dictionary<string, List<double>> results = new Dictionary<string, List<double>>();
+            // Данные для передачи
+            string[] equations = chemicalEquation.ToArray();  // Массив уравнений
+            float[] rateConstants = velocityConst.ToArray();  // Массив констант скорости
+            float time = processTime;  // Общее время
+            float timeStep = processStep;  // Шаг по времени
 
-            const double from = 0.0;
-            const double to = 1;        // Чисто заглушки
-            const double step = 2; 
+            // Записываем данные в JSON-файл
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(new
+            {
+                Equations = equations,
+                RateConstants = rateConstants,
+                Time = time,
+                TimeStep = timeStep
+            });
 
-            //var solver = new Solver();
-            //var diffSystem = new LambdaOde()
-            //{
-            //    OdeObserver = (x, t) =>
-            //    {
+            File.WriteAllText("input.json", json);
 
-            //    },
-            //    OdeSystem = (x, dxdt, t) =>
-            //    {
-            //        dxdt = ;
-            //    }
-            //};
-            //solver.ConvenienceSolve(diffSystem, from, step, to); // Заглушка
-            //solver.StepperCode = StepperTypeCode.RungeKutta4;
+            // Запуск Python-скрипта
+            ProcessStartInfo start = new ProcessStartInfo();
+            start.FileName = "C:\\Users\\Timur\\AppData\\Local\\Programs\\Python\\Python313\\python.exe";  // Или полный путь к python.exe
+            start.Arguments = "D:\\PythonProj\\pythonProject\\main.py";  // Имя Python-скрипта
+            start.UseShellExecute = false;
+            start.RedirectStandardOutput = true;
+            start.RedirectStandardError = true;
+
+            using (Process process = Process.Start(start)!)
+            {
+                
+            }
+
+            if (File.Exists("output.json"))
+            {
+                string outputJson = File.ReadAllText("output.json");
+                results = JsonConvert.DeserializeObject<Dictionary<string, List<double>>>(outputJson)!;
+            }
+            else
+            {
+                Logger.PrintMessageAsync("Файл output.json не найден", System.Windows.MessageBoxImage.Error);
+            }
+            return results;
         }
     }
 }

@@ -46,11 +46,10 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
                 {
                     var velocityConstUnit = (TextBlock)VelocityConstTypeComboBox.SelectedItem;
 
-                    _chemicalEquation = new ChemicalEquation(leftEquationSide, rightEquationSide,
-                        energy, velocity, velocityConstUnit.Text.ToString()!);
-
                     GetOverralReactionText();
 
+                    _chemicalEquation = new ChemicalEquation(leftEquationSide, rightEquationSide,
+                        energy, velocity, velocityConstUnit.Text.ToString()!, overralChemicalEquation!);
                 }
                 else
                 {
@@ -114,7 +113,30 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
             }
             return check;
         }
+        private void GetOverralReactionText()
+        {
+            OverralReactionView.Content = string.Empty;
+            for (int i = 0; i < leftEquationSide.Count; i++)
+            {
+                var item = leftEquationSide.ElementAt(i);
+                if (i != leftEquationSide.Count - 1)
+                    OverralReactionView.Content += $"{item.Value}{item.Key}+";
+                else
+                    OverralReactionView.Content += $"{item.Value}{item.Key}";
+            }
 
+            OverralReactionView.Content += " = ";
+
+            for (int i = 0; i < rightEquationSide.Count; i++)
+            {
+                var item = rightEquationSide.ElementAt(i);
+                if (i != rightEquationSide.Count - 1)
+                    OverralReactionView.Content += $"{item.Value}{item.Key}+";
+                else
+                    OverralReactionView.Content += $"{item.Value}{item.Key}";
+            }
+            overralChemicalEquation = OverralReactionView.Content.ToString();
+        }
         private void AddComponentsToReaction_Click(object sender, RoutedEventArgs e)
         {
             LeftComponentsStackPanel.Children.Clear();
@@ -154,7 +176,7 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
         {
             char Symb = e.Text[0];
 
-            if (!Char.IsDigit(Symb))
+            if (!char.IsDigit(Symb) && Symb != ',' && Symb != '^' && Symb != '-' && Symb != '*')
                 e.Handled = true;
         }
         private void TextBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
@@ -173,29 +195,6 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
                 GetOverralReactionText();
             }
         }
-        private void GetOverralReactionText()
-        {
-            OverralReactionView.Content = string.Empty;
-            for (int i = 0; i < leftEquationSide.Count; i++)
-            {
-                var item = leftEquationSide.ElementAt(i);
-                if (i != leftEquationSide.Count - 1)
-                    OverralReactionView.Content += $"{item.Value}{item.Key}+";
-                else
-                    OverralReactionView.Content += $"{item.Value}{item.Key}";
-            }
-
-            OverralReactionView.Content += " = ";
-
-            for (int i = 0; i < rightEquationSide.Count; i++)
-            {
-                var item = rightEquationSide.ElementAt(i);
-                if (i != rightEquationSide.Count - 1)
-                    OverralReactionView.Content += $"{item.Value}{item.Key}+";
-                else
-                    OverralReactionView.Content += $"{item.Value}{item.Key}";
-            }
-            overralChemicalEquation = OverralReactionView.Content.ToString();
-        }
+        
     }
 }
