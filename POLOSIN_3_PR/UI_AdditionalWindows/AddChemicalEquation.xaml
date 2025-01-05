@@ -31,7 +31,7 @@
                 <StackPanel x:Name="RightComponentsStackPanel"/>
             </ScrollViewer>
         </GroupBox>
-        <GroupBox Header="Константа скорости" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,80,0,0" BorderBrush="Black" Width="160">
+        <GroupBox Header="Пред. множитель" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,80,0,0" BorderBrush="Black" Width="160">
             <StackPanel Orientation="Horizontal">
                 <Label>K</Label>
                 <TextBox x:Name="VelocityConst" PreviewTextInput="TextBox_PreviewTextInputConcentration" PreviewKeyDown="TextBox_PreviewKeyDown" VerticalContentAlignment="Center" HorizontalScrollBarVisibility="Auto"/>
