@@ -52,12 +52,12 @@ namespace POLOSIN_3_PR.UI_Methods
                 },
                 new Label
                 {
-                    Content = $"{chemicalEquation._ActivateEnergy}, {chemicalEquation._ActivateEnergyUnit}",
+                    Content = $"{chemicalEquation._ActivateEnergy} {chemicalEquation._ActivateEnergyUnit}",
                     HorizontalAlignment = HorizontalAlignment.Center
                 },
                 new Label
                 {
-                    Content = $"{chemicalEquation._VelocityConst}, {chemicalEquation._VelocityConstUnit}",
+                    Content = $"{chemicalEquation._VelocityConst} {chemicalEquation._VelocityConstUnit}",
                     HorizontalAlignment = HorizontalAlignment.Center
                 }
             };

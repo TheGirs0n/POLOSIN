@@ -65,3 +65,12 @@ C:\Users\Timur\Desktop\POLOSIN_3\POLOSIN_3_PR\bin\Debug\net8.0-windows\RBush.dll
 C:\Users\Timur\Desktop\POLOSIN_3\POLOSIN_3_PR\bin\Debug\net8.0-windows\SixLabors.Fonts.dll
 C:\Users\Timur\Desktop\POLOSIN_3\POLOSIN_3_PR\bin\Debug\net8.0-windows\System.IO.Packaging.dll
 C:\Users\Timur\Desktop\POLOSIN_3\POLOSIN_3_PR\bin\Debug\net8.0-windows\OdeLibrary.dll
+D:\prog\Polosin\POLOSIN\POLOSIN_3_PR\bin\Debug\net8.0-windows\ClosedXML.dll
+D:\prog\Polosin\POLOSIN\POLOSIN_3_PR\bin\Debug\net8.0-windows\ClosedXML.Parser.dll
+D:\prog\Polosin\POLOSIN\POLOSIN_3_PR\bin\Debug\net8.0-windows\DocumentFormat.OpenXml.dll
+D:\prog\Polosin\POLOSIN\POLOSIN_3_PR\bin\Debug\net8.0-windows\DocumentFormat.OpenXml.Framework.dll
+D:\prog\Polosin\POLOSIN\POLOSIN_3_PR\bin\Debug\net8.0-windows\ExcelNumberFormat.dll
+D:\prog\Polosin\POLOSIN\POLOSIN_3_PR\bin\Debug\net8.0-windows\RBush.dll
+D:\prog\Polosin\POLOSIN\POLOSIN_3_PR\bin\Debug\net8.0-windows\SixLabors.Fonts.dll
+D:\prog\Polosin\POLOSIN\POLOSIN_3_PR\bin\Debug\net8.0-windows\System.IO.Packaging.dll
+D:\prog\Polosin\POLOSIN\POLOSIN_3_PR\bin\Debug\net8.0-windows\OdeLibrary.dll
