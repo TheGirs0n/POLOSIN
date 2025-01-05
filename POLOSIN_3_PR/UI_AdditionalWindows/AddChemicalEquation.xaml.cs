@@ -36,32 +36,36 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
             leftEquationSide.Clear();
             rightEquationSide.Clear();
 
-            CheckEquationSides(equationStackPanel: LeftComponentsStackPanel, equationDictionary: leftEquationSide);
-            CheckEquationSides(equationStackPanel:  RightComponentsStackPanel, equationDictionary: rightEquationSide);
+            bool checkLeft = CheckEquationSides(equationStackPanel: LeftComponentsStackPanel, equationDictionary: leftEquationSide);
+            bool checkRight = CheckEquationSides(equationStackPanel:  RightComponentsStackPanel, equationDictionary: rightEquationSide);
 
-            if (float.TryParse(EnergyActivation.Text, out float energy) == true
-                && float.TryParse(VelocityConst.Text, out float velocity) == true)
+            if (checkLeft == true && checkRight == true)
             {
-                var velocityConstUnit = (TextBlock)VelocityConstTypeComboBox.SelectedItem;
+                if (float.TryParse(EnergyActivation.Text, out float energy) == true
+                    && float.TryParse(VelocityConst.Text, out float velocity) == true)
+                {
+                    var velocityConstUnit = (TextBlock)VelocityConstTypeComboBox.SelectedItem;
 
-                _chemicalEquation = new ChemicalEquation(leftEquationSide, rightEquationSide,
-                    energy, velocity, velocityConstUnit.Text.ToString()!);
+                    _chemicalEquation = new ChemicalEquation(leftEquationSide, rightEquationSide,
+                        energy, velocity, velocityConstUnit.Text.ToString()!);
 
-                GetOverralReactionText();
-               
+                    GetOverralReactionText();
+
+                }
+                else
+                {
+                    leftEquationSide.Clear();
+                    rightEquationSide.Clear();
+
+                    Logger.PrintMessageAsync("Не заданы параметры реакции. Проверьте корректность", MessageBoxImage.Error);
+                }
             }
-            else
-            {
-                leftEquationSide.Clear();
-                rightEquationSide.Clear();
-
-                Logger.PrintMessageAsync("Не заданы параметры реакции. Проверьте корректность", MessageBoxImage.Error);
-            }    
-            
         }
         
-        private void CheckEquationSides(StackPanel equationStackPanel, Dictionary<string, int> equationDictionary)
+        private bool CheckEquationSides(StackPanel equationStackPanel, Dictionary<string, int> equationDictionary)
         {
+            bool check = false;
+
             foreach (var item in equationStackPanel.Children)
             {
                 var stackPanel = (Border)item;
@@ -75,6 +79,7 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
                     && !equationDictionary.ContainsKey(key.SelectedItem.ToString()!))
                 {
                     equationDictionary.Add(key.SelectedItem.ToString()!, concentration);
+                    check = true;
                 }
                 else if (key.SelectedItem == null)
                 {
@@ -83,7 +88,8 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
                     leftEquationSide.Clear();
                     rightEquationSide.Clear();
 
-                    return;
+                    check = false;
+                    return check;
                 }
                 else if (equationDictionary.ContainsKey(key.SelectedItem.ToString()!))
                 {
@@ -92,7 +98,8 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
                     leftEquationSide.Clear();
                     rightEquationSide.Clear();
 
-                    return;
+                    check = false;
+                    return check;
                 }
                 else
                 {
@@ -101,9 +108,11 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
                     leftEquationSide.Clear();
                     rightEquationSide.Clear();
 
-                    return;
+                    check = false;
+                    return check;
                 }
             }
+            return check;
         }
 
         private void AddComponentsToReaction_Click(object sender, RoutedEventArgs e)
@@ -113,7 +122,7 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
 
             if (LeftChemicalComponentsCountTextBox.Text != string.Empty && RightChemicalComponentsCountTextBox.Text != string.Empty
                 && (int.Parse(LeftChemicalComponentsCountTextBox.Text) <= MainWindow.components!.Count
-                || int.Parse(RightChemicalComponentsCountTextBox.Text) <= MainWindow.components!.Count))
+                && int.Parse(RightChemicalComponentsCountTextBox.Text) <= MainWindow.components!.Count))
             {
                 for (int i = 0; i < int.Parse(LeftChemicalComponentsCountTextBox.Text); i++)
                     ModifyChemicalEquationGroupBox.AddChemicalEquationComponents(LeftComponentsStackPanel, leftEquationSide);

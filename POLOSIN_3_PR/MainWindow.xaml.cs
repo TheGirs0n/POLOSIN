@@ -90,27 +90,29 @@ namespace POLOSIN_3_PR
 
                 for (int j = 0; j < stechiometricDataTable.Columns.Count; j++)
                 {
-                    var column = stechiometricDataTable.Columns[j];
-                    var existInLeft = chemicalEquations[i]._LeftEquationSide!.ContainsKey($"{column}");
+                    var stechioColumn = stechiometricDataTable.Columns[j];
+                    var particularColumn = particularDataTable.Columns[j];
+                    var existInLeft = chemicalEquations[i]._LeftEquationSide!.ContainsKey($"{stechioColumn}");
 
                     if (existInLeft)
                     {
-                        stechiometricDataTable.Rows[-1][column] = -chemicalEquations[i]._LeftEquationSide![column.ColumnName]; // значение по ключу
-                        particularDataTable.Rows[-1][column] = Math.Abs(decimal.Parse(stechiometricDataTable.Rows[-1][column].ToString()!));
+                        stechiometricDataTable.Rows[^1][stechioColumn] = -chemicalEquations[i]._LeftEquationSide![stechioColumn.ColumnName]; // значение по ключу
+                        var value = Math.Abs(decimal.Parse(stechiometricDataTable.Rows[^1][stechioColumn].ToString()!));
+                        particularDataTable.Rows[^1][particularColumn] = value;
                         continue;
                     }
 
-                    var existInRight = chemicalEquations[i]._RightEquationSide!.ContainsKey($"{column}");
+                    var existInRight = chemicalEquations[i]._RightEquationSide!.ContainsKey($"{stechioColumn}");
 
                     if (existInRight)
                     {
-                        stechiometricDataTable.Rows[-1][column] = chemicalEquations[i]._RightEquationSide![column.ColumnName]; // значение по ключу
-                        particularDataTable.Rows[-1][column] = 0;
+                        stechiometricDataTable.Rows[^1][stechioColumn] = chemicalEquations[i]._RightEquationSide![stechioColumn.ColumnName]; // значение по ключу
+                        particularDataTable.Rows[^1][particularColumn] = 0;
                         continue;
                     }
 
-                    stechiometricDataTable.Rows[-1][column] = 0;
-                    particularDataTable.Rows[-1][column] = 0;
+                    stechiometricDataTable.Rows[^1][stechioColumn] = 0;
+                    particularDataTable.Rows[^1][particularColumn] = 0;
                 }
             }
 

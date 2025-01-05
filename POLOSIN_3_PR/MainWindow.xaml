@@ -42,11 +42,11 @@
             </ScrollViewer>
         </GroupBox>
 
-        <GroupBox Header="Матрица частных порядков" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15,0,0,10" Height="150" BorderBrush="Black" Width="200">
+        <GroupBox Header="Матрица частных порядков" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="250,0,0,10" Height="150" BorderBrush="Black" Width="200">
             <DataGrid x:Name="ParticularOrdersDataGrid" Background="White" BorderBrush="Black"></DataGrid>
         </GroupBox>
 
-        <GroupBox Header="Стехиометрические коэффициенты" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="250,0,0,10" Height="150" BorderBrush="Black" Width="225">
+        <GroupBox Header="Стехиометрические коэффициенты" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15,0,0,10" Height="150" BorderBrush="Black" Width="225">
             <DataGrid x:Name="StechiometricDataGrid" Background="White" BorderBrush="Black"></DataGrid>
         </GroupBox>
 
