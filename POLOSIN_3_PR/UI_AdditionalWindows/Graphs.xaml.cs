@@ -43,12 +43,12 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
 
         private void GetDocument_Click(object sender, RoutedEventArgs e)
         {
-            var time = float.Parse(ElapsedTimeTextBox.Text);
-            var memory = float.Parse(MemoryUsedTextBox.Text);
-            var count = int.Parse(OperationCountTextBox.Text);
+            var temperature = MainWindow.GetTemperature();
+            var processTime = MainWindow.GetProcessTime();
+            var processTimeStep = MainWindow.GetProcessTimeStep();
 
             SaveToDocument saveToDocument = new SaveToDocument();
-            saveToDocument.SaveToDocumentExcel(concentrationDataTable!, time, memory, count);
+            saveToDocument.SaveToDocumentExcel(concentrationDataTable!, temperature, processTime, processTimeStep);
 
         }
     }

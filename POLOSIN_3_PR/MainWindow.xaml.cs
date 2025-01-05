@@ -6,6 +6,7 @@ using POLOSIN_3_PR.UI_Methods;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace POLOSIN_3_PR
 {
@@ -18,6 +19,10 @@ namespace POLOSIN_3_PR
         public static ObservableCollection<ComponentClass>? components;
         private DataTable? _stechiometricDataTable;
         private DataTable? _particularOrdersDataTable;
+
+        private static float _temperature;
+        private static float _processTime;
+        private static float _processTimeStep;
 
         public MainWindow()
         {
@@ -35,7 +40,18 @@ namespace POLOSIN_3_PR
             _stechiometricDataTable = new DataTable();
             _particularOrdersDataTable = new DataTable();
         }
-            
+        private async void GetActualProccesParameters()
+        {
+            await Task.Run(() =>
+            {
+                _temperature = float.Parse(TemperatureTextBox.Text);
+                _processTime = float.Parse(TimeTextBox.Text);
+                _processTimeStep = float.Parse(TempTimeTextBox.Text);
+            });
+        }
+        public static float GetTemperature() => _temperature;
+        public static float GetProcessTime() => _processTime;
+        public static float GetProcessTimeStep() => _processTimeStep;
         private void AddChemicalEquation_Click(object sender, RoutedEventArgs e)
         {
             if (ComponentsStackPanel.Children!.Count > 0)
@@ -51,7 +67,56 @@ namespace POLOSIN_3_PR
             else
                 Logger.PrintMessageAsync("Сначала введите компоненты", MessageBoxImage.Information);
         }
+        private void UpdateDataGridSource(DataGrid dataGrid, DataTable dataTable)
+        {
+            dataGrid.ItemsSource = null;
+            dataGrid.ItemsSource = dataTable.DefaultView;
+        }
+        private void UpdateStechiometricAndParticularDataTable(DataTable stechiometricDataTable, DataTable particularDataTable)
+        {
+            stechiometricDataTable.Clear();
+            particularDataTable.Clear();
 
+            for (int i = 0; i < components!.Count; i++)
+            {
+                stechiometricDataTable.Columns.Add($"{components[i]._ComponentName}");
+                particularDataTable.Columns.Add($"{components[i]._ComponentName}");
+            }
+
+            for (int i = 0; i < chemicalEquations!.Count; i++)
+            {
+                stechiometricDataTable.Rows.Add();
+                particularDataTable.Rows.Add();
+
+                for (int j = 0; j < stechiometricDataTable.Columns.Count; j++)
+                {
+                    var column = stechiometricDataTable.Columns[j];
+                    var existInLeft = chemicalEquations[i]._LeftEquationSide!.ContainsKey($"{column}");
+
+                    if (existInLeft)
+                    {
+                        stechiometricDataTable.Rows[-1][column] = -chemicalEquations[i]._LeftEquationSide![column.ColumnName]; // значение по ключу
+                        particularDataTable.Rows[-1][column] = Math.Abs(decimal.Parse(stechiometricDataTable.Rows[-1][column].ToString()!));
+                        continue;
+                    }
+
+                    var existInRight = chemicalEquations[i]._RightEquationSide!.ContainsKey($"{column}");
+
+                    if (existInRight)
+                    {
+                        stechiometricDataTable.Rows[-1][column] = chemicalEquations[i]._RightEquationSide![column.ColumnName]; // значение по ключу
+                        particularDataTable.Rows[-1][column] = 0;
+                        continue;
+                    }
+
+                    stechiometricDataTable.Rows[-1][column] = 0;
+                    particularDataTable.Rows[-1][column] = 0;
+                }
+            }
+
+            UpdateDataGridSource(StechiometricDataGrid, stechiometricDataTable);
+            UpdateDataGridSource(ParticularOrdersDataGrid, particularDataTable);
+        }
         private void RemoveChemicalEquation_Click(object sender, RoutedEventArgs e)
         {
             if (ChemicalEquationsStackPanel.Children!.Count > 1)
@@ -62,14 +127,16 @@ namespace POLOSIN_3_PR
 
         private void AddComponent_Click(object sender, RoutedEventArgs e)
         {
-            components!.Add(new ComponentClass("", 0));
             ModifyComponentGroupBox.AddComponent(ComponentsStackPanel);
         }
 
         private void RemoveComponent_Click(object sender, RoutedEventArgs e)
         {
             if (ComponentsStackPanel!.Children.Count > 0)
+            {
+                ModifyComponentGroupBox.GetComponentsAndConcentration(components!, ComponentsStackPanel);
                 ModifyComponentGroupBox.RemoveComponent(ComponentsStackPanel, components!);
+            }
             else
                 Logger.PrintMessageAsync("Нет компонентов для удаления", MessageBoxImage.Error);
         }
@@ -79,6 +146,8 @@ namespace POLOSIN_3_PR
             if (TemperatureTextBox.Text != string.Empty && TempTimeTextBox.Text != string.Empty
                 && TimeTextBox.Text != string.Empty && components!.Count > 0 && chemicalEquations!.Count > 0)
             {
+                GetActualProccesParameters();
+
                 KineticCalculate kineticCalculate = new KineticCalculate();
                 kineticCalculate.CalculateKinetic(chemicalEquations: chemicalEquations, components: components);
             }
@@ -93,8 +162,11 @@ namespace POLOSIN_3_PR
                 case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
                     var item = (ChemicalEquation)e.NewItems![0]!;
                     ModifyChemicalEquationGroupBox.AddChemicalEquationToStackPanel(ChemicalEquationsStackPanel, item, overralReactionText: AddChemicalEquation.overralChemicalEquation!);
+                    UpdateStechiometricAndParticularDataTable(_stechiometricDataTable!, _particularOrdersDataTable!);
+                    break;
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
                     break;
             }
-        }
+        }      
     }
 }
