@@ -36,10 +36,12 @@ namespace POLOSIN_3_PR
             chemicalEquations.CollectionChanged += _chemicalEquations_CollectionChanged;
 
             components = new();
+            components.CollectionChanged += Components_CollectionChanged;
 
             _stechiometricDataTable = new DataTable();
             _particularOrdersDataTable = new DataTable();
         }
+
         private async void GetActualProccesParameters()
         {
             await Task.Run(() =>
@@ -74,8 +76,10 @@ namespace POLOSIN_3_PR
         }
         private void UpdateStechiometricAndParticularDataTable(DataTable stechiometricDataTable, DataTable particularDataTable)
         {
-            stechiometricDataTable.Clear();
-            particularDataTable.Clear();
+            stechiometricDataTable.Columns.Clear();
+            stechiometricDataTable.Rows.Clear();
+            particularDataTable.Columns.Clear();
+            particularDataTable.Rows.Clear();
 
             for (int i = 0; i < components!.Count; i++)
             {
@@ -137,7 +141,11 @@ namespace POLOSIN_3_PR
             if (ComponentsStackPanel!.Children.Count > 0)
             {
                 ModifyComponentGroupBox.GetComponentsAndConcentration(components!, ComponentsStackPanel);
-                ModifyComponentGroupBox.RemoveComponent(ComponentsStackPanel, components!);
+
+                ModifyComponentGroupBox.RemoveComponent(ComponentsStackPanel);
+
+                if (components!.Count > 0)
+                    components.RemoveAt(components.Count - 1);
             }
             else
                 Logger.PrintMessageAsync("Нет компонентов для удаления", MessageBoxImage.Error);
@@ -153,8 +161,13 @@ namespace POLOSIN_3_PR
                 KineticCalculate kineticCalculate = new KineticCalculate();
                 kineticCalculate.CalculateKinetic(chemicalEquations: chemicalEquations, components: components);
             }
-            else
+            else if(TemperatureTextBox.Text == string.Empty || TempTimeTextBox.Text == string.Empty
+                || TimeTextBox.Text == string.Empty)
                 Logger.PrintMessageAsync("Заполните все варьируемые параметры", MessageBoxImage.Error);
+            else if(components!.Count == 0)
+                Logger.PrintMessageAsync("Введите компоненты", MessageBoxImage.Error);
+            else if (chemicalEquations!.Count == 0)
+                Logger.PrintMessageAsync("Введите химические реакции", MessageBoxImage.Error);
         }
 
         private void _chemicalEquations_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -167,8 +180,30 @@ namespace POLOSIN_3_PR
                     UpdateStechiometricAndParticularDataTable(_stechiometricDataTable!, _particularOrdersDataTable!);
                     break;
                 case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+                    _stechiometricDataTable!.Rows.RemoveAt(_stechiometricDataTable.Rows.Count - 1);
+                    _particularOrdersDataTable!.Rows.RemoveAt(_particularOrdersDataTable.Rows.Count - 1);
+
+                    UpdateDataGridSource(StechiometricDataGrid, _stechiometricDataTable);
+                    UpdateDataGridSource(ParticularOrdersDataGrid, _particularOrdersDataTable);
                     break;
             }
-        }      
+        }
+
+        private void Components_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:        
+                    UpdateStechiometricAndParticularDataTable(_stechiometricDataTable!, _particularOrdersDataTable!);
+                    break;
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+                    _stechiometricDataTable!.Columns.RemoveAt(_stechiometricDataTable.Columns.Count - 1);
+                    _particularOrdersDataTable!.Columns.RemoveAt(_particularOrdersDataTable.Columns.Count - 1);
+
+                    UpdateDataGridSource(StechiometricDataGrid, _stechiometricDataTable);
+                    UpdateDataGridSource(ParticularOrdersDataGrid, _particularOrdersDataTable);
+                    break;
+            }
+        }
     }
 }

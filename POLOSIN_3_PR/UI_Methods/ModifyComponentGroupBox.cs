@@ -9,10 +9,9 @@ namespace POLOSIN_3_PR.UI_Methods
 {
     public class ModifyComponentGroupBox
     {
-        public static void RemoveComponent(StackPanel stackPanel, ObservableCollection<ComponentClass> componentClasses)
+        public static void RemoveComponent(StackPanel stackPanel)
         {
             stackPanel.Children.RemoveAt(stackPanel.Children.Count - 1);
-            componentClasses.RemoveAt(componentClasses.Count - 1);
         }
         public static void AddComponent(StackPanel stackPanel)
         {
@@ -103,6 +102,12 @@ namespace POLOSIN_3_PR.UI_Methods
                     {
                         var textBoxComponent = (TextBox)collection[i];
                         component = textBoxComponent.Text;
+                        if (component == string.Empty)
+                        {
+                            Logger.PrintMessageAsync("Не записан компонент", MessageBoxImage.Error);
+                            components.Clear();
+                            return;
+                        }
                     }
                     else
                     {
