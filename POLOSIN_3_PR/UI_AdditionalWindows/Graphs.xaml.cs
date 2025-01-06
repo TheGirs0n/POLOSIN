@@ -52,7 +52,7 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
                     var dotX = Math.Round(_results.ElementAt(i).Value[j]);
                     var dotY = _results.ElementAt(_results.Count - 1).Value[j];
 
-                    series.Values.Add(new ObservablePoint(dotX, dotY));   
+                    series.Values.Add(new ObservablePoint(dotY, dotX));   
                 }
                 ConcentrationGraphs.Series.Add(series);
             }

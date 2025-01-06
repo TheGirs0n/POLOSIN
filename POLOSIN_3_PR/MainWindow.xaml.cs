@@ -28,6 +28,7 @@ namespace POLOSIN_3_PR
         {
             InitializeComponent();
             InitializeCollections();
+            StartValues();
         }
 
         private void InitializeCollections()
@@ -120,6 +121,118 @@ namespace POLOSIN_3_PR
             UpdateDataGridSource(StechiometricDataGrid, stechiometricDataTable);
             UpdateDataGridSource(ParticularOrdersDataGrid, particularDataTable);
         }
+
+        private void StartValues() 
+        {
+            TemperatureTextBox.Text = "-3";
+            TimeTextBox.Text = "3000";
+            TempTimeTextBox.Text = "60";
+            
+            ComponentClass componentA = new ComponentClass(componentName: "A", componentConcentration: (float)0.9);
+            ComponentClass componentB = new ComponentClass(componentName: "B", componentConcentration: (float)0.0);
+            ComponentClass componentC = new ComponentClass(componentName: "C", componentConcentration: (float)0.0);
+            ComponentClass componentD = new ComponentClass(componentName: "D", componentConcentration: (float)0.0);
+            ComponentClass componentE = new ComponentClass(componentName: "E", componentConcentration: (float)0.0);
+
+            Dictionary<string, int> leftEquationSide = new Dictionary<string, int>()
+            {
+                { componentA._ComponentName!, 1  },
+            };
+            Dictionary<string, int> rightEquationSide = new Dictionary<string, int>()
+            {
+                { componentB._ComponentName!, 2},
+                { componentC._ComponentName!, 1},
+            };
+            float energyActivation = 74000;
+            float predExp = (float)(0.2 * Math.Pow(10, 14));
+            float velocityConst = (float)(predExp * Math.Pow(Math.E, (-energyActivation / (8.31 * (float.Parse(TemperatureTextBox.Text) + 273)))));
+            string energyActivationUnit = "Дж/моль";
+            string overralReactionText = "";
+            overralReactionText = GetOverralReactionText(ref overralReactionText, leftEquationSide, rightEquationSide);
+
+            ChemicalEquation equationFirst = new ChemicalEquation(leftEquationSide, rightEquationSide, energyActivation, velocityConst, energyActivationUnit, overralReactionText);
+
+            components!.Add(componentA);
+            components!.Add(componentB);
+            components!.Add(componentC);
+            components!.Add(componentD);
+            components!.Add(componentE);
+
+            chemicalEquations!.Add(equationFirst);
+
+            leftEquationSide = new Dictionary<string, int>()
+            {
+                { componentB._ComponentName!, 1  },
+            };
+            rightEquationSide = new Dictionary<string, int>()
+            {
+                { componentD._ComponentName!, 1},
+                { componentE._ComponentName!, 1},
+            };
+
+            energyActivation = 89000;
+            predExp = (float)(9 * Math.Pow(10, 15));
+            velocityConst = (float)(predExp * Math.Pow(Math.E, (-energyActivation / (8.31 * (float.Parse(TemperatureTextBox.Text) + 273)))));     
+            energyActivationUnit = "Дж/моль";
+            overralReactionText = GetOverralReactionText(ref overralReactionText, leftEquationSide, rightEquationSide);
+
+            ChemicalEquation equationSecond = new ChemicalEquation(leftEquationSide, rightEquationSide, energyActivation, velocityConst, energyActivationUnit, overralReactionText);
+
+            chemicalEquations!.Add(equationSecond);
+
+            leftEquationSide = new Dictionary<string, int>()
+            {
+                { componentB._ComponentName!, 1},
+                { componentC._ComponentName!, 1}
+            };
+            rightEquationSide= new Dictionary<string, int>()
+            {
+                { componentA._ComponentName!, 1}
+            };
+
+            energyActivation = 85000;
+            predExp = (float)(0.5 * Math.Pow(10, 14));
+            velocityConst = (float)(predExp * Math.Pow(Math.E, (-energyActivation / (8.31 * (float.Parse(TemperatureTextBox.Text) + 273)))));
+            energyActivationUnit = "Дж/моль";
+            overralReactionText = GetOverralReactionText(ref overralReactionText, leftEquationSide, rightEquationSide);
+
+            ChemicalEquation equationThird = new ChemicalEquation(leftEquationSide, rightEquationSide, energyActivation, velocityConst, energyActivationUnit, overralReactionText);
+
+            chemicalEquations!.Add(equationThird);
+
+            ModifyComponentGroupBox.AddComponent(ComponentsStackPanel, componentA);
+            ModifyComponentGroupBox.AddComponent(ComponentsStackPanel, componentB);
+            ModifyComponentGroupBox.AddComponent(ComponentsStackPanel, componentC);
+            ModifyComponentGroupBox.AddComponent(ComponentsStackPanel, componentD);
+            ModifyComponentGroupBox.AddComponent(ComponentsStackPanel, componentE);
+
+        }
+
+        private string GetOverralReactionText(ref string overraTextReaction, Dictionary<string, int> leftEquationSide, Dictionary<string, int> rightEquationSide)
+        {
+            overraTextReaction = string.Empty;
+            for (int i = 0; i < leftEquationSide.Count; i++)
+            {
+                var item = leftEquationSide.ElementAt(i);
+                if (i != leftEquationSide.Count - 1)
+                    overraTextReaction += $"{item.Value}{item.Key}+";
+                else
+                    overraTextReaction += $"{item.Value}{item.Key}";
+            }
+
+            overraTextReaction += " = ";
+
+            for (int i = 0; i < rightEquationSide.Count; i++)
+            {
+                var item = rightEquationSide.ElementAt(i);
+                if (i != rightEquationSide.Count - 1)
+                    overraTextReaction += $"{item.Value}{item.Key}+";
+                else
+                    overraTextReaction += $"{item.Value}{item.Key}";
+            }
+            return overraTextReaction;
+        }
+
         private List<float> GetVelocityConst()
         {
             List<float> velocityConst = new List<float>();
@@ -127,7 +240,7 @@ namespace POLOSIN_3_PR
             {
                 var exp = chemicalEquations[i]._VelocityConst;
                 var ea = chemicalEquations[i]._ActivateEnergy;
-                var item = exp * Math.Pow(Math.E, (double)(-ea / (8.31 * _temperature))!);
+                var item = exp * Math.Pow(Math.E, (double)(-ea / (8.31 * (_temperature + 273)))!);
                 velocityConst.Add((float)item!);
             }
             return velocityConst;
@@ -219,7 +332,10 @@ namespace POLOSIN_3_PR
             { 
                 case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
                     var item = (ChemicalEquation)e.NewItems![0]!;
-                    ModifyChemicalEquationGroupBox.AddChemicalEquationToStackPanel(ChemicalEquationsStackPanel, item, overralReactionText: AddChemicalEquation.overralChemicalEquation!);
+                    if (AddChemicalEquation.overralChemicalEquation! != null) 
+                        ModifyChemicalEquationGroupBox.AddChemicalEquationToStackPanel(ChemicalEquationsStackPanel, item, overralReactionText: AddChemicalEquation.overralChemicalEquation!);
+                    else
+                        ModifyChemicalEquationGroupBox.AddChemicalEquationToStackPanel(ChemicalEquationsStackPanel, item, overralReactionText: item._OverralReactionText!);
                     UpdateStechiometricAndParticularDataTable(_stechiometricDataTable!, _particularOrdersDataTable!);
                     break;
                 case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
@@ -268,4 +384,5 @@ namespace POLOSIN_3_PR
                 e.Handled = true;
         }
     }
+
 }

@@ -77,6 +77,7 @@ namespace POLOSIN_3_PR.UI_Methods
             return border;
         }
 
+
         private static Border CreateChemicalEquationStackPanel(Dictionary<string, int> components)
         {
             Border border = new Border()

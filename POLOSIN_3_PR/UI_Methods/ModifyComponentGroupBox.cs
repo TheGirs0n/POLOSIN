@@ -19,6 +19,12 @@ namespace POLOSIN_3_PR.UI_Methods
             stackPanel.Children.Add(newStackPanel);
         }
 
+        public static void AddComponent(StackPanel stackPanel, ComponentClass component)
+        {
+            var newStackPanel = CreateComponentGrid(component);
+            stackPanel.Children.Add(newStackPanel);
+        }
+
         private static Border CreateComponentGrid()
         {
             Border border = new Border()
@@ -75,6 +81,63 @@ namespace POLOSIN_3_PR.UI_Methods
             return border;
         }
 
+        private static Border CreateComponentGrid(ComponentClass component)
+        {
+            Border border = new Border()
+            {
+                BorderBrush = Brushes.Black,
+                BorderThickness = new Thickness(1),
+                CornerRadius = new CornerRadius(5),
+                Margin = new Thickness(3),
+                Background = new SolidColorBrush(Colors.Transparent),
+            };
+
+            var componentComponent = new TextBox
+            {
+                Margin = new Thickness(3),
+                VerticalContentAlignment = VerticalAlignment.Center,
+                Text = component._ComponentName
+            };
+            componentComponent.PreviewTextInput += TextBox_PreviewTextInputComponent;
+            componentComponent.PreviewKeyDown += TextBox_PreviewKeyDown;
+
+            var componentConcentration = new TextBox
+            {
+                Margin = new Thickness(3),
+                VerticalContentAlignment = VerticalAlignment.Center,
+                Text = component._ComponentConcentration.ToString()
+            };
+            componentConcentration.PreviewTextInput += TextBox_PreviewTextInputConcentration;
+            componentConcentration.PreviewKeyDown += TextBox_PreviewKeyDown;
+
+            List<UIElement> list = new List<UIElement>()
+            {
+                new Label
+                {
+                    Content = "Ком-нт"
+                },
+                componentComponent,
+                new Label
+                {
+                    Content = "Кон-ция"
+                },
+                componentConcentration
+            };
+
+            var GridToAdd = new Grid()
+            {
+
+            };
+            GridToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+            GridToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+            GridToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+            GridToAdd.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+
+            AddToGrid(GridToAdd, list);
+            border.Child = GridToAdd;
+
+            return border;
+        }
         public static void AddToGrid(Grid grid, List<UIElement> list)
         {
             foreach (var value in list)

@@ -117,7 +117,7 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
         }
         private void GetOverralReactionText()
         {
-            OverralReactionView.Content = string.Empty;
+            OverralReactionView.Content = null;
             for (int i = 0; i < leftEquationSide.Count; i++)
             {
                 var item = leftEquationSide.ElementAt(i);
