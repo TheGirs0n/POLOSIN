@@ -31,7 +31,7 @@
                 <StackPanel x:Name="RightComponentsStackPanel"/>
             </ScrollViewer>
         </GroupBox>
-        <GroupBox Header="Пред. множитель" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,80,0,0" BorderBrush="Black" Width="160">
+        <GroupBox Header="Пред. множитель" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,80,75,0" BorderBrush="Black" Width="160">
             <StackPanel Orientation="Horizontal">
                 <Label>K</Label>
                 <TextBox x:Name="VelocityConst" PreviewTextInput="TextBox_PreviewTextInputConcentration" PreviewKeyDown="TextBox_PreviewKeyDown" VerticalContentAlignment="Center" HorizontalScrollBarVisibility="Auto"/>
@@ -43,8 +43,12 @@
                 <TextBox x:Name="EnergyActivation" PreviewTextInput="TextBox_PreviewTextInputConcentration" PreviewKeyDown="TextBox_PreviewKeyDown" VerticalContentAlignment="Center" HorizontalScrollBarVisibility="Auto"></TextBox>
             </StackPanel>
         </GroupBox>
+
         
+        
+        <Label Content="*10^" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="130,95,0,0"/>
         <Label x:Name="ReactionView" Content="Вид реакции" VerticalAlignment="Bottom" Margin="0,0,0,50" HorizontalContentAlignment="Center" Visibility="Hidden"/>
         <Label x:Name="OverralReactionView" Content="" VerticalAlignment="Bottom" Margin="15,0,15,25" Visibility="Hidden" HorizontalContentAlignment="Center" FontSize="20"/>
+        <TextBox x:Name="PowTextBox" HorizontalAlignment="Center" Margin="215,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="40" PreviewTextInput="TextBox_PreviewTextInputConcentration" PreviewKeyDown="TextBox_PreviewKeyDown"/>
     </Grid>
 </Window>

@@ -25,7 +25,6 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
             _results = Results;
             Init();
             DrawAllGraphs();
-
         }
 
         private void DrawAllGraphs()
@@ -37,9 +36,6 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
             ConcentrationGraphs.AxisX.Add(new Axis { Title = "Время, С", Foreground = Brushes.Black });
             ConcentrationGraphs.AxisY.Add(new Axis { Title = "Концентрация, моль/л", Foreground = Brushes.Black });
 
-            timer!.Stop();
-            totalMemoryUsed = GC.GetTotalMemory(false) / (1024 * 1024);
-
             foreach (var component in _results)
             {
                 var lineSeries = new LineSeries()
@@ -50,6 +46,8 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
                 ConcentrationGraphs.Series.Add(lineSeries);
             }
 
+            timer!.Stop();
+            totalMemoryUsed = GC.GetTotalMemory(false) / (1024 * 1024);
         }
 
         private void Init()
@@ -58,8 +56,6 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
             timer.Start();
 
             concentrationDataTable = new DataTable();
-
-            timer.Stop();
         }
 
         private void GetDocument_Click(object sender, RoutedEventArgs e)
@@ -70,7 +66,6 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
 
             SaveToDocument saveToDocument = new SaveToDocument();
             saveToDocument.SaveToDocumentExcel(concentrationDataTable!, temperature, processTime, processTimeStep);
-
         }
     }
 }

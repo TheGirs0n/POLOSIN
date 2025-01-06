@@ -42,8 +42,10 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
             if (checkLeft == true && checkRight == true)
             {
                 if (float.TryParse(EnergyActivation.Text, out float energy) == true
-                    && float.TryParse(VelocityConst.Text, out float velocity) == true)
+                    && float.TryParse(VelocityConst.Text, out float velocity) == true
+                    && float.TryParse(PowTextBox.Text, out float power) == true)
                 {
+                    velocity *= (float)Math.Pow(10, power);
                     var velocityConstUnit = (TextBlock)VelocityConstTypeComboBox.SelectedItem;
 
                     GetOverralReactionText();
@@ -179,7 +181,7 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
         {
             char Symb = e.Text[0];
 
-            if (!char.IsDigit(Symb) && Symb != ',' && Symb != '^' && Symb != '-' && Symb != '*')
+            if (!char.IsDigit(Symb) && Symb != ',')
                 e.Handled = true;
         }
         private void TextBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)

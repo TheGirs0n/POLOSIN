@@ -193,9 +193,11 @@ namespace POLOSIN_3_PR
 
                 KineticCalculate kineticCalculate = new KineticCalculate();
                 Dictionary<string, List<double>> Results = new Dictionary<string, List<double>>(); // ДОБАВИЛ ДЛЯ ГРАФИКА
+                
                 var velocityConsts = GetVelocityConst();
                 var chemicalEquantions = GetChemicalEquationsText();
                 var components = GetComponents();
+                
                 Results = kineticCalculate.CalculateDifferentialEquations(chemicalEquantions, velocityConsts, components, _processTime, _processTimeStep);
                 Graphs graphWindow = new Graphs(Results); // ГРАФИК
                 graphWindow.Show(); //
@@ -251,6 +253,13 @@ namespace POLOSIN_3_PR
             char Symb = e.Text[0];
 
             if (!char.IsDigit(Symb) && Symb != ',')
+                e.Handled = true;
+        }
+        private void TextBox_PreviewTextInputTemp(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            char Symb = e.Text[0];
+
+            if (!char.IsDigit(Symb) && Symb != ',' && Symb != '-')
                 e.Handled = true;
         }
         private void TextBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
