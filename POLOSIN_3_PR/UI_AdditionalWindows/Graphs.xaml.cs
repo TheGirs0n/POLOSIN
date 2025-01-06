@@ -1,5 +1,6 @@
 ﻿using DocumentFormat.OpenXml.InkML;
 using LiveCharts;
+using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using POLOSIN_3_PR.Math_Folder;
 using System.Data;
@@ -33,17 +34,27 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
             ConcentrationGraphs.AxisX.Clear();
             ConcentrationGraphs.AxisY.Clear();
 
-            ConcentrationGraphs.AxisX.Add(new Axis { Title = "Время, С", Foreground = Brushes.Black });
+            ConcentrationGraphs.AxisX.Add(new Axis { Title = "Время, мин", Foreground = Brushes.Black });
             ConcentrationGraphs.AxisY.Add(new Axis { Title = "Концентрация, моль/л", Foreground = Brushes.Black });
 
-            foreach (var component in _results)
+            for (int i = 0; i < _results.Count - 1; i++)
             {
-                var lineSeries = new LineSeries()
+                var series = new LineSeries
                 {
-                    Title = component.Key,
-                    Values = new ChartValues<double>(component.Value)
+                    Values = new ChartValues<ObservablePoint>(),
+                    Stroke = new SolidColorBrush(Color.FromRgb(33, 104, 212)),
+                    Fill = new SolidColorBrush(Color.FromArgb(0, 169, 209, 209)),
+                    StrokeThickness = 3,
+                    PointGeometrySize = 7,
                 };
-                ConcentrationGraphs.Series.Add(lineSeries);
+                for (int j = 0; j < _results.ElementAt(i).Value.Count; j++)
+                {
+                    var dotX = Math.Round(_results.ElementAt(i).Value[j]);
+                    var dotY = _results.ElementAt(_results.Count - 1).Value[j];
+
+                    series.Values.Add(new ObservablePoint(dotX, dotY));   
+                }
+                ConcentrationGraphs.Series.Add(series);
             }
 
             timer!.Stop();
@@ -57,7 +68,11 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
 
             concentrationDataTable = new DataTable();
         }
-
+        private void GetParameters()
+        {
+            ElapsedTimeTextBox.Text = (timer!.ElapsedMilliseconds / 1000).ToString();
+            MemoryUsedTextBox.Text = (totalMemoryUsed).ToString();
+        }
         private void GetDocument_Click(object sender, RoutedEventArgs e)
         {
             var temperature = MainWindow.GetTemperature();
