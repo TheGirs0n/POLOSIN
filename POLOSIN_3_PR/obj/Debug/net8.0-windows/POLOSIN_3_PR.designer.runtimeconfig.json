@@ -12,13 +12,13 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\Timur\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Timur\\.nuget\\packages",
-      "C:\\Users\\Timur\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder",
+      "C:\\Users\\egor_\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\egor_\\.nuget\\packages",
       "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
     ],
     "configProperties": {
       "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": true,
+      "CSWINRT_USE_WINDOWS_UI_XAML_PROJECTIONS": false,
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true
     }
   }

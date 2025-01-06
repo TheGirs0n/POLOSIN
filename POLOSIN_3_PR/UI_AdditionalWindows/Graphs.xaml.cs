@@ -1,4 +1,6 @@
-﻿using LiveCharts.Wpf;
+﻿using DocumentFormat.OpenXml.InkML;
+using LiveCharts;
+using LiveCharts.Wpf;
 using POLOSIN_3_PR.Math_Folder;
 using System.Data;
 using System.Diagnostics;
@@ -15,20 +17,39 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
         private DataTable? concentrationDataTable;
         private Stopwatch? timer;
         private long totalMemoryUsed;
-        public Graphs()
+        private Dictionary<string, List<double>> _results;
+
+        public Graphs(Dictionary<string, List<double>> Results)
         {
             InitializeComponent();
+            _results = Results;
             Init();
             DrawAllGraphs();
+
         }
 
         private void DrawAllGraphs()
         {
+            ConcentrationGraphs.Series.Clear();
+            ConcentrationGraphs.AxisX.Clear();
+            ConcentrationGraphs.AxisY.Clear();
+
             ConcentrationGraphs.AxisX.Add(new Axis { Title = "Время, С", Foreground = Brushes.Black });
             ConcentrationGraphs.AxisY.Add(new Axis { Title = "Концентрация, моль/л", Foreground = Brushes.Black });
 
             timer!.Stop();
             totalMemoryUsed = GC.GetTotalMemory(false) / (1024 * 1024);
+
+            foreach (var component in _results)
+            {
+                var lineSeries = new LineSeries()
+                {
+                    Title = component.Key,
+                    Values = new ChartValues<double>(component.Value)
+                };
+                ConcentrationGraphs.Series.Add(lineSeries);
+            }
+
         }
 
         private void Init()

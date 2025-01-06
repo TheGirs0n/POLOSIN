@@ -185,16 +185,21 @@ namespace POLOSIN_3_PR
 
         private void GetKineticButton_Click(object sender, RoutedEventArgs e)
         {
+            
             if (TemperatureTextBox.Text != string.Empty && TempTimeTextBox.Text != string.Empty
                 && TimeTextBox.Text != string.Empty && components!.Count > 0 && chemicalEquations!.Count > 0)
             {
                 GetActualProccesParameters();
 
                 KineticCalculate kineticCalculate = new KineticCalculate();
+                Dictionary<string, List<double>> Results = new Dictionary<string, List<double>>(); // ДОБАВИЛ ДЛЯ ГРАФИКА
                 var velocityConsts = GetVelocityConst();
                 var chemicalEquantions = GetChemicalEquationsText();
                 var components = GetComponents();
-                kineticCalculate.CalculateDifferentialEquations(chemicalEquantions, velocityConsts, components, _processTime, _processTimeStep);
+                Results = kineticCalculate.CalculateDifferentialEquations(chemicalEquantions, velocityConsts, components, _processTime, _processTimeStep);
+                Graphs graphWindow = new Graphs(Results); // ГРАФИК
+                graphWindow.Show(); //
+
             }
             else if(TemperatureTextBox.Text == string.Empty || TempTimeTextBox.Text == string.Empty
                 || TimeTextBox.Text == string.Empty)
