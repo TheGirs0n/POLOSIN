@@ -3,9 +3,13 @@ using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using POLOSIN_3_PR.Math_Folder;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Diagnostics;
+using System.DirectoryServices.ActiveDirectory;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 
 namespace POLOSIN_3_PR.UI_AdditionalWindows
@@ -19,6 +23,7 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
         private Stopwatch? timer;
         private long totalMemoryUsed;
         private Dictionary<string, List<double>> _results;
+        
 
         public Graphs(Dictionary<string, List<double>> Results)
         {
@@ -67,6 +72,62 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
             timer.Start();
 
             concentrationDataTable = new DataTable();
+            // Добавляем столбец для времени
+            concentrationDataTable.Columns.Add("Time");
+
+            // Добавляем столбцы для каждого компонента (исключая "time")
+            foreach (var key in _results.Keys)
+            {
+                if (key != "time")
+                {
+                    concentrationDataTable.Columns.Add(key);
+                }
+            }
+
+            // Заполняем DataTable данными
+            for (int i = 0; i < _results["time"].Count; i++)
+            {
+                var newRow = concentrationDataTable.NewRow();
+                newRow["Time"] = _results["time"][i]; // Время
+
+                // Добавляем значения для каждого компонента
+                foreach (var key in _results.Keys)
+                {
+                    if (key != "time")
+                    {
+                        newRow[key] = Math.Round(_results[key][i],5);
+                        
+                    }
+                }
+
+                concentrationDataTable.Rows.Add(newRow);
+            }
+
+            // Очищаем существующие столбцы
+            ConcentrationDataGrid.Columns.Clear();
+
+            // Добавляем столбец для времени
+            ConcentrationDataGrid.Columns.Add(new DataGridTextColumn
+            {
+                Header = "Time",
+                Binding = new Binding("Time")
+            });
+
+            // Добавляем столбцы для каждого компонента (исключая "time")
+            foreach (var key in _results.Keys)
+            {
+                if (key != "time")
+                {
+                    ConcentrationDataGrid.Columns.Add(new DataGridTextColumn
+                    {
+                        Header = key,
+                        Binding = new Binding(key)
+                    });
+                }
+            }
+
+            // Привязка DataTable к DataGrid
+            ConcentrationDataGrid.ItemsSource = concentrationDataTable.DefaultView;
         }
         private void GetParameters()
         {

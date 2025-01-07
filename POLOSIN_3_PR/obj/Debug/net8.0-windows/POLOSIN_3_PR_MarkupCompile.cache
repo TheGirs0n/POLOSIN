@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\Timur\Desktop\POLOSIN_3\POLOSIN_3_PR\obj\Debug\net8.0-windows\
+D:\prog\Polosin\POLOSIN\POLOSIN_3_PR\obj\Debug\net8.0-windows\
 POLOSIN_3_PR
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-C:\Users\Timur\Desktop\POLOSIN_3\POLOSIN_3_PR\App.xaml
+D:\prog\Polosin\POLOSIN\POLOSIN_3_PR\App.xaml
 31693021688
 
 14813863116
-209-315103528
+209381406363
 MainWindow.xaml;UI_AdditionalWindows\AddChemicalEquation.xaml;UI_AdditionalWindows\Graphs.xaml;
 
 False
