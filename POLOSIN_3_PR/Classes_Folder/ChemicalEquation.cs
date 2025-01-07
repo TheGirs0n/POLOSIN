@@ -5,18 +5,18 @@
         public Dictionary<string, int>? _LeftEquationSide { get; set; }
         public Dictionary<string, int>? _RightEquationSide { get; set; }
         public float? _ActivateEnergy { get; set; }
-        public float? _VelocityConst { get; set; }
+        public float? _PredExp { get; set; }
         public string? _ActivateEnergyUnit { get; set; }
         public string? _VelocityConstUnit { get; set; }
         public string? _OverralReactionText { get; set; }
 
         public ChemicalEquation(Dictionary<string, int> leftEquationSide, Dictionary<string, int> rightEquationSide,
-            float activateEnergy, float velocityConst, string activateEnergyUnit, string overralReactionText)
+            float activateEnergy, float predExp, string activateEnergyUnit, string overralReactionText)
         {
             _LeftEquationSide = leftEquationSide;
             _RightEquationSide = rightEquationSide;
             _ActivateEnergy = activateEnergy;
-            _VelocityConst = velocityConst;
+            _PredExp = predExp;
             _ActivateEnergyUnit = activateEnergyUnit;
             _OverralReactionText = overralReactionText;
 

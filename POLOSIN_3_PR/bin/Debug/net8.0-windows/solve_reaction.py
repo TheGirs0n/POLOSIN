@@ -6,7 +6,7 @@ import re
 
 
 try:
-    input_path = "D:/prog/Polosin/POLOSIN/POLOSIN_3_PR/bin/Debug/net8.0-windows/input.json"
+    input_path = "C:/Users/Timur/Desktop/POLOSIN_3/POLOSIN_3_PR/bin/Debug/net8.0-windows/input.json"
     with open(input_path, "r") as f:
         data = json.load(f)
 
@@ -102,16 +102,16 @@ else:
 # Временной интервал
 t_span = (0, time)  # Временной интервал: от 0 до time
 t_eval = np.linspace(0, time, int(time / time_step) + 1)  # Шаг по времени
-
+print(t_span)
+print(t_eval)
 # Решаем систему дифференциальных уравнений
-print(system);
 sol = solve_ivp(system, t_span, y0, method='RK45', t_eval=t_eval)
 
 # Сохраняем результаты в файл
 results = {comp: sol.y[idx].tolist() for comp, idx in component_to_index.items()}
 results["time"] = sol.t.tolist()
 
-output_path = "D:/prog/Polosin/POLOSIN/POLOSIN_3_PR/bin/Debug/net8.0-windows/output.json"
+output_path = "C:/Users/Timur/Desktop/POLOSIN_3/POLOSIN_3_PR/bin/Debug/net8.0-windows/output.json"
 
 with open(output_path, "w") as f:
     json.dump(results, f, indent=4)

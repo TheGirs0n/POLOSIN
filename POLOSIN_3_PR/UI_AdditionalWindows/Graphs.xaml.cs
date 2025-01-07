@@ -42,14 +42,14 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
                 var series = new LineSeries
                 {
                     Values = new ChartValues<ObservablePoint>(),
-                    Stroke = new SolidColorBrush(Color.FromRgb(33, 104, 212)),
+                    Stroke = new SolidColorBrush(Color.FromRgb((byte)(i * 33), 104, 212)),
                     Fill = new SolidColorBrush(Color.FromArgb(0, 169, 209, 209)),
                     StrokeThickness = 3,
-                    PointGeometrySize = 7,
+                    PointGeometrySize = 3,
                 };
                 for (int j = 0; j < _results.ElementAt(i).Value.Count; j++)
                 {
-                    var dotX = Math.Round(_results.ElementAt(i).Value[j]);
+                    var dotX = _results.ElementAt(i).Value[j];
                     var dotY = _results.ElementAt(_results.Count - 1).Value[j];
 
                     series.Values.Add(new ObservablePoint(dotY, dotX));   

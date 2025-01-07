@@ -145,12 +145,12 @@ namespace POLOSIN_3_PR
             };
             float energyActivation = 74000;
             float predExp = (float)(0.2 * Math.Pow(10, 14));
-            float velocityConst = (float)(predExp * Math.Pow(Math.E, (-energyActivation / (8.31 * (float.Parse(TemperatureTextBox.Text) + 273)))));
+            //float velocityConst = (float)(predExp * Math.Pow(Math.E, (-energyActivation / (8.31 * (float.Parse(TemperatureTextBox.Text) + 273)))));
             string energyActivationUnit = "Дж/моль";
             string overralReactionText = "";
             overralReactionText = GetOverralReactionText(ref overralReactionText, leftEquationSide, rightEquationSide);
 
-            ChemicalEquation equationFirst = new ChemicalEquation(leftEquationSide, rightEquationSide, energyActivation, velocityConst, energyActivationUnit, overralReactionText);
+            ChemicalEquation equationFirst = new ChemicalEquation(leftEquationSide, rightEquationSide, energyActivation, predExp, energyActivationUnit, overralReactionText);
 
             components!.Add(componentA);
             components!.Add(componentB);
@@ -172,11 +172,11 @@ namespace POLOSIN_3_PR
 
             energyActivation = 89000;
             predExp = (float)(9 * Math.Pow(10, 15));
-            velocityConst = (float)(predExp * Math.Pow(Math.E, (-energyActivation / (8.31 * (float.Parse(TemperatureTextBox.Text) + 273)))));     
+            //velocityConst = (float)(predExp * Math.Pow(Math.E, -energyActivation / (8.31 * (float.Parse(TemperatureTextBox.Text) + 273))));     
             energyActivationUnit = "Дж/моль";
             overralReactionText = GetOverralReactionText(ref overralReactionText, leftEquationSide, rightEquationSide);
 
-            ChemicalEquation equationSecond = new ChemicalEquation(leftEquationSide, rightEquationSide, energyActivation, velocityConst, energyActivationUnit, overralReactionText);
+            ChemicalEquation equationSecond = new ChemicalEquation(leftEquationSide, rightEquationSide, energyActivation, predExp, energyActivationUnit, overralReactionText);
 
             chemicalEquations!.Add(equationSecond);
 
@@ -192,11 +192,11 @@ namespace POLOSIN_3_PR
 
             energyActivation = 85000;
             predExp = (float)(0.5 * Math.Pow(10, 14));
-            velocityConst = (float)(predExp * Math.Pow(Math.E, (-energyActivation / (8.31 * (float.Parse(TemperatureTextBox.Text) + 273)))));
+            //velocityConst = (float)(predExp * Math.Pow(Math.E, (-energyActivation / (8.31 * (float.Parse(TemperatureTextBox.Text) + 273)))));
             energyActivationUnit = "Дж/моль";
             overralReactionText = GetOverralReactionText(ref overralReactionText, leftEquationSide, rightEquationSide);
 
-            ChemicalEquation equationThird = new ChemicalEquation(leftEquationSide, rightEquationSide, energyActivation, velocityConst, energyActivationUnit, overralReactionText);
+            ChemicalEquation equationThird = new ChemicalEquation(leftEquationSide, rightEquationSide, energyActivation, predExp, energyActivationUnit, overralReactionText);
 
             chemicalEquations!.Add(equationThird);
 
@@ -238,7 +238,7 @@ namespace POLOSIN_3_PR
             List<float> velocityConst = new List<float>();
             for (int i = 0; i < chemicalEquations!.Count; i++)
             {
-                var exp = chemicalEquations[i]._VelocityConst;
+                var exp = chemicalEquations[i]._PredExp;
                 var ea = chemicalEquations[i]._ActivateEnergy;
                 var item = exp * Math.Pow(Math.E, (double)(-ea / (8.31 * (_temperature + 273)))!);
                 velocityConst.Add((float)item!);
