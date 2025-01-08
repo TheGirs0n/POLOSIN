@@ -37,8 +37,8 @@ namespace POLOSIN_3_PR.Math_Folder
 
             // Запуск Python-скрипта
             ProcessStartInfo start = new ProcessStartInfo();
-            start.FileName = "C:\\Users\\egor_\\AppData\\Local\\Programs\\Python\\Python313\\python.exe";  // Или полный путь к python.exe
-            start.Arguments = "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\bin\\Debug\\net8.0-windows";  // Имя Python-скрипта
+            start.FileName = "C:\\Users\\Timur\\AppData\\Local\\Programs\\Python\\Python313\\python.exe";  // Или полный путь к python.exe
+            start.Arguments = "C:\\Users\\Timur\\Desktop\\POLOSIN_3\\POLOSIN_3_PR\\bin\\Debug\\net8.0-windows\\solve_reaction.py";  // Имя Python-скрипта
             start.UseShellExecute = false;
             start.RedirectStandardOutput = true;
             start.RedirectStandardError = true;

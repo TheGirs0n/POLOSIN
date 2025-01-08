@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="Graphs" Height="450" Width="800">
     <Grid>
-        <lvc:CartesianChart x:Name="ConcentrationGraphs" Margin="15,25,0,100" Width="425" HorizontalAlignment="Left"/>
+        <lvc:CartesianChart x:Name="ConcentrationGraphs" Margin="15,25,0,100" Width="425" HorizontalAlignment="Left" LegendLocation="Right"/>
         <GroupBox Header="Показатели экономичности" VerticalAlignment="Bottom" Margin="15,0,150,15" Height="65" BorderBrush="Black" BorderThickness="1">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -19,7 +19,7 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" VerticalAlignment="Center">Время, с</Label>
+                <Label Grid.Column="0" VerticalAlignment="Center">Время, мс</Label>
                 <TextBox x:Name="ElapsedTimeTextBox" Grid.Column="1" IsReadOnly="True" Margin="3,3,3,3" VerticalAlignment="Center"/>
 
                 <TextBlock Grid.Column="2" VerticalAlignment="Center" TextWrapping="WrapWithOverflow">Производительность, МБ</TextBlock>
@@ -34,7 +34,7 @@
 
         <Button x:Name="GetDocument" Content="Сохранить в отчет" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="125" Height="35" Margin="0,0,15,25" Click="GetDocument_Click" ></Button>
 
-        <DataGrid x:Name="ConcentrationDataGrid" HorizontalAlignment="Right" Margin="0,25,15,100" Width="300" AutoGenerateColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" SelectionUnit="Cell" CanUserResizeRows="False" IsReadOnly="True">
+        <DataGrid x:Name="ConcentrationDataGrid" HorizontalAlignment="Right" Margin="0,25,15,100" Width="300" AutoGenerateColumns="True" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" SelectionUnit="Cell" CanUserResizeRows="False" IsReadOnly="True">
         </DataGrid>
 
     </Grid>

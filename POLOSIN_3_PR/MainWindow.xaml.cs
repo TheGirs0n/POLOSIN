@@ -125,8 +125,8 @@ namespace POLOSIN_3_PR
         private void StartValues() 
         {
             TemperatureTextBox.Text = "-3";
-            TimeTextBox.Text = "3000";
-            TempTimeTextBox.Text = "60";
+            TimeTextBox.Text = "50";
+            TempTimeTextBox.Text = "1";
             
             ComponentClass componentA = new ComponentClass(componentName: "A", componentConcentration: (float)0.9);
             ComponentClass componentB = new ComponentClass(componentName: "B", componentConcentration: (float)0.0);
