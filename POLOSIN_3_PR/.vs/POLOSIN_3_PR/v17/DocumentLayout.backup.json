@@ -92,7 +92,7 @@
               "RelativeDocumentMoniker": "UI_AdditionalWindows\\Graphs.xaml.cs",
               "ToolTip": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\UI_AdditionalWindows\\Graphs.xaml.cs",
               "RelativeToolTip": "UI_AdditionalWindows\\Graphs.xaml.cs",
-              "ViewState": "AgIAAEwAAAAAAAAAAAAwwFAAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAFoAAAAAAAAAAAApwG8AAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-04T15:57:46.741Z",
               "EditorCaption": ""
@@ -106,8 +106,7 @@
               "ToolTip": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\UI_AdditionalWindows\\Graphs.xaml",
               "RelativeToolTip": "UI_AdditionalWindows\\Graphs.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-01-02T14:09:30.843Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-02T14:09:30.843Z"
             },
             {
               "$type": "Document",
@@ -119,8 +118,7 @@
               "RelativeToolTip": "UI_Methods\\ModifyChemicalEquationGroupBox.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAxwBcAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-31T15:22:12.106Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-31T15:22:12.106Z"
             },
             {
               "$type": "Document",
@@ -132,8 +130,7 @@
               "RelativeToolTip": "Math_Folder\\KineticCalculate.cs",
               "ViewState": "AgIAABwAAAAAAAAAAAApwC4AAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T12:38:36.913Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-07T12:38:36.913Z"
             },
             {
               "$type": "Document",
@@ -179,8 +176,7 @@
               "ToolTip": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-01-01T16:33:05.056Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-01T16:33:05.056Z"
             },
             {
               "$type": "Document",
@@ -192,8 +188,7 @@
               "RelativeToolTip": "MainWindow.xaml.cs",
               "ViewState": "AgIAAH4AAAAAAAAAAAAAAAMBAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-31T13:05:53.306Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-31T13:05:53.306Z"
             },
             {
               "$type": "Document",
@@ -276,8 +271,7 @@
               "ToolTip": "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\App.xaml",
               "RelativeToolTip": "App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-01-01T16:41:31.927Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-01T16:41:31.927Z"
             }
           ]
         }

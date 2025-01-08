@@ -73,7 +73,7 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
 
             concentrationDataTable = new DataTable();
             // Добавляем столбец для времени
-            concentrationDataTable.Columns.Add("Time");
+            concentrationDataTable.Columns.Add("time");
 
             // Добавляем столбцы для каждого компонента (исключая "time")
             foreach (var key in _results.Keys)
@@ -106,10 +106,10 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
             // Очищаем существующие столбцы
             ConcentrationDataGrid.Columns.Clear();
 
-            // Добавляем столбец для времени
+            //Добавляем столбец для времени
             ConcentrationDataGrid.Columns.Add(new DataGridTextColumn
             {
-                Header = "Time",
+                Header = "Время",
                 Binding = new Binding("Time")
             });
 
