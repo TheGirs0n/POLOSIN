@@ -38,7 +38,7 @@ namespace POLOSIN_3_PR.Math_Folder
             // Запуск Python-скрипта
             ProcessStartInfo start = new ProcessStartInfo();
             start.FileName = "C:\\Users\\egor_\\AppData\\Local\\Programs\\Python\\Python313\\python.exe";  // Или полный путь к python.exe
-            start.Arguments = "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\bin\\Debug\\net8.0-windows";  // Имя Python-скрипта
+            start.Arguments = "D:\\prog\\Polosin\\POLOSIN\\POLOSIN_3_PR\\bin\\Debug\\net8.0-windows\\solve_reaction.py";  // Имя Python-скрипта
             start.UseShellExecute = false;
             start.RedirectStandardOutput = true;
             start.RedirectStandardError = true;
@@ -46,19 +46,48 @@ namespace POLOSIN_3_PR.Math_Folder
 
             using (Process process = Process.Start(start)!)
             {
+
+                var outputTask = process.StandardOutput.ReadToEnd();
+                var errorTask = process.StandardError.ReadToEnd();
+
                 
+
+                process.WaitForExit();  // Ожидаем завершения процесса
+
+  
+
+     
+                //process.StartInfo = start;
+                //process.Start();
+                ////Thread.Sleep(2000);
+                
+
+                //if (!process.WaitForExit(10000))
+                //{
+                //    process.Kill();
+                //    Logger.PrintMessageAsync("Huy", System.Windows.MessageBoxImage.Information);
+                //}
             }
 
+            
+            //Process process = Process.Start(start)!;
+            //Thread.Sleep(2000);
+            //process.Close();
             if (File.Exists("output.json"))
             {
                 string outputJson = File.ReadAllText("output.json");
                 results = JsonConvert.DeserializeObject<Dictionary<string, List<double>>>(outputJson)!;
+                //process.Close();
+                //process.Kill();
+
             }
             else
             {
                 Logger.PrintMessageAsync("Файл output.json не найден", System.Windows.MessageBoxImage.Error);
             }
+            //process.Close();
             return results;
+
         }
 
     }

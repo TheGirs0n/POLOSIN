@@ -47,33 +47,39 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
                 var series = new LineSeries
                 {
                     Values = new ChartValues<ObservablePoint>(),
-                    Stroke = new SolidColorBrush(Color.FromRgb((byte)(i * 33), 104, 212)),
+                    Stroke = new SolidColorBrush(Color.FromRgb((byte)(i * 40), 104, (byte)(212 * i))),
                     Fill = new SolidColorBrush(Color.FromArgb(0, 169, 209, 209)),
                     StrokeThickness = 3,
                     PointGeometrySize = 3,
                 };
                 for (int j = 0; j < _results.ElementAt(i).Value.Count; j++)
                 {
-                    var dotX = _results.ElementAt(i).Value[j];
+                    var dotX = Math.Round(_results.ElementAt(i).Value[j], 5);
                     var dotY = _results.ElementAt(_results.Count - 1).Value[j];
 
                     series.Values.Add(new ObservablePoint(dotY, dotX));   
                 }
+                series.Title = $"{_results.ElementAt(i).Key}";
                 ConcentrationGraphs.Series.Add(series);
             }
 
             timer!.Stop();
             totalMemoryUsed = GC.GetTotalMemory(false) / (1024 * 1024);
+
+            GetParameters();
         }
 
         private void Init()
         {
+            timer = null;
+            totalMemoryUsed = 0;
+
             timer = new Stopwatch();
             timer.Start();
 
             concentrationDataTable = new DataTable();
             // Добавляем столбец для времени
-            concentrationDataTable.Columns.Add("time");
+            concentrationDataTable.Columns.Add("Время");
 
             // Добавляем столбцы для каждого компонента (исключая "time")
             foreach (var key in _results.Keys)
@@ -84,54 +90,31 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
                 }
             }
 
+            // убрал описание колонок именно DataGRID, поскольку шел конфликт с колонками DataTABLE
+
             // Заполняем DataTable данными
             for (int i = 0; i < _results["time"].Count; i++)
             {
                 var newRow = concentrationDataTable.NewRow();
-                newRow["Time"] = _results["time"][i]; // Время
+                newRow["Время"] = _results["time"][i]; // Время
 
                 // Добавляем значения для каждого компонента
                 foreach (var key in _results.Keys)
                 {
                     if (key != "time")
                     {
-                        newRow[key] = Math.Round(_results[key][i],5);
-                        
+                        newRow[key] = Math.Round(_results[key][i], 5);                      
                     }
                 }
 
                 concentrationDataTable.Rows.Add(newRow);
             }
 
-            // Очищаем существующие столбцы
-            ConcentrationDataGrid.Columns.Clear();
-
-            //Добавляем столбец для времени
-            ConcentrationDataGrid.Columns.Add(new DataGridTextColumn
-            {
-                Header = "Время",
-                Binding = new Binding("Time")
-            });
-
-            // Добавляем столбцы для каждого компонента (исключая "time")
-            foreach (var key in _results.Keys)
-            {
-                if (key != "time")
-                {
-                    ConcentrationDataGrid.Columns.Add(new DataGridTextColumn
-                    {
-                        Header = key,
-                        Binding = new Binding(key)
-                    });
-                }
-            }
-
-            // Привязка DataTable к DataGrid
             ConcentrationDataGrid.ItemsSource = concentrationDataTable.DefaultView;
         }
         private void GetParameters()
         {
-            ElapsedTimeTextBox.Text = (timer!.ElapsedMilliseconds / 1000).ToString();
+            ElapsedTimeTextBox.Text = timer!.ElapsedMilliseconds.ToString(); // время в миллисекундах
             MemoryUsedTextBox.Text = (totalMemoryUsed).ToString();
         }
         private void GetDocument_Click(object sender, RoutedEventArgs e)
@@ -141,7 +124,7 @@ namespace POLOSIN_3_PR.UI_AdditionalWindows
             var processTimeStep = MainWindow.GetProcessTimeStep();
 
             SaveToDocument saveToDocument = new SaveToDocument();
-            saveToDocument.SaveToDocumentExcel(concentrationDataTable!, temperature, processTime, processTimeStep);
+            saveToDocument.SaveToDocumentExcel(concentrationDataTable!, temperature, processTime, processTimeStep, timer!.ElapsedMilliseconds, totalMemoryUsed);
         }
     }
 }

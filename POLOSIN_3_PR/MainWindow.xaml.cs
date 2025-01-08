@@ -122,12 +122,12 @@ namespace POLOSIN_3_PR
             UpdateDataGridSource(ParticularOrdersDataGrid, particularDataTable);
         }
 
-        private void StartValues() 
+        private void StartValues()
         {
             TemperatureTextBox.Text = "-3";
-            TimeTextBox.Text = "3000";
-            TempTimeTextBox.Text = "60";
-            
+            TimeTextBox.Text = "50";
+            TempTimeTextBox.Text = "1";
+
             ComponentClass componentA = new ComponentClass(componentName: "A", componentConcentration: (float)0.9);
             ComponentClass componentB = new ComponentClass(componentName: "B", componentConcentration: (float)0.0);
             ComponentClass componentC = new ComponentClass(componentName: "C", componentConcentration: (float)0.0);
@@ -185,7 +185,7 @@ namespace POLOSIN_3_PR
                 { componentB._ComponentName!, 1},
                 { componentC._ComponentName!, 1}
             };
-            rightEquationSide= new Dictionary<string, int>()
+            rightEquationSide = new Dictionary<string, int>()
             {
                 { componentA._ComponentName!, 1}
             };
@@ -298,7 +298,7 @@ namespace POLOSIN_3_PR
 
         private void GetKineticButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            ModifyComponentGroupBox.GetComponentsAndConcentration(components: components!, ComponentsStackPanel);
             if (TemperatureTextBox.Text != string.Empty && TempTimeTextBox.Text != string.Empty
                 && TimeTextBox.Text != string.Empty && components!.Count > 0 && chemicalEquations!.Count > 0)
             {

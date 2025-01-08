@@ -93,10 +93,10 @@ if isinstance(initial_concentrations, list):
     if len(initial_concentrations) == len(components):
         y0 = np.array(initial_concentrations)  # Используем список начальных концентраций
     else:
-
+        print("Проебали конц")
         sys.exit(1)
 else:
-
+    print("Проебали лист")
     sys.exit(1)
 
 # Временной интервал
@@ -115,4 +115,5 @@ output_path = "D:/prog/Polosin/POLOSIN/POLOSIN_3_PR/bin/Debug/net8.0-windows/out
 
 with open(output_path, "w") as f:
     json.dump(results, f, indent=4)
+
 
