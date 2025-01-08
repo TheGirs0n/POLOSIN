@@ -13,6 +13,10 @@ namespace POLOSIN_3_PR.UI_Methods
         {
             stackPanel.Children.RemoveAt(stackPanel.Children.Count - 1);
         }
+        public static void RemoveComponent(StackPanel stackPanel, int index)
+        {
+            stackPanel.Children.RemoveAt(index);
+        }
         public static void AddComponent(StackPanel stackPanel)
         {
             var newStackPanel = CreateComponentGrid();
@@ -91,7 +95,7 @@ namespace POLOSIN_3_PR.UI_Methods
                 Margin = new Thickness(3),
                 Background = new SolidColorBrush(Colors.Transparent),
             };
-
+            border.PreviewMouseLeftButtonDown += StackPanelToAdd_PreviewMouseLeftButtonDown;
             var componentComponent = new TextBox
             {
                 Margin = new Thickness(3),
@@ -137,6 +141,22 @@ namespace POLOSIN_3_PR.UI_Methods
             border.Child = GridToAdd;
 
             return border;
+        }
+        private static void StackPanelToAdd_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //Logger.PrintMessageAsync("Нажат уравнение", MessageBoxImage.Information);
+            var chemicalEquationBorder = (Border)sender;
+
+            chemicalEquationBorder.Background = new SolidColorBrush(Colors.Yellow);
+            var stackPanelParent = (StackPanel)chemicalEquationBorder.Parent;
+
+            MainWindow.indexChemicalComponentToDelete = stackPanelParent.Children.IndexOf(chemicalEquationBorder);
+
+            foreach (Border stackPanelChild in stackPanelParent.Children)
+            {
+                if (stackPanelChild != chemicalEquationBorder)
+                    stackPanelChild.Background = new SolidColorBrush(Colors.White);
+            }
         }
         public static void AddToGrid(Grid grid, List<UIElement> list)
         {

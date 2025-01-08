@@ -1,4 +1,5 @@
-﻿using POLOSIN_3_PR.Async_Methods;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using POLOSIN_3_PR.Async_Methods;
 using POLOSIN_3_PR.Classes_Folder;
 using POLOSIN_3_PR.Math_Folder;
 using POLOSIN_3_PR.UI_AdditionalWindows;
@@ -23,6 +24,9 @@ namespace POLOSIN_3_PR
         private static float _temperature;
         private static float _processTime;
         private static float _processTimeStep;
+
+        public static int indexChemicalEquationToDelete = 0;
+        public static int indexChemicalComponentToDelete = 0;
 
         public MainWindow()
         {
@@ -270,8 +274,8 @@ namespace POLOSIN_3_PR
         }
         private void RemoveChemicalEquation_Click(object sender, RoutedEventArgs e)
         {
-            if (ChemicalEquationsStackPanel.Children!.Count > 1)
-                ModifyChemicalEquationGroupBox.RemoveChemicalEquation(ChemicalEquationsStackPanel, chemicalEquations);
+            if (ChemicalEquationsStackPanel.Children!.Count > 1 && indexChemicalEquationToDelete != -1)
+                ModifyChemicalEquationGroupBox.RemoveChemicalEquation(ChemicalEquationsStackPanel, chemicalEquations, indexChemicalEquationToDelete);
             else
                 Logger.PrintMessageAsync("Нет химических реакций для удаления", MessageBoxImage.Error);
         }
@@ -283,14 +287,14 @@ namespace POLOSIN_3_PR
 
         private void RemoveComponent_Click(object sender, RoutedEventArgs e)
         {
-            if (ComponentsStackPanel!.Children.Count > 0)
+            if (ComponentsStackPanel!.Children.Count > 0 && indexChemicalComponentToDelete != -1)
             {
                 ModifyComponentGroupBox.GetComponentsAndConcentration(components!, ComponentsStackPanel);
 
-                ModifyComponentGroupBox.RemoveComponent(ComponentsStackPanel);
+                ModifyComponentGroupBox.RemoveComponent(ComponentsStackPanel, indexChemicalComponentToDelete);
 
                 if (components!.Count > 0)
-                    components.RemoveAt(components.Count - 1);
+                    components.RemoveAt(indexChemicalComponentToDelete);
             }
             else
                 Logger.PrintMessageAsync("Нет компонентов для удаления", MessageBoxImage.Error);
@@ -331,39 +335,90 @@ namespace POLOSIN_3_PR
             switch (e.Action)
             { 
                 case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-                    var item = (ChemicalEquation)e.NewItems![0]!;
+                    var itemToAdd = (ChemicalEquation)e.NewItems![0]!;
                     if (AddChemicalEquation.overralChemicalEquation! != null) 
-                        ModifyChemicalEquationGroupBox.AddChemicalEquationToStackPanel(ChemicalEquationsStackPanel, item, overralReactionText: AddChemicalEquation.overralChemicalEquation!);
+                        ModifyChemicalEquationGroupBox.AddChemicalEquationToStackPanel(ChemicalEquationsStackPanel, itemToAdd, overralReactionText: AddChemicalEquation.overralChemicalEquation!);
                     else
-                        ModifyChemicalEquationGroupBox.AddChemicalEquationToStackPanel(ChemicalEquationsStackPanel, item, overralReactionText: item._OverralReactionText!);
+                        ModifyChemicalEquationGroupBox.AddChemicalEquationToStackPanel(ChemicalEquationsStackPanel, itemToAdd, overralReactionText: itemToAdd._OverralReactionText!);
                     UpdateStechiometricAndParticularDataTable(_stechiometricDataTable!, _particularOrdersDataTable!);
                     break;
                 case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-                    _stechiometricDataTable!.Rows.RemoveAt(_stechiometricDataTable.Rows.Count - 1);
-                    _particularOrdersDataTable!.Rows.RemoveAt(_particularOrdersDataTable.Rows.Count - 1);
-
-                    UpdateDataGridSource(StechiometricDataGrid, _stechiometricDataTable);
-                    UpdateDataGridSource(ParticularOrdersDataGrid, _particularOrdersDataTable);
+                    var itemToRemove = (ChemicalEquation)e.OldItems![0]!;
+                    DeleteChemicalEquation(itemToRemove);                 
                     break;
             }
         }
-
         private void Components_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)
             {
-                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:        
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
                     UpdateStechiometricAndParticularDataTable(_stechiometricDataTable!, _particularOrdersDataTable!);
                     break;
                 case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-                    _stechiometricDataTable!.Columns.RemoveAt(_stechiometricDataTable.Columns.Count - 1);
-                    _particularOrdersDataTable!.Columns.RemoveAt(_particularOrdersDataTable.Columns.Count - 1);
-
-                    UpdateDataGridSource(StechiometricDataGrid, _stechiometricDataTable);
-                    UpdateDataGridSource(ParticularOrdersDataGrid, _particularOrdersDataTable);
+                    var itemToRemove = (ComponentClass)e.OldItems![0]!;
+                    DeleteChemicalComponent(itemToRemove);
                     break;
             }
         }
+        private void DeleteChemicalEquation(ChemicalEquation chemicalEquation)
+        {
+            List<string> components = new List<string>();
+            string message = "";
+       
+            var leftSide = chemicalEquation._LeftEquationSide; // 1B
+            var rightSide = chemicalEquation._RightEquationSide; // 1D + 1E
+
+            _stechiometricDataTable!.Rows.RemoveAt(indexChemicalEquationToDelete);
+            _particularOrdersDataTable!.Rows.RemoveAt(indexChemicalEquationToDelete);
+
+            UpdateDataGridSource(StechiometricDataGrid, _stechiometricDataTable);
+            UpdateDataGridSource(ParticularOrdersDataGrid, _particularOrdersDataTable);
+
+            for (int i = 0; i < _stechiometricDataTable!.Columns.Count; i++)
+            {
+                List<int> items = new List<int>();
+                for (int j = 0; j < _stechiometricDataTable!.Rows.Count; j++)
+                {
+                    var value = int.Parse(_stechiometricDataTable.Rows[j][i].ToString()!);
+
+                    items.Add(value);               
+                }
+                message = items.All(x => x == 0) ? message + $"\n{_stechiometricDataTable!.Columns[i].ColumnName}" : message + "";
+            }
+
+            if (message != string.Empty) 
+            {
+                message = message.Insert(0, "Компоненты, которые необходимо удалить для корректной работы программы.\nИначе будет запущена последняя рабочая версия данных!:");
+                Logger.PrintMessageAsync($"{message}", MessageBoxImage.Warning);
+            }
+        }
+        private void DeleteChemicalComponent(ComponentClass componentClass)
+        {
+            string message = "";
+
+
+            List<int> items = new List<int>();
+            for (int j = 0; j < _stechiometricDataTable!.Rows.Count; j++)
+            {
+                var value = int.Parse(_stechiometricDataTable.Rows[j][_stechiometricDataTable.Columns[componentClass._ComponentName!]!].ToString()!);
+
+                items.Add(value);
+                message = value != 0 ? message + $"\n{j + 1}" : message + "";
+            }
+            
+            if (message != string.Empty)
+            {
+                message = message.Insert(0, "Реакции, которые необходимо удалить для корректной работы программы.\nИначе будет запущена последняя рабочая версия данных!:");
+                Logger.PrintMessageAsync($"{message}", MessageBoxImage.Warning);
+            }
+            _stechiometricDataTable!.Columns.RemoveAt(indexChemicalComponentToDelete);
+            _particularOrdersDataTable!.Columns.RemoveAt(indexChemicalComponentToDelete);
+
+            UpdateDataGridSource(StechiometricDataGrid, _stechiometricDataTable);
+            UpdateDataGridSource(ParticularOrdersDataGrid, _particularOrdersDataTable);
+        }
+
         private void TextBox_PreviewTextInputConcentration(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             char Symb = e.Text[0];

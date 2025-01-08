@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using POLOSIN_3_PR.Async_Methods;
 using POLOSIN_3_PR.Classes_Folder;
 
 namespace POLOSIN_3_PR.UI_Methods
@@ -13,7 +14,11 @@ namespace POLOSIN_3_PR.UI_Methods
             stackPanel.Children.RemoveAt(stackPanel.Children.Count - 1);
             chemicalEquations!.RemoveAt(chemicalEquations.Count - 1);
         }
-
+        public static void RemoveChemicalEquation(StackPanel stackPanel, ObservableCollection<ChemicalEquation>? chemicalEquations, int indexToDelete)
+        {
+            stackPanel.Children.RemoveAt(indexToDelete);
+            chemicalEquations!.RemoveAt(indexToDelete);
+        }
         public static void AddChemicalEquationComponents(StackPanel stackPanel, Dictionary<string, int> components)
         {
             var newStackPanel = CreateChemicalEquationStackPanel(components);
@@ -38,6 +43,7 @@ namespace POLOSIN_3_PR.UI_Methods
                 Background = new SolidColorBrush(Colors.Transparent)
             };
 
+            border.PreviewMouseLeftButtonDown += StackPanelToAdd_PreviewMouseLeftButtonDown;
             List<UIElement> list = new List<UIElement>()
             {
                 new Label
@@ -77,6 +83,22 @@ namespace POLOSIN_3_PR.UI_Methods
             return border;
         }
 
+        private static void StackPanelToAdd_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //Logger.PrintMessageAsync("Нажат уравнение", MessageBoxImage.Information);
+            var chemicalEquationBorder = (Border)sender;
+
+            chemicalEquationBorder.Background = new SolidColorBrush(Colors.Yellow);
+            var stackPanelParent = (StackPanel)chemicalEquationBorder.Parent;
+
+            MainWindow.indexChemicalEquationToDelete = stackPanelParent.Children.IndexOf(chemicalEquationBorder) - 1;
+
+            foreach (Border stackPanelChild in stackPanelParent.Children)
+            {
+                if (stackPanelChild != chemicalEquationBorder)
+                    stackPanelChild.Background = new SolidColorBrush(Colors.White);
+            }
+        }
 
         private static Border CreateChemicalEquationStackPanel(Dictionary<string, int> components)
         {
